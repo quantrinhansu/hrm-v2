@@ -15,9 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function(){
-	return view('layouts.app');
-});
+Route::get('/home', 'HomeController@index');
+
+Route::get('profile/{id}', 'UserController@show');
+
+Route::get('/employee', 'UserController@getList');
+
+Route::post('/employee/delete', 'UserController@postDelete');
+
+Route::post('/employee/update', 'UserController@postUpdate');
+
+Route::post('/employee/setting/update', 'UserController@postSettingUpdate');
+
+Route::get('/employee/add', 'UserController@getAdd');
+Route::post('/employee/add', 'UserController@postAdd');
+
+Route::get('employee/contract', 'ContractController@getList');
+Route::get('employee/contract/add', 'ContractController@getAdd');
 
 Route::get('profile', function(){
 	return view('profile');
@@ -74,3 +88,6 @@ Route::get('taocongtac', function(){
 Route::get('congtac', function(){
 	return view('congtac.list');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
