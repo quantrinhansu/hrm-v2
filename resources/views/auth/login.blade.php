@@ -27,7 +27,8 @@
 <body id="signin-page">
 <div class="page-form">
     <div id="login">
-        <form action="" class="form">
+        <form action="{{ route('login') }}" class="form" method="POST">
+     {{ csrf_field() }}
             <div class="header-content"><h1>Đăng Nhập</h1></div>
             <div class="body-content">           
                 <div class="form-group">
