@@ -56,6 +56,27 @@
             <hr>
             </div>
     </form>
+
+</div>
+
+<div id="forgot_password">
+        <form action="" class="form">
+            <div class="header-content"><h1>Quên Mật Khẩu</h1></div>
+            <div class="body-content">           
+                <div class="form-group">
+                    <div class="input-icon right"><i class="fa fa-user"></i><input type="text" placeholder="Email" name="username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-success">Xác Nhận
+                        &nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+                </div>
+                <div class="form-group pull-left">
+                    <button class="btn btn-success" id="back">Trở Lại
+                        &nbsp;<i class="fa fa-chevron-circle-left"></i></button>
+                </div>
+                <div class="clearfix"></div>
+        </form>      
 </div>
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
@@ -92,3 +113,18 @@ ga('create', 'UA-145464-12', 'auto');
 ga('send', 'pageview');</script>
 </body>
 </html>
+
+<script type="text/javascript">
+    $('#forgot_password').hide();
+    $(document).ready(function(){
+        $('#btn_forgot_password').click(function(){
+            $('#login').hide();
+            $('#forgot_password').show();
+        })
+
+        $("#back").click(function(){
+            $('#forgot_password').hide();
+            $('#login').show();        
+        });
+    });
+</script>
