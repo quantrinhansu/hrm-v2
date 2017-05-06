@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head><title>Sign In | Extras</title>
@@ -27,57 +26,56 @@
 </head>
 <body id="signin-page">
 <div class="page-form">
-    <form action="{{ route('login') }}" class="form" method="POST">
-     {{ csrf_field() }}
-        <div class="header-content"><h1>Đăng Nhập</h1></div>
-        <div class="body-content">           
-            <div class="form-group">
-                <div class="input-icon right"><i class="fa fa-user"></i><input type="text" placeholder="Email"
-                                                                               name="email" class="form-control">
+    <div id="login">
+        <form action="" class="form">
+            <div class="header-content"><h1>Đăng Nhập</h1></div>
+            <div class="body-content">           
+                <div class="form-group">
+                    <div class="input-icon right"><i class="fa fa-user"></i><input type="text" placeholder="Email"
+                                                                                   name="email" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-icon right"><i class="fa fa-key"></i><input type="password" placeholder="Password"
-                                                                              name="password" class="form-control">
+                <div class="form-group">
+                    <div class="input-icon right"><i class="fa fa-key"></i><input type="password" placeholder="Password"
+                                                                                  name="password" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group pull-left">
-                <div class="checkbox-list"><label><input type="checkbox">&nbsp;
-                    Ghi Nhớ</label></div>
-            </div>
-            <div class="form-group pull-right">
-                <button type="submit" class="btn btn-success">Đăng Nhập
-                    &nbsp;<i class="fa fa-chevron-circle-right"></i></button>
-            </div>
-            <div class="clearfix"></div>
-            <div class="forget-password"><h4>Quên Mật Khẩu</h4>
-
-                <p>Bấm vào <a href='#' class='btn-forgot-pwd'>đây</a> để lấy lại mật khẩu</p></div>
-            <hr>
-            </div>
-    </form>
-
+                <div class="form-group pull-left">
+                    <div class="checkbox-list"><label><input type="checkbox">&nbsp;
+                        Ghi Nhớ</label></div>
+                </div>
+                <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-success">Đăng Nhập
+                        &nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="forget-password"><h4>Quên Mật Khẩu</h4>
+                    <p>Bấm vào <a href='#' class='btn-forgot-pwd' id="btn_forgot_password">đây</a> để lấy lại mật khẩu</p></div>
+                <hr>
+        </form>
+    </div>  
 </div>
 
 <div id="forgot_password">
-        <form action="" class="form">
-            <div class="header-content"><h1>Quên Mật Khẩu</h1></div>
-            <div class="body-content">           
-                <div class="form-group">
-                    <div class="input-icon right"><i class="fa fa-user"></i><input type="text" placeholder="Email" name="username" class="form-control">
-                    </div>
+    <form action="" class="form">
+        <div class="header-content"><h1>Quên Mật Khẩu</h1></div>
+        <div class="body-content">           
+            <div class="form-group">
+                <div class="input-icon right"><i class="fa fa-user"></i><input type="text" placeholder="Email" name="username" class="form-control">
                 </div>
-                <div class="form-group pull-right">
-                    <button type="submit" class="btn btn-success">Xác Nhận
-                        &nbsp;<i class="fa fa-chevron-circle-right"></i></button>
-                </div>
-                <div class="form-group pull-left">
-                    <button class="btn btn-success" id="back">Trở Lại
-                        &nbsp;<i class="fa fa-chevron-circle-left"></i></button>
-                </div>
-                <div class="clearfix"></div>
-        </form>      
+            </div>
+            <div class="form-group pull-right">
+                <button type="submit" class="btn btn-success">Xác Nhận
+                    &nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+            </div>
+            <div class="form-group pull-left">
+                <button class="btn btn-success" id="back">Trở Lại
+                    &nbsp;<i class="fa fa-chevron-circle-left"></i></button>
+            </div>
+            <div class="clearfix"></div>
+    </form>       
 </div>
+
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/js/jquery-ui.js"></script>
@@ -113,7 +111,6 @@ ga('create', 'UA-145464-12', 'auto');
 ga('send', 'pageview');</script>
 </body>
 </html>
-
 <script type="text/javascript">
     $('#forgot_password').hide();
     $(document).ready(function(){
