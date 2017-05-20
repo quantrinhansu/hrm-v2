@@ -1,48 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title>Dashboard | Dashboard</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
-    <!--Loading bootstrap css-->
-    <base href="{{ asset('') }}">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font1.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
-    <!--LOADING STYLESHEET FOR PAGE-->
-    <link type="text/css" rel="stylesheet" href="assets/vendors/intro.js/introjs.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/calendar/zabuto_calendar.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/sco.message/sco.message.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/intro.js/introjs.css">
-    
-    <!-- DATE PICKER -->
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-colorpicker/css/colorpicker.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-datepicker/css/datepicker.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css">
-    <link type="text/css" rel="stylesheet"
-          href="assets/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    
-    <!-- ON/OFF -->
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-switch/css/bootstrap-switch.css">
-    <!--Loading style vendors-->
-    <link type="text/css" rel="stylesheet" href="assets/vendors/animate.css/animate.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-pace/pace.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/iCheck/skins/all.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-notific8/jquery.notific8.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css">
-    <!--Loading style-->
-    <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/orange-blue.css" class="default-style">
-    <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/orange-blue.css" id="theme-change"
-          class="style-change color-change">
-    <link type="text/css" rel="stylesheet" href="assets/css/style-responsive.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/mystyle.css">
-</head>
+
+<!-- Header -->
+@include('layouts.head')
+
 <body class=" ">
 <div>
     <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP-->
@@ -475,106 +436,15 @@
         </div>
         <!--END MODAL CONFIG PORTLET--></div>
     <!--END TOPBAR-->
-    <div id="wrapper"><!--BEGIN SIDEBAR MENU-->
-        <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
-            <div class="sidebar-collapse menu-scroll">
-                <ul id="side-menu" class="nav">
-                    <li class="user-panel">
-                        <div class="thumb"><img src=""
-                                                alt="" class="img-circle"/></div>
-                        <div class="info"><p>John Doe</p>
-                            <ul class="list-inline list-unstyled">
-                                <li><a href="extra-profile.html" data-hover="tooltip" title="Profile"><i
-                                        class="fa fa-user"></i></a></li>
-                                <li><a href="email-inbox.html" data-hover="tooltip" title="Mail"><i
-                                        class="fa fa-envelope"></i></a></li>
-                                <li><a href="#" data-hover="tooltip" title="Setting" data-toggle="modal"
-                                       data-target="#modal-config"><i class="fa fa-cog"></i></a></li>
-                                <li><a href="extra-signin.html" data-hover="tooltip" title="Logout"><i
-                                        class="fa fa-sign-out"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
-                   
-                    <li <?php if ($_SERVER['REQUEST_URI'] == '/home') {
-                       ?> class="active" <?php
-                    } ?> ><a href="/home"><i class="fa fa-tachometer fa-fw">
-                        <div class="icon-bg bg-orange"></div>
-                    </i><span class="menu-title">Dashboard</span></a></li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/#') {
-                       ?> class="active" <?php
-                    } ?>><a href="#"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Frontend</span><span class="fa arrow"></span><span
-                            class="label label-yellow">v3.0</span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="frontend-one-page.html"><i class="fa fa-rocket"></i><span
-                                    class="submenu-title">One Page</span></a></li>
-                        </ul>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/profile') {
-                       ?> class="active" <?php
-                    } ?>><a href="/profile"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Profile</span></a>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/access') {
-                       ?> class="active" <?php
-                    } ?>><a href="/access"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Manage Access</span></a>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/notification') {
-                       ?> class="active" <?php
-                    } ?>><a href="/notification"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Notification</span></a>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/leave') {
-                       ?> class="active" <?php
-                    } ?>><a href="/leave"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Take Leave</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="leave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Manage</span></a></li>
-                             <li><a href="createleave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Create</span></a></li>
-                        </ul>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/chucdanh') {
-                       ?> class="active" <?php
-                    } ?>><a href="/chucdanh"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Chuc Danh</span></a>
-                    </li>
-                    <li<?php if ($_SERVER['REQUEST_URI'] == '/chucvu') {
-                       ?> class="active" <?php
-                    } ?> ><a href="/chucvu"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Chức Vụ</span></a>
-                    </li>
-                    <li <?php if ($_SERVER['REQUEST_URI'] == '/chuyenmon') {
-                       ?> class="active" <?php
-                    } ?> ><a href="/chuyenmon"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Chuyên Môn</span></a>
-                    </li>
-                    <li <?php if ($_SERVER['REQUEST_URI'] == '/khenthuong') {
-                       ?> class="active" <?php
-                    } ?> ><a href="/khenthuong"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Khen Thưởng - Kỷ Luật</span></a>
-                    </li>
-                    <li <?php if ($_SERVER['REQUEST_URI'] == '/congtac') {
-                       ?> class="active" <?php
-                    } ?> ><a href="/congtac"><i class="fa fa-laptop fa-fw">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Công Tác</span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <div id="wrapper">
+
+
+        <!--BEGIN SIDEBAR MENU-->
+        @include('layouts.slidebar')
         <!--END SIDEBAR MENU-->
+
+
+        
         <!--BEGIN CHAT FORM-->
         <div id="chat-form" class="fixed">
             <div class="chat-inner"><h2 class="chat-header"><a href="javascript:;" class="chat-form-close pull-right"><i
@@ -672,80 +542,10 @@
             <div class="copyright">2014 © &mu;Admin - Responsive Multi-Style Admin Template</div>
         </div> -->
         <!--END FOOTER--><!--END PAGE WRAPPER--></div>
+        
         @yield('script')
 </div>
-<script src="assets/js/jquery-1.10.2.min.js"></script>
-<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/js/jquery-ui.js"></script>
-<!--loading bootstrap js-->
-<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-<script src="assets/js/html5shiv.js"></script>
-<script src="assets/js/respond.min.js"></script>
-<script src="assets/vendors/metisMenu/jquery.metisMenu.js"></script>
-<script src="assets/vendors/slimScroll/jquery.slimscroll.js"></script>
-<script src="assets/vendors/jquery-cookie/jquery.cookie.js"></script>
-<script src="assets/vendors/iCheck/icheck.min.js"></script>
-<script src="assets/vendors/iCheck/custom.min.js"></script>
-<script src="assets/vendors/jquery-notific8/jquery.notific8.min.js"></script>
-<script src="assets/vendors/jquery-highcharts/highcharts.js"></script>
-<script src="assets/js/jquery.menu.js"></script>
-<script src="assets/vendors/jquery-pace/pace.min.js"></script>
-<script src="assets/vendors/holder/holder.js"></script>
-<script src="assets/vendors/responsive-tabs/responsive-tabs.js"></script>
-<script src="assets/vendors/jquery-news-ticker/jquery.newsTicker.min.js"></script>
-<script src="assets/vendors/moment/moment.js"></script>
-<script src="assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!--CORE JAVASCRIPT-->
-<script src="assets/js/main.js"></script>
-<!--LOADING SCRIPTS FOR PAGE-->
-<script src="assets/vendors/mixitup/src/jquery.mixitup.js"></script>
-<script src="assets/vendors/lightbox/js/lightbox.min.js"></script>
-<script src="assets/js/page-gallery.js"></script>
-<!-- DATE PICKER -->
-<script src="assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="assets/vendors/moment/moment.js"></script>
-<script src="assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script src="assets/vendors/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-<script src="assets/vendors/bootstrap-clockface/js/clockface.js"></script>
-<script src="assets/vendors/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<script src="assets/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script src="assets/vendors/jquery-maskedinput/jquery-maskedinput.js"></script>
-<script src="assets/vendors/charCount.js"></script>
-<script src="assets/js/form-components.js"></script>
-
-
-<script src="assets/vendors/intro.js/intro.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.categories.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.pie.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.resize.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.stack.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.spline.js"></script>
-<script src="assets/vendors/calendar/zabuto_calendar.min.js"></script>
-<script src="assets/vendors/sco.message/sco.message.js"></script>
-<script src="assets/vendors/intro.js/intro.js"></script>
-<script src="assets/js/index.js"></script>
-<script type="text/javascript" language="javascript" src="assets/ckeditor/ckeditor.js" ></script>
-<script type="text/javascript">(function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-145464-14', 'auto');
-ga('send', 'pageview');
-
-
-</script>
+    <!-- footer -->
+    @include('layouts.footer')
 </body>
 </html>

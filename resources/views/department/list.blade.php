@@ -1,221 +1,209 @@
 @extends('layouts.app')
-
+@section('title','Danh Sách Phòng Ban')
 @section('content')
 <div class="list_department">
+
+<!--BEGIN TITLE & BREADCRUMB PAGE-->
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
-        <div class="page-title">Gallery Page</div>
+        <div class="page-title">Danh Sách Phòng Ban</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
-                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li><a href="#">Pages</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li class="active">Gallery Page</li>
+        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Trang Chủ</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li><a href="#">Danh Sách Phòng Ban</a>
     </ol>
-    <div class="btn btn-blue reportrange hide"><i class="fa fa-calendar"></i>&nbsp;<span></span>&nbsp;report&nbsp;<i
-            class="fa fa-angle-down"></i><input type="hidden" name="datestart"/><input type="hidden"
-                                                                                       name="endstart"/>
-    </div>
     <div class="clearfix"></div>
 </div>
+<!--END TITLE & BREADCRUMB PAGE-->
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="generalTabContent" class="tab-content responsive">
+                    <button class="btn btn-info btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+                    <h3>Danh Sách Phòng Ban</h3>
+                    <div class="row">
+                    @foreach($department as $de)
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail"><img src="images/department.png" width="150px"/>
 
-<div class="page-content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="portlet box portlet-green">
-                <div class="portlet-header">
-                    <div class="caption">Media Gallery</div>
-                    <div class="tools"><i class="fa fa-chevron-up"></i><i data-toggle="modal"
-                                                                          data-target="#modal-config"
-                                                                          class="fa fa-cog"></i><i
-                            class="fa fa-refresh"></i><i class="fa fa-times"></i></div>
-                </div>
-                <div class="portlet-body">
-                    <div class="gallery-pages">
-                        <ul style="float: left;" class="list-filter list-unstyled">
-                            <li data-filter="all" class="filter active">All</li>
-                            <li data-filter=".development" class="filter">Development</li>
-                            <li data-filter=".design" class="filter">Design</li>
-                            <li data-filter=".photography" class="filter">Photography</li>
-                            <li data-filter=".wordpress" class="filter">Wordpress</li>
-                            <li data-filter=".html" class="filter">Html</li>
-                        </ul>
-                        <div class="action-group btn-group pull-right">
-                            <button class="btn btn-primary"><i class="fa fa-check-square-o mrs"></i>Check
-                                All
-                            </button>
-                            <button class="btn btn-primary"><i class="fa fa-upload mrs"></i>Add new</button>
-                            <button class="btn btn-primary"><i class="fa fa-edit mrs"></i>Edit</button>
-                            <button class="btn btn-primary"><i class="fa fa-trash-o mrs"></i>Delete</button>
-                            <button type="button" data-toogle="dropdown"
-                                    class="btn btn-primary dropdown-toogle"><i
-                                    class="fa fa-share-square-o mrs"></i>Share
-                            </button>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="row mix-grid">
-                            <div class="col-md-3 mix photography">
-                                <div class="hover-effect">
-                                    <div class="img">
-                                    	<img src="http://swlabs.co/madmin/code/images/gallery/1.jpg" alt="" class="img-responsive"/>
-                                    </div>
-                                    <div class="info">
-                                    	<h3>Pellentesque vehicula</h3><a href="#" class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/1.jpg"
-                                            data-lightbox="image-1" data-title="Image 1" class="mix-zoom"><i class="glyphicon glyphicon-search"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix html development">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/13.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/2.jpg"
-                                            data-lightbox="image-2" data-title="Image 2" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix html design">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/3.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/3.jpg"
-                                            data-lightbox="image-3" data-title="Image 3" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix development html">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/5.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/5.jpg"
-                                            data-lightbox="image-5" data-title="Image 5" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix wordpress">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/16.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/4.jpg"
-                                            data-lightbox="image-4" data-title="Image 4" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix design">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/6.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/6.jpg"
-                                            data-lightbox="image-6" data-title="Image 6" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix photography design">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/14.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/7.jpg"
-                                            data-lightbox="image-7" data-title="Image 7" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix wordpress html">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/8.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/8.jpg"
-                                            data-lightbox="image-8" data-title="Image 8" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix wordpress html design">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/13.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/13.jpg"
-                                            data-lightbox="image-8" data-title="Image 8" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix photography html">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/14.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/14.jpg"
-                                            data-lightbox="image-8" data-title="Image 8" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix development">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/15.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/15.jpg"
-                                            data-lightbox="image-8" data-title="Image 8" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix wordpress development">
-                                <div class="hover-effect">
-                                    <div class="img"><img
-                                            src="http://swlabs.co/madmin/code/images/gallery/16.jpg" alt=""
-                                            class="img-responsive"/></div>
-                                    <div class="info"><h3>Pellentesque vehicula</h3><a href="#"
-                                                                                       class="mix-link"><i
-                                            class="glyphicon glyphicon-link"></i></a><a
-                                            href="http://swlabs.co/madmin/code/images/gallery/16.jpg"
-                                            data-lightbox="image-8" data-title="Image 8" class="mix-zoom"><i
-                                            class="glyphicon glyphicon-search"></i></a></div>
+                                <div class="caption"><h3 style="text-align: center;"><span id="name_{{$de['id']}}">{{$de['name']}}</span></h3>
+
+                                    <p style="text-align: center;">Trưởng Phòng: <span id="manager_{{$de['id']}}">{{$de->User['first_name']}} {{$de->User['last_name']}}</span></p>
+
+                                    <p style="text-align: center;"><a href="department/detail/{{$de['id']}}" role="button" class="btn btn-primary">Chi Tiết</a>
+                                        <a class="btn_update" id="{{$de['id']}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
+                    @endforeach
+                        <div class="new_department"> </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- MODAL ADD -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          <h4 class="modal-title custom_align" id="Heading">Thêm Chức Vụ</h4>
+        </div>
+
+        <div class="alert alert-danger someDivToDisplayErrors" hidden>
+              <p class="errorMsg"></p>
+              <p class="errorMsg1"></p>
+        </div>
+        <form id="myform">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputFirstName" class="control-label">Mã Phòng Ban <span class='require'>*</span></label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="code" type="text" placeholder="Xin Hãy nhập mã phòng ban">
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName" class="control-label">Tên Phòng Ban <span class='require'>*</span></label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="name" type="text" placeholder="Xin Hãy nhập tên phòng ban">
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName" class="control-label">Trưởng Phòng <span class='require'>*</span></label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="manager">
+                @foreach($user as $us)
+                    <option value="{{$us->id}}">{{$us->username}}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+        </form>
+        <div class="modal-footer ">
+            <button type="button" class="btn btn-warning btn-lg" id="btn_add" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign" ></span>Thêm</button>
+        </div>
+      </div>
+      <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal-dialog --> 
 </div>
+
+<!-- MODAL EDIT -->
+<div class="modal fade"  id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+
+                              <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#btn_add').click(function(){
+        $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+          url : "department/add",
+          type: "POST",
+          dataType: 'json',
+          data: new FormData($('#myform')[0]),
+          processData: false,
+          contentType: false,
+          success:function(data){
+              //Nếu có valdate
+            if (typeof data.errors != 'undefined') {
+              $('.someDivToDisplayErrors').removeAttr('hidden');
+
+              if(data.errors.name){
+                $('.errorMsg').css('display', 'block');
+                $('.errorMsg').text(data.errors.name);
+               }else{
+                  $('.errorMsg').hide();
+               }
+
+                if(data.errors.code){
+                    $('.errorMsg1').css('display', 'block');
+                    $('.errorMsg1').text(data.errors.code);
+                }else{
+                      $('.errorMsg1').hide();
+                }
+            }else{
+                var add_department = '<div class="col-sm-6 col-md-3">';
+                add_department += '<div class="thumbnail"><img src="images/department.png" width="150px"/>';
+                add_department += '<div class="caption"><h3 style="text-align: center;">'+ data.name + '</h3>';
+                add_department += '<p style="text-align: center;">Trưởng Phòng: A';
+                add_department += '<p style="text-align: center;"><a href="department/detail/'+ data.id +'" role="button" class="btn btn-primary">Chi Tiết</a></p>';
+                add_department += '</div></div></div>';
+                $('.new_department').append(add_department);
+                $('#add').modal('toggle'); 
+            }             
+          }
+        });
+    });
+
+    $('.btn_update').click(function(){
+        var id =  $(this).attr('id');
+        $modal = $('#edit');
+        $modal.load("department/edit/" + id);
+        $modal.modal('show');
+    });
+
+    /*$('#btn_update_department').click(function(){
+        var id= $('#department_id').val();
+
+        $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url : "department/edit",
+            type: "POST",
+            dataType: 'json',
+            data: new FormData($('#edit_form_department')[0]),
+            processData: false,
+            contentType: false,
+            success:function(data){
+                    //Nếu có valdate
+                if (typeof data.errors != 'undefined') {
+                  $('.someDivToDisplayErrors').removeAttr('hidden');
+
+                    if(data.errors.name){
+                        $('.errorMsg').css('display', 'block');
+                        $('.errorMsg').text(data.errors.name);
+                       }else{
+                          $('.errorMsg').hide();
+                       }
+
+                    if(data.errors.code){
+                        $('.errorMsg1').css('display', 'block');
+                        $('.errorMsg1').text(data.errors.code);
+                    }else{
+                          $('.errorMsg1').hide();
+                    }
+                }else{
+                    $('#name_' + id).text(data.name);
+                    $('#manager_' + id).text(data.first_name + ' ' + data.last_name);
+
+                    // Update button data-attr .action-update
+                     $('.btn_update').data('name', data.name);
+                     $('.btn_update').data('code', data.code);
+
+                     $('#edit').modal('toggle');
+                }
+            }
+        });
+
+    });*/
+})
+</script>
 @endsection

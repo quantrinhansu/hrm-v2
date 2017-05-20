@@ -34,7 +34,27 @@ Route::post('/employee/add', 'UserController@postAdd');
 
 Route::get('employee/contract', 'ContractController@getList');
 Route::get('employee/contract/add', 'ContractController@getAdd');
+//Chức vụ
+Route::get('position', 'PositionController@getlist');
+Route::post('position/add', 'PositionController@postAdd');
+Route::post('position/edit', 'PositionController@postEdit');
+Route::post('position/delete', 'PositionController@postDelete');
 
+//Chuyên Môn
+Route::get('jobtype', 'JobTypeController@getlist');
+Route::post('jobtype/add', 'JobTypeController@postAdd');
+Route::post('jobtype/edit', 'JobTypeController@postEdit');
+Route::post('jobtype/delete', 'JobTypeController@postDelete');
+
+//Phòng Ban
+Route::get('department', 'DepartmentController@getList');
+Route::post('department/add', 'DepartmentController@postAdd');
+Route::get('department/detail/{id}', 'DepartmentController@getDetail');
+Route::get('department/detail/add-employee/{id}', 'DepartmentController@getAddEmployee');
+Route::post('department/detail/add-employee/{id}', 'DepartmentController@postAddEmployee');
+Route::post('department/edit/ajax', 'DepartmentController@postAjax');
+Route::post('department/edit', 'DepartmentController@postEdit');
+Route::get('department/edit/{id}', 'DepartmentController@getEdit');
 Route::get('access', function(){
 	return view('manage_access.list');
 });
@@ -57,22 +77,6 @@ Route::get('createleave', function(){
 
 Route::get('leave', function(){
 	return view('leaves.list');
-});
-
-Route::get('listdepartment', function(){
-	return view('department.list');
-});
-
-Route::get('chucdanh', function(){
-	return view('ChucDanh.list');
-});
-
-Route::get('chucvu', function(){
-	return view('ChucVu.list');
-});
-
-Route::get('chuyenmon', function(){
-	return view('ChuyenMon.list');
 });
 
 Route::get('khenthuong', function(){
