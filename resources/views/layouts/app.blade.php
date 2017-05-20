@@ -7,6 +7,8 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
     <!--Loading bootstrap css-->
+    <base href="{{ asset('') }}">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font1.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
@@ -494,10 +496,15 @@
                         </div>
                         <div class="clearfix"></div>
                     </li>
-                    <li class="active"><a href="index.html"><i class="fa fa-tachometer fa-fw">
+                   
+                    <li <?php if ($_SERVER['REQUEST_URI'] == '/home') {
+                       ?> class="active" <?php
+                    } ?> ><a href="/home"><i class="fa fa-tachometer fa-fw">
                         <div class="icon-bg bg-orange"></div>
                     </i><span class="menu-title">Dashboard</span></a></li>
-                    <li><a href="#"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/#') {
+                       ?> class="active" <?php
+                    } ?>><a href="#"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Frontend</span><span class="fa arrow"></span><span
                             class="label label-yellow">v3.0</span></a>
@@ -506,19 +513,27 @@
                                     class="submenu-title">One Page</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="profile"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/profile') {
+                       ?> class="active" <?php
+                    } ?>><a href="/profile"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Profile</span></a>
                     </li>
-                    <li><a href="access"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/access') {
+                       ?> class="active" <?php
+                    } ?>><a href="/access"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Manage Access</span></a>
                     </li>
-                    <li><a href="notification"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/notification') {
+                       ?> class="active" <?php
+                    } ?>><a href="/notification"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Notification</span></a>
                     </li>
-                    <li><a href="leave"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/leave') {
+                       ?> class="active" <?php
+                    } ?>><a href="/leave"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Take Leave</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -526,23 +541,33 @@
                              <li><a href="createleave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Create</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="chucdanh"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/chucdanh') {
+                       ?> class="active" <?php
+                    } ?>><a href="/chucdanh"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Chuc Danh</span></a>
                     </li>
-                    <li><a href="chucvu"><i class="fa fa-laptop fa-fw">
+                    <li<?php if ($_SERVER['REQUEST_URI'] == '/chucvu') {
+                       ?> class="active" <?php
+                    } ?> ><a href="/chucvu"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Chức Vụ</span></a>
                     </li>
-                    <li><a href="chuyenmon"><i class="fa fa-laptop fa-fw">
+                    <li <?php if ($_SERVER['REQUEST_URI'] == '/chuyenmon') {
+                       ?> class="active" <?php
+                    } ?> ><a href="/chuyenmon"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Chuyên Môn</span></a>
                     </li>
-                    <li><a href="khenthuong"><i class="fa fa-laptop fa-fw">
+                    <li <?php if ($_SERVER['REQUEST_URI'] == '/khenthuong') {
+                       ?> class="active" <?php
+                    } ?> ><a href="/khenthuong"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Khen Thưởng - Kỷ Luật</span></a>
                     </li>
-                    <li><a href="congtac"><i class="fa fa-laptop fa-fw">
+                    <li <?php if ($_SERVER['REQUEST_URI'] == '/congtac') {
+                       ?> class="active" <?php
+                    } ?> ><a href="/congtac"><i class="fa fa-laptop fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Công Tác</span></a>
                     </li>

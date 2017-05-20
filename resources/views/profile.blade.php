@@ -7,7 +7,7 @@
         <div class="page-title">Profile</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
+        <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i
                 class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
         <li><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
         <li class="active">Responsive Tables</li>
@@ -26,7 +26,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <div class="text-center mbl"><img
-                                src=""
+                                src="{{ $user->avatar }}"
                                 style="border: 5px solid #fff; box-shadow: 0 2px 3px rgba(0,0,0,0.25);"
                                 class="img-circle" alt="avatar"/></div>
                     </div>
@@ -34,28 +34,26 @@
                         <tbody>
                         <tr>
                             <td width="50%"><i class="fa fa-user margin-r-5"></i> User Name</td>
-                            <td>Diane Harris</td>
+                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                         </tr>
                         <tr>
                             <td width="50%"><i class="fa fa-envelope margin-r-5"></i> Email</td>
-                            <td>name@example.com</td>
+                            <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
                             <td width="50%"><i class="fa fa-map-marker margin-r-5"></i> Address</td>
-                            <td>Street 123, Avenue 45, Country</td>
+                            <td>{{ $user->present_address }}</td>
                         </tr>
                        	<tr>
                        		<td><strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong></td>
                        		<td>
-                       			<div id="aboutme">
-                
-              					</div>
+                       			{{ $user->skill }}
               				</td>
                        	</tr>
                        	<tr>
                        		<td><strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong></td>
                        		<td>
-                       			
+                       			{{ $user->noted }}
               				</td>
                        	</tr>
                         </tbody>

@@ -27,8 +27,8 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading head_manage_access">
 	            		<span>List</span>
-	            		<input type="submit" name="" class="btn btn-info btn_access_save" value="Save">
-	            		<button type="button" class="btn btn-default btn_access_save"><a href=""><i class="fa fa-arrow-left">&nbsp;Back</i></a></button>
+	            		<input type="submit" name="" class="btn btn-info btn-sm btn_access_save" value="Save">
+	            		
 	            	</div>
 	                <div class="panel-body">
 	                    <div id="flip-scroll">

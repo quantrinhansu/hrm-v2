@@ -25,7 +25,7 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>List</span>
-	            		<button class="btn btn-info btn_access_save"><a href="taocongtac"><i class="fa fa-plus">&nbsp;Add</i></a></button>
+	            		<button class="btn btn-info btn-sm btn_access_save"><a href="taocongtac" style="color: #fff;"><i class="fa fa-plus">&nbsp;Add</i></a></button>
 	            	</div>
 	                <div class="panel-body">
 	                    <div id="flip-scroll">

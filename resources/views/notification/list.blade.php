@@ -27,7 +27,7 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>List</span>
-	            		<a href="addnotification" class="btn btn-info btn_access_save"><i class="fa fa-plus">&nbsp;Add</i></a>
+	            		<a href="addnotification" class="btn btn-info btn-sm btn_access_save"><i class="fa fa-plus">&nbsp;Add</i></a>
 	            	</div>
 	                <div class="panel-body">
 	                    <div id="flip-scroll">
@@ -51,7 +51,7 @@
 					                <td>cbinh@gmail.com</td>
 					                <td>Member</td>
 					                <td>
-					                	<button type="button" class="btn btn-primary btn-xs"><a href="editnotification"><i class="fa fa-edit"></i>&nbsp;Edit</a></button>
+					                	<button type="button" class="btn btn-primary btn-xs"><a style="color: #fff;" href="editnotification"><i class="fa fa-edit"></i>&nbsp;Edit</a></button>
                                     </td>
 					                <td>
                                          <button type="button" data-target="#modal-default" data-toggle="modal" class="btn btn-primary btn-xs"><i

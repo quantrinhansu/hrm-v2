@@ -25,6 +25,7 @@
     <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body id="signin-page">
+
 <div class="page-form">
     <div id="login">
         <form action="{{ route('login') }}" class="form" method="POST">

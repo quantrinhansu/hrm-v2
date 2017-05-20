@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('profile', 'UserController@index');
+
 Route::get('profile/{id}', 'UserController@show');
 
 Route::get('/employee', 'UserController@getList');
@@ -32,10 +34,6 @@ Route::post('/employee/add', 'UserController@postAdd');
 
 Route::get('employee/contract', 'ContractController@getList');
 Route::get('employee/contract/add', 'ContractController@getAdd');
-
-Route::get('profile', function(){
-	return view('profile');
-});
 
 Route::get('access', function(){
 	return view('manage_access.list');

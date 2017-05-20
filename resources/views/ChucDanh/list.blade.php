@@ -25,7 +25,7 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>List</span>
-	            		<button class="btn btn-info btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Add</i></button>
+	            		<button class="btn btn-info btn-sm btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Add</i></button>
 	            	</div>
 	                <div class="panel-body">
 	                    <div id="flip-scroll">
