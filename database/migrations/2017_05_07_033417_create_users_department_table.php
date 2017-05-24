@@ -18,7 +18,7 @@ class CreateUsersDepartmentTable extends Migration
             $table->increments('id');  
             $table->integer('user_id')->unsigned();
             $table->integer('department_id')->unsigned();
-
+            $table->integer('manager')->nullable();  
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('department_id')->references('id')->on('departments');
         });

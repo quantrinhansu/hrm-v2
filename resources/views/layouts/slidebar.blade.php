@@ -47,6 +47,12 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>
+            <li<?php if ($_SERVER['REQUEST_URI'] == '/department') {
+                       ?> class="active" <?php
+                    } ?>><a href="department"><i class="fa fa-laptop fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Danh Sách Phòng Ban</span></a>
+            </li>
             <li<?php if ($_SERVER['REQUEST_URI'] == '/notification') {
                        ?> class="active" <?php
                     } ?>><a href="notification"><i class="fa fa-laptop fa-fw">

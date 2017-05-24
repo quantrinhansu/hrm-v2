@@ -7,10 +7,9 @@
         <div class="page-title">Thông Tin Chi Tiết Phòng {{$department['name']}}</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
+        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Trang Chủ</a>&nbsp;&nbsp;<i
                 class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li><a href="#">Forms</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li class="active">Form Layouts</li>
+        <li><a href="#">Phòng {{$department['name']}}</a>
     </ol>
     
     <div class="clearfix"></div>
@@ -25,8 +24,13 @@
 	                <div class="col-lg-12">
 	                    <div class="panel panel-blue">
 	                    	<div class="panel-heading">Thông Tin Phòng
-	                    		<button class="btn btn-info btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Sửa Nhân Viên</i></button>
-	                    		<a class="btn btn-info btn_access_save" href=""><i class="fa fa-plus">&nbsp;Thêm Nhân Viên</i></a>
+	                    	@if($count_employee > 1)
+	                    		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/edit-employee/{{$department['id']}}"><i class="fa fa-plus">&nbsp;Sửa Nhân Viên</i></a>
+	                    	@endif
+	                    	@if($count_employee == 1)
+	                    		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/add-employee/{{$department['id']}}"><i class="fa fa-plus">&nbsp;Thêm Nhân Viên</i></a>
+	                    	@endif
+	                    	<a class="btn btn-info btn_access_save btn-sm" href="department"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
 	                    	</div>
 
 	                        <div class="panel-body pan">

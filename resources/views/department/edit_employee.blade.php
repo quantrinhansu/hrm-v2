@@ -17,18 +17,32 @@
 </div>
 
 <div class="table_list_notification">
+	  	
 	<!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
 	<div class="page-content">
 	    <div class="row">
 	        <div class="col-lg-12">
-	        <form action="department/detail/add-employee/{{$department['id']}}" method="POST">
+	        <form action="department/detail/edit-employee/{{$department['id']}}" method="POST">
 	        	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>Chọn Nhân Viên Thêm Vào Phòng {{$department['name']}}</span>
 	            		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/{{$department['id']}}"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
-	            		<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+	            		<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-plus">&nbsp;Sửa</i></button>
 	            	</div>
+	            	@if(session('thongbao'))
+			            <div class="alert alert-success">
+			                {{session('thongbao')}}
+			            </div>
+			        @endif
+			        
+			        @if ( $errors->any() )
+			            <div class="alert alert-danger">
+			                @foreach($errors->all() as $err)
+			                    {{$err}}<br>
+			                @endforeach
+			            </div>
+			        @endif
 	               <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
@@ -44,7 +58,13 @@
 			                            @foreach($user as $us)
 				                            <tr>
 				                            	<td>
-													  <input type="checkbox" value="{{$us['id']}}" name="employee[]">
+													<input type="checkbox" value="{{$us['id']}}" name="employee[]"
+														@foreach($user_department as $ud)
+															@if($ud['user_id'] == $us['id'])
+																checked
+															@endif 
+														@endforeach
+													  >
 				                            	</td>
 
 								                <td>{{$us['first_name']}} {{$us['last_name']}}</td>
