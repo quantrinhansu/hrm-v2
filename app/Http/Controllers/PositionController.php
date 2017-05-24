@@ -40,8 +40,9 @@ class PositionController extends Controller
 	    	$position->code = $request->description;
 	    	$position->save();
 
-	    	$newdata = Position::find($position->id)->toJson();
-	    	return $newdata;
+            return json_encode([
+                    'success' => 'success'
+                 ]);
 	      }
     }
     

@@ -180,17 +180,10 @@ $(document).ready(function(){
 	                  $('.errorMsg1_add').hide();
 	            }
             }else{
-            	var id = data.id;
-            	var add_promotion = '<tr><td id="name_' + id + '"> '+ data.name +'</td>';
-            		add_promotion += '<td id="description_' + id + '"> ' + (data.code == null ? '' : data.code) + '</td>';
-            		add_promotion += '<td id="created_date_' + id + '"> ' + formatDate (data.created_at); + '</td>';
-            		add_promotion += '<td id="created_date_' + id + '"> ' + formatDate (data.updated_at); + '</td>';
-            		add_promotion += '<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="fa fa-edit"></span>&nbsp;Sửa</button></p></td>';
-            		add_promotion += '<td><button type="button" data-target="#modal-default" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button></td></tr>';
-            	$('#add_row').prepend(add_promotion);
             	$('.input').val("");
             	$('.someDivToDisplayErrors_add').attr("hidden","true");
             	$('#add').modal('toggle'); 
+            	location.reload();
             	$("#report_add").show();
                     setTimeout(function()
                     {

@@ -41,8 +41,9 @@ class JobTypeController extends Controller
 	    	$jobtype->code = $request->description;
 	    	$jobtype->save();
 
-	    	$newdata = JobType::find($jobtype->id)->toJson();
-	    	return $newdata;
+	    	return json_encode([
+                    'success' => 'success'
+                 ]);
 	      }
     }
 

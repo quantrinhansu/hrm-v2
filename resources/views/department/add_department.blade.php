@@ -84,20 +84,10 @@ $(document).ready(function(){
                       $('.errorMsg1').hide();
                 }
             }else{
-                var add_department = '<div class="col-sm-6 col-md-3" id="department_'+data.department_id+'">';
-                add_department += '<button type="button" data-target="#modal-default" data-id="'+data.department_id+'" data-toggle="modal" class="btn btn-primary btn-xs btn_delete" style="float:right; margin-left: 5px; margin-right: 5px;"><i class="fa fa-trash-o"></i></button>';
-                add_department += '<a class="btn_update" id="'+data.department_id+'" style="float:right; "><span class="glyphicon glyphicon-pencil"></span></a>';
-                add_department += '<div class="thumbnail"><img src="images/department.png" width="150px"/>';
-                add_department += '<div class="caption"><h3 style="text-align: center;">'+ data.name + '</h3>';
-                add_department += '<p style="text-align: center;">Trưởng Phòng: ' + data.first_name + ' ' + data.last_name;
-                add_department += '<p style="text-align: center;"><a href="department/detail/'+ data.department_id +'" role="button" class="btn btn-primary">Chi Tiết</a></p>';
-                add_department += '</div></div></div>';
-                $('.new_department').append(add_department);
-                
                 $('.input').val("");
               //  $('.someDivToDisplayErrors').attr("hidden","true");
                 $('#add').modal('toggle'); 
-               // location.reload();
+                location.reload();
                 $("#report_add").show();
                     setTimeout(function()
                     {
