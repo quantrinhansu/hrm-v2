@@ -21,7 +21,13 @@
                 </div>
                 <div class="clearfix"></div>
             </li>
-            <li <?php if ($_SERVER['REQUEST_URI'] == '/home') {
+            <?php 
+                
+                $link = $_SERVER['REQUEST_URI'];
+                $link_array = explode('/',$link);
+                echo $match = '/' . end($link_array);
+            ?>
+            <li <?php if ($match == '/home') {
                        ?> class="active" <?php
                     } ?>><a href="index.html"><i class="fa fa-tachometer fa-fw">
                 <div class="icon-bg bg-orange"></div>
@@ -35,31 +41,31 @@
                             class="submenu-title">One Page</span></a></li>
                 </ul>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/profile') {
+            <li<?php if ($match == '/profile') {
                        ?> class="active" <?php
                     } ?>><a href="profile"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Profile</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/access') {
+            <li<?php if ($match == '/access') {
                        ?> class="active" <?php
                     } ?>><a href="access"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/department') {
+            <li<?php if ($match == '/department') {
                        ?> class="active" <?php
                     } ?>><a href="department"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Danh Sách Phòng Ban</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/notification') {
+            <li<?php if ($match == '/notification') {
                        ?> class="active" <?php
                     } ?>><a href="notification"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Thông Báo</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/leave') {
+            <li<?php if ($match == '/leave') {
                        ?> class="active" <?php
                     } ?>><a href="leave"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
@@ -69,25 +75,25 @@
                      <li><a href="createleave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Tạo Mới</span></a></li>
                 </ul>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/position') {
+            <li<?php if ($match == '/position') {
                        ?> class="active" <?php
                     } ?>><a href="position"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Chức Vụ</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/jobtype') {
+            <li<?php if ($match == '/jobtype') {
                        ?> class="active" <?php
                     } ?>><a href="jobtype"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Chuyên Môn</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/khenthuong') {
+            <li<?php if ($match == '/khenthuong') {
                        ?> class="active" <?php
                     } ?>><a href="khenthuong"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Khen Thưởng - Kỷ Luật</span></a>
             </li>
-            <li<?php if ($_SERVER['REQUEST_URI'] == '/congtac') {
+            <li<?php if ($match == '/congtac') {
                        ?> class="active" <?php
                     } ?>><a href="congtac"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
