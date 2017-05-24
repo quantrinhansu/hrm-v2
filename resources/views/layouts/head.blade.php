@@ -6,6 +6,7 @@
     <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
     <base href="{{asset('')}}">
     <!--Loading bootstrap css-->
+    <script src="assets/js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font1.css">
@@ -40,5 +41,4 @@
           class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="assets/css/style-responsive.css">
     <link type="text/css" rel="stylesheet" href="assets/css/mystyle.css">
-    <script src="assets/js/jquery.min.js"></script>
 </head>
