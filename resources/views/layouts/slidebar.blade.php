@@ -12,8 +12,11 @@
                                 class="fa fa-envelope"></i></a></li>
                         <li><a href="#" data-hover="tooltip" title="Setting" data-toggle="modal"
                                data-target="#modal-config"><i class="fa fa-cog"></i></a></li>
-                        <li><a href="extra-signin.html" data-hover="tooltip" title="Logout"><i
-                                class="fa fa-sign-out"></i></a></li>
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  data-hover="tooltip" title="Logout"><i
+                                class="fa fa-sign-out"></i></a><form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                                {{ csrf_field() }}
+                                                            </form></li>
+
                     </ul>
                 </div>
                 <div class="clearfix"></div>

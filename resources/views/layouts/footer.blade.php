@@ -1,6 +1,8 @@
+
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/js/jquery-ui.js"></script>
+<script src="js/custom.js"></script>
 <!--loading bootstrap js-->
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
@@ -27,7 +29,6 @@
 <!--LOADING SCRIPTS FOR PAGE-->
 <script src="assets/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- <script src="assets/js/form-components.js"></script> -->
-
 
 <script type="text/javascript">(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
