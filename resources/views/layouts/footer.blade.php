@@ -1,4 +1,3 @@
-
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/js/jquery-ui.js"></script>
