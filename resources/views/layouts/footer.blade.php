@@ -1,6 +1,8 @@
+
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/js/jquery-ui.js"></script>
+<script src="js/custom.js"></script>
 <!--loading bootstrap js-->
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
@@ -42,14 +44,14 @@
 
 
 <script src="assets/vendors/intro.js/intro.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.js"></script>
+{{-- <script src="assets/vendors/flot-chart/jquery.flot.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.categories.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.pie.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.tooltip.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.resize.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
 <script src="assets/vendors/flot-chart/jquery.flot.stack.js"></script>
-<script src="assets/vendors/flot-chart/jquery.flot.spline.js"></script>
+<script src="assets/vendors/flot-chart/jquery.flot.spline.js"></script> --}}
 <script src="assets/vendors/calendar/zabuto_calendar.min.js"></script>
 <script src="assets/vendors/sco.message/sco.message.js"></script>
 <script src="assets/vendors/intro.js/intro.js"></script>
