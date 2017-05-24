@@ -35,7 +35,7 @@
 		                                <thead>
 				                            <tr>
 				                            	<th><input type="checkbox" class="checkall"></th>
-								                <th>Tên Nhân Viên {{$department['id']}}</th>
+								                <th>Tên Nhân Viên</th>
 								                <th>Username</th>
 								                <th>Giới Tính</th>
 				                            </tr>
