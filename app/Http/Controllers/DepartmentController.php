@@ -14,10 +14,16 @@ class DepartmentController extends Controller
     public function getList()
     {
     	$department = Department::all();
-    	$user = User::all();
+    	//$user = User::all();
+    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
     	return view('department.list', ['department' => $department, 'user' => $user]);
     }
 
+    public function getAdd()
+    {
+    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	return view('department.add_department', ['user' => $user]);
+    }
     public function postAdd(Request $request)
     {
     	$message = ['name.required' => 'Bạn chưa nhập tên phòng ban',
@@ -45,8 +51,30 @@ class DepartmentController extends Controller
     	$department->manager_id = $request->manager;
     	$department->save();
 
-    	$newdata = Department::find($department->id)->toJson();
-    	return $newdata;
+        $arr = array();
+        $newdata = Department::where('id', $department->id)->get();
+        $user = User::where('id', $request->manager)->get();
+    	
+    	$user_department = new UserDepartment;
+    	foreach ($user as $value) {
+            $user_department->user_id = $value['id'];
+        }
+    	$user_department->department_id = $department->id;
+    	$user_department->manager = 1;
+    	$user_department->save();
+
+        foreach ($user as $value) {
+            $arr['first_name'] = $value['first_name'];
+            $arr['last_name']   = $value['last_name'];
+        }
+        foreach ($newdata as $key => $value) {
+            $arr['department_id'] = $value['id'];
+            $arr['name'] = $value['name'];
+            $arr['code'] = $value['code'];
+            $arr['manager_id'] = $value['manager_id'];
+        }
+
+        return json_encode($arr);
     }
 
     public function getDetail($id)
@@ -59,13 +87,19 @@ class DepartmentController extends Controller
 
     public function getAddEmployee($id)
     {
-    	 $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	 $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+    	 							   ->where('users_department.manager', null)
+    	 	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
     	 $department = Department::find($id);
     	return view('department.add_employee', ['user' => $user, 'department' => $department]);
     }
 
     public function postAddEmployee($id, Request $request)
     {
+    	$this->validate($request, 
+    		['employee' => 'required'], 
+    		['employee.required' => 'Bạn chưa chọn nhân viên thêm vào phòng']);
+
     	$all_id = $request->employee;
     	foreach ($all_id as $employee_id) {
     		$user_department = new UserDepartment;
@@ -76,24 +110,8 @@ class DepartmentController extends Controller
     	return redirect('department/detail/' . $id);
     }
 
-    public function postAjax(Request $request)
-    {
-        $user = User::all();
-        $user_id = $request->id;
-
-        foreach($user as $us)
-        {
-          echo '<option value="'.$us->id.'"';
-          if($us->id == $user_id){
-            echo 'selected';
-          }
-          echo '>'.$us->username.'1</option>';
-        }
-    }
-
     public function postEdit(Request $request)
     {
-        return $request->all();
         $message = ['name.required' => 'Bạn chưa nhập tên phòng',
                     'name.min'      => 'Tên phòng ít nhất phải 3 ký tự',
                     'name.unique'   => 'Tên phòng bị trùng',
@@ -120,11 +138,11 @@ class DepartmentController extends Controller
         $department->save();
 
         $arr = array();
-       // $newdata = Department::find($request->department_id);
         $newdata = Department::where('id', $request->department_id)->get();
-       // echo $request->manager;
         $user = User::where('id', $request->manager)->get();
-    
+    	
+    	$user_department = UserDepartment::where('department_id', $request->department_id)->update(['user_id' =>  $request->manager]);
+
         foreach ($user as $value) {
             $arr['first_name'] = $value['first_name'];
             $arr['last_name']   = $value['last_name'];
@@ -136,14 +154,68 @@ class DepartmentController extends Controller
         }
 
         return json_encode($arr);
-       // dd($newdata);
-       // return $newdata;
     }
 
     public function getEdit($id)
     {
-        $user = User::all();
+        //$user = User::all();
+        $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+    								  ->orwhere('users_department.department_id', $id)
+    	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
         $department = Department::find($id);
         return view('department.edit_department', ['user' => $user, 'department' => $department]);
+    }
+
+    public function postDelete(Request $request)
+    {
+        $user_department = UserDepartment::where('department_id', $request->id)->delete();
+        $department = Department::find($request->id);
+        $department->delete();
+    }
+
+    public function getEditEmployee($id)
+    {
+    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+    								  ->orwhere('users_department.department_id', $id)
+    								  ->where('users_department.manager', null)
+    	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	$department = Department::find($id);
+    	$user_department = UserDepartment::where('department_id', $id)->get();
+    	return view('department.edit_employee', ['user' => $user, 'department' => $department, 'user_department' => $user_department]);
+    }
+
+    public function postEditEmployee($id, Request $request)
+    {
+    	$this->validate($request, 
+    		['employee' => 'required'], 
+    		['employee.required' => 'Bạn chưa chọn nhân viên thêm vào phòng']);
+
+    	$user_department = UserDepartment::where('department_id', $id)
+    									   ->where('manager', null)->get();
+    	$old_user_department = array();
+    	foreach ($user_department as $value) {
+    		$old_user_department[] = $value['user_id'];
+    	}
+
+    	$new_user_department = $request->employee;
+
+    	//Xoá những user bị bỏ tick
+    	$delete_old_user_department = checkArrayold($old_user_department, $new_user_department);
+
+    	foreach ($delete_old_user_department as $value) {
+    		$delete_user = UserDepartment::where('user_id', $value)->delete();
+    	}
+
+    	//Thêm user mới vào phòng
+    	if(!empty($new_user_department)){
+    		$add_employee = checkArraynew($old_user_department, $new_user_department);
+    		foreach ($add_employee as $value) {
+    			$add_user_department = new UserDepartment;
+    			$add_user_department->user_id = $value;
+    			$add_user_department->department_id = $id;
+    			$add_user_department->save();
+    		}
+    	}
+    	return redirect('department/detail/edit-employee/' . $id)->with('thongbao', 'Bạn đã sửa thành công');
     }
 }

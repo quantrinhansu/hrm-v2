@@ -46,6 +46,11 @@ class JobTypeController extends Controller
 	      }
     }
 
+    public function getEdit($id)
+    {
+        $jobtype = JobType::find($id);
+        return view('job_type.edit', ['jobtype' => $jobtype]);
+    }
     public function postEdit(Request $request)
     {
     	$message = ['name.required' => 'Bạn chưa nhập tên chuyên môn',
