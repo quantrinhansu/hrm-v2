@@ -85,11 +85,6 @@ class DepartmentController extends Controller
     	return view('department.detail', ['department' => $department, 'user_department' => $user_department, 'count_employee' => $count_employee]);
     }
 
-    public static function getDepartmentInfo($id){
-        $department = Department::find($id);
-        return $department;
-    }
-
     public function getAddEmployee($id)
     {
     	 $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)

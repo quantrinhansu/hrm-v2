@@ -65,6 +65,9 @@ Route::post('/employee/add', 'UserController@postAdd');
 Route::get('employee/contract', 'ContractController@getList');
 Route::get('employee/contract/add', 'ContractController@getAdd');
 
+
+
+
 Route::get('access', function(){
 	return view('manage_access.list');
 });
@@ -102,6 +105,12 @@ Route::get('congtac', function(){
 });
 Auth::routes();
 
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
