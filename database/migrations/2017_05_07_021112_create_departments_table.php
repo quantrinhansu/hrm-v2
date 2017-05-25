@@ -19,7 +19,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('name'); 
             $table->string('code')->nullable(); 
             $table->integer('manager_id')->unsigned();
-            $table->foreign('manager_id')->references('id')->on('users');
+            $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

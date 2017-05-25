@@ -219,7 +219,7 @@
 		  	</div>
 		  	<div class="form-group">
 	    		<label for="inputFirstName" class="control-label">Lý Do <span class='require'>*</span></label>
-	    		<textarea name="lydo_qd" rows="5" cols="78" style="resize: none;"></textarea>
+	    		<textarea name="lydo_qd" rows="5" style="width: 100%"></textarea>
 	    	</div>
 	      	<div class="form-group">
 	    		<label for="inputFirstName" class="control-label">Hình Thức <span class='require'>*</span></label>

@@ -27,9 +27,8 @@
 	            		<a href="employee/add" class="btn btn-info btn_access_save btn-sm"><i class="fa fa-plus">&nbsp;Thêm</i></a>
 	            	</div>
 	               <div class="panel-body">
-	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá chuyên môn thành công</div>
-	               		<div class="alert alert-success" id="report_add" style="display: none">Bạn đã thêm chuyên môn thành công</div>
-	               		<div class="alert alert-success" id="report_edit" style="display: none">Bạn đã sửa chuyên môn thành công</div>
+	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá nhân viên thành công</div>
+	            
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
 		                                <thead>
@@ -48,7 +47,7 @@
 			                            </thead>
 			                            <tbody id="add_row">
 			                            @foreach($user as $us)
-				                            <tr class="tr">
+				                            <tr class="tr{{$us['id']}}">
 								                <td>{{$us['username']}}</td>
 								                <td>{{$us['name']}}</td>
 								                <td>{{$us['email']}}</td>
@@ -60,14 +59,14 @@
 													@endif
 								                </td>
 								                <td>{{$us['phone_number']}}</td>
-								                <th>{{$us['birthday']}}</th>
-								                <td>{{$us['present_address']}}</td>
-								                <td>{{$us['maritial_status']}}</td>
+								                <th>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</th>
+								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
+								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Jobtype['name']}}</td>
 								                <td>
-								                	 <a class="btn btn-primary btn-xs btn_update" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                         
+								                	 <a href="employee/edit/{{$us['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                         
 			                                    </td>
 								                <td>
-			                                         <button type="button" data-target="#modal-default" data-id="" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i
+			                                         <button type="button" data-target="#modal-default" data-id="{{$us['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i
 			                                            class="fa fa-trash-o"></i>&nbsp;Xóa</button>
 			                                    </td>
 				                            </tr>
@@ -108,4 +107,35 @@
 
 </div>
 
+<script type="text/javascript">
+	$('.btn_delete').click(function(){
+		var id = $(this).data('id');
+		$('.btn_confirm').click(function(){
+           $.ajaxSetup(
+			{
+			    headers:
+			    {
+			        'X-CSRF-Token': $('input[name="_token"]').val()
+			    }
+			});
+
+            $.ajax({
+                type: 'POST',
+                url: 'employee/delete',
+                dataType: 'text',
+                data: {id : id },
+                success: function(data){
+                    $('.tr' + id).fadeOut();
+                    $('.tr' + id).remove();
+                    $("#report_delete").show();
+                    setTimeout(function()
+                    {
+                        $('#report_delete').fadeOut();
+                    },4000);
+                }
+            });
+        }); 
+	});
+
+</script>
 @endsection
