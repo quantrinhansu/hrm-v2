@@ -16,12 +16,12 @@ class CreateEmployeeRelativesTable extends Migration
         Schema::create('employee_relatives', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('full_name');    
-            $table->string('address');  
+            $table->string('full_name')->nullable();    
+            $table->string('address')->nullable();  
             $table->string('phone_number')->nullable(); 
-            $table->string('relation');
+            $table->string('relation')->nullable(); 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

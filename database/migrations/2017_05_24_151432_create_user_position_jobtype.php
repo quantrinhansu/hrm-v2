@@ -19,9 +19,9 @@ class CreateUserPositionJobtype extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('position_id')->unsigned();
             $table->integer('jobtype_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('position_id')->references('id')->on('position');
-            $table->foreign('jobtype_id')->references('id')->on('job_type');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('position_id')->references('id')->on('position')->onDelete('cascade');
+            $table->foreign('jobtype_id')->references('id')->on('job_type')->onDelete('cascade');
         });
     }
 

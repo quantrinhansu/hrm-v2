@@ -3,9 +3,9 @@
 
 <!-- Header -->
 @include('layouts.head')
-
+@yield('styles')
 <body class=" ">
-<div>
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
     <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP-->
     <!--BEGIN TOPBAR-->
     <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -460,7 +460,7 @@
             </div> -->
             <!--END TITLE & BREADCRUMB PAGE-->
             <!--BEGIN CONTENT-->
-            
+            @yield('script')
             <!-- BẮT ĐẦU Ở ĐÂY -->
             @yield('content')
 
@@ -472,9 +472,6 @@
             <div class="copyright">2014 © &mu;Admin - Responsive Multi-Style Admin Template</div>
         </div> -->
         <!--END FOOTER--><!--END PAGE WRAPPER--></div>
-        
-        @yield('script')
-</div>
     <!-- footer -->
     @include('layouts.footer')
 </body>

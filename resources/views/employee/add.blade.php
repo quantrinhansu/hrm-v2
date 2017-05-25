@@ -39,6 +39,7 @@
                     <div class="panel panel-yellow">
                     	<div class="panel-heading">Thông Tin Nhân Viên
 							<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+							<a class="btn btn-info btn_access_save btn-sm" href="employee"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
                     	</div>
                         <div class="panel-body pan">
                             <div  class="form-horizontal form-seperated">
@@ -83,9 +84,9 @@
 		                                        <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                                  		class="input-group date datepicker-filter mbs">
-                                                 		<input type="text"
-                                                                                                       readonly=""
-                                                                                                       class="form-control"/><span
+                                                 		<input type="text" readonly="" class="form-control" name="birthday" value="{{old('birthday')}}"/><span
+                                                    	class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                 		<input type="text" readonly="" class="form-control"/><span
                                                     	class="input-group-addon" name="birthday" value="{{old('birthday')}}"><i class="fa fa-calendar"></i></span>
                                             		</div>
 		                                        </div>
@@ -105,10 +106,8 @@
 		                                       <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                                  		class="input-group date datepicker-filter mbs">
-                                                 		<input type="text"
-                                                                                                       readonly=""
-                                                                                                       class="form-control"/><span
-                                                    	class="input-group-addon" name="joining_date" value="{{old('joining_date')}}"><i class="fa fa-calendar"></i></span>
+                                                 		<input type="text" readonly="" class="form-control" name="joining_date" value="{{old('joining_date')}}"/><span
+                                                    	class="input-group-addon" ><i class="fa fa-calendar"></i></span>
                                             		</div>
 		                                        </div>
 		                                    </div>
@@ -193,10 +192,8 @@
 		                                        <div class="col-md-8">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                                  		class="input-group date datepicker-filter mbs">
-                                                 		<input type="text"
-                                                                                                       readonly=""
-                                                                                                       class="form-control"/><span
-                                                    	class="input-group-addon" name="date_CMND" value="{{old('date_CMND')}}"><i class="fa fa-calendar"></i></span>
+                                                 		<input type="text" readonly="" class="form-control" name="date_CMND" value="{{old('date_CMND')}}"/><span
+                                                    	class="input-group-addon" ><i class="fa fa-calendar"></i></span>
                                             		</div>
 		                                        </div>
 		                                    </div>

@@ -1,8 +1,14 @@
+.ui-autocomplete {
+    z-index: 10000!important;
+}
 .profile{
 	width: 100%;
 }
 .has-switch label {
 	z-index: ;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+	padding: none!important;
 }
 
 

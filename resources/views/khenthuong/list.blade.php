@@ -1,9 +1,13 @@
 @extends('layouts.app')
+@section('script')
 
+<script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="assets/js/jquery.dataTables.min.js"></script>
+@endsection
+@section('styles')
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
+@endsection
 @section('content')
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="list_notification">
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
@@ -56,7 +60,7 @@
 	            	</div>
 	                <div class="panel-body">
 	                    <div id="flip-scroll">
-	                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter mbn">
+	                        <table class="table table-hover table-striped table-bordered tablesorter display dataTable no-footer" id="table_id">
 	                            <thead class="cf">
 	                            <tr>
 		                            <th>STT</th>
@@ -126,7 +130,7 @@
 	      <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
 	    </div>
 	    <div class="modal-body">
-	      <div class="form-group">
+	      	<div class="form-group">
 	    		<label for="inputFirstName" class="control-label">Tên Nhân Viên <span class='require'>*</span></label>
 	    	</div>
 	      	<div class="form-group">
@@ -184,61 +188,51 @@
 </div>
 
 <!-- MODAL ADD -->
+<form action="{{route('retribution')}}" method="POST">
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 	    <div class="modal-header">
 	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-	      <h4 class="modal-title custom_align" id="Heading">Add Your Detail</h4>
+	      <h4 class="modal-title custom_align" id="Heading">Ra Quyết Định</h4>
 	    </div>
+
 	    <div class="modal-body">
-	      	<div class="form-group">
-	    		<label for="inputFirstName" class="control-label">Tên Nhân Viên <span class='require'>*</span></label>
+	    
+	      	<div class="form-group ui-widget">
+	    		<label for="inputFirstName" class="control-label ">Tên Nhân Viên <span class='require'>*</span></label>
+	    		 <input type="text" class="form-control" id="add_staff"	name="staff" autocomplete>
 	    	</div>
 	      	<div class="form-group">
-	        	<input class="form-control " type="text" placeholder="Xin Hãy nhập vào tên chức danh">
-	      	</div>
-	      	<div class="form-group">
-	    		<label for="inputFirstName" class="control-label">Mã Nhân viên <span class='require'>*</span></label>
+	    		<label for="inputFirstName" class="control-label">Quyết Định Số <span class='require'>*</span></label>
+	    		<input name="so_qd" class="form-control" type="text" placeholder="VD: QDKT2017">
 	    	</div>
 	      	<div class="form-group">
-	        	<input class="form-control " type="text" placeholder="Xin Hãy nhập vào mã chức danh">
-	      	</div>
-	      	<div class="form-group">
-	    		<label for="inputFirstName" class="control-label">Số Hiệu <span class='require'>*</span></label>
-	    	</div>
-	      	<div class="form-group">
-	        	<input class="form-control " type="text" placeholder="Xin Hãy nhập vào mã chức danh">
-	      	</div>
-	      	<div class="form-group">
-			    <label for="pwd">Loại Quyết Định:</label>
+			    <label for="pwd">Loại Quyết Định</label>
 			    <span class='require'>*</span>
 			    <div class="form-group">
-				  <select class="form-control" id="sel1">
-				  	<option>Tất cả</option>
-				    <option>Khen Thưởng</option>
-				    <option>Kỷ Luật</option>
+				  <select name="loai_qd" class="form-control" id="sel1">
+				    <option value="khenthuong">Khen Thưởng</option>
+				    <option value="kyluat">Kỷ Luật</option>
 				  </select>
 				</div>
 		  	</div>
 		  	<div class="form-group">
 	    		<label for="inputFirstName" class="control-label">Lý Do <span class='require'>*</span></label>
+	    		<textarea name="lydo_qd" rows="5" style="width: 100%"></textarea>
 	    	</div>
 	      	<div class="form-group">
-	        	<input class="form-control " type="text" placeholder="Xin Hãy nhập vào mã chức danh">
-	      	</div>
-	      	<div class="form-group">
-	    		<label for="inputFirstName" class="control-label">Hình Thức Thi Hành <span class='require'>*</span></label>
+	    		<label for="inputFirstName" class="control-label">Hình Thức <span class='require'>*</span></label>
+	    		<input name="hinhthuc_qd" class="form-control " type="text" placeholder="">
 	    	</div>
-	      	<div class="form-group">
-	        	<input class="form-control " type="text" placeholder="Xin Hãy nhập vào mã chức danh">
-	      	</div>
 	      	<div class="form-group">
 	    		<label for="inputFirstName" class="control-label">Ngày Ra Quyết Định <span class='require'>*</span></label>
+	    		<div data-date-format="dd/mm/yyyy" class="input-group date datepicker-filter mbs">
+	    			<input name="ngay_qd" type="text" readonly="" class="form-control" value="{{Carbon\Carbon::today()->format('d/m/Y')}}" />
+	    			<span class="input-group-addon" id="date_QD"><i class="fa fa-calendar"></i></span>
+	    		</div>
 	    	</div>
-	      	<div class="form-group">
-	        	<input type="text" data-date-format="mm-dd-yyyy" placeholder="mm-dd-yyyy" class="datepicker-default form-control"/>
-	        </div>
+	    	
 	    </div>
 	    <div class="modal-footer ">
 	      <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>Add</button>
@@ -248,7 +242,7 @@
 	</div>
 	<!-- /.modal-dialog --> 
 </div>
-
+</form>
 </div>
 <script type="text/javascript">
 		$('#searchname').autocomplete({
@@ -259,5 +253,14 @@
 				$('#user_preview').text(ui.item.name)
 			}
 		});
+		$('#add_staff').autocomplete({
+			source : '{!!URL::route('autocomplete')!!}',
+			minlength: 1,
+			autoFocus: true
+		});		
+		$(document).ready(function() {
+		  $('#tablesorterX').DataTable();
+		});
 </script>
+
 @endsection

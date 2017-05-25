@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee', 'UserController@getList');
 	Route::get('employee/add', 'UserController@getAdd');
 	Route::post('employee/add', 'UserController@postAdd');
+	Route::get('employee/edit/{id}', 'UserController@getEdit');
+	Route::post('employee/edit/{id}', 'UserController@postEdit');
+	Route::post('employee/delete', 'UserController@postDelete');
 });
 
 Route::get('/home', 'HomeController@index');
@@ -110,4 +113,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
 
-
+Route::post('retribution', array('as' => 'retribution','uses' => 'RetributionController@create'));

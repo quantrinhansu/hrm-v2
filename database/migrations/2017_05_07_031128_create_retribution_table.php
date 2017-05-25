@@ -22,9 +22,9 @@ class CreateRetributionTable extends Migration
             $table->string('description');             
             $table->date('create_date');  
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('create_by')->unsigned();
-            $table->foreign('create_by')->references('id')->on('users');
+            $table->foreign('create_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
