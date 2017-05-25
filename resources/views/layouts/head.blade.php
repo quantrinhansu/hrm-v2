@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font.css">
     <link type="text/css" rel="stylesheet" href="assets/css/themes/style1/font1.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
    
@@ -30,4 +29,10 @@
    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-switch/css/bootstrap-switch.css">
 
     <link type="text/css" rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendors/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/jquery.dataTables.css">
+    <link type="text/css" rel="stylesheet"
+          href="assets/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/dataTables.bootstrap.css">
 </head>

@@ -113,4 +113,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
 
-
+Route::post('retribution', array('as' => 'retribution','uses' => 'RetributionController@create'));

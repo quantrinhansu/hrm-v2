@@ -86,6 +86,8 @@
                                                  		class="input-group date datepicker-filter mbs">
                                                  		<input type="text" readonly="" class="form-control" name="birthday" value="{{old('birthday')}}"/><span
                                                     	class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                 		<input type="text" readonly="" class="form-control"/><span
+                                                    	class="input-group-addon" name="birthday" value="{{old('birthday')}}"><i class="fa fa-calendar"></i></span>
                                             		</div>
 		                                        </div>
 		                                    </div>

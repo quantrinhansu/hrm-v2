@@ -100,8 +100,8 @@ class UserController extends Controller
         foreach ($uData as $key => $value) {
             //$uDepa = UserDepartment::where('user_id', $value->id)->first();
             //$depa = DepartmentController::getDepartmentInfo($uDepa->department_id);
-            //$data = $value->username.'['.$value->id.' - '.$value->first_name.' '.$value->last_name.' - '.$depa->name.']';
-            array_push($result, $value->username);
+            $data = $value->username.' ('.$value->name.')';
+            array_push($result, $data);
         }
         return $result;
     }
