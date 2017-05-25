@@ -38,10 +38,10 @@
 								                <th>Tên Nhân Viên</th>
 								                <th>Email</th>
 								                <th>Giới Tính</th>
-								                <th>Ngày Sinh</th>
-								                <th>Địa Chỉ Hiện Tại</th>
-								                <th>TT Hôn Nhân</th>
 								                <th>Số Điện Thoại</th>
+								                <th>Phòng Ban</th>
+								                <th>Chức Vụ</th>
+								                <th>Chuyên Môn</th>
 								                <th>Sửa</th>
 								                <th>Xóa</th>
 				                            </tr>
@@ -59,10 +59,10 @@
 														Nữ
 													@endif
 								                </td>
+								                <td>{{$us['phone_number']}}</td>
 								                <th>{{$us['birthday']}}</th>
 								                <td>{{$us['present_address']}}</td>
 								                <td>{{$us['maritial_status']}}</td>
-								                <td>{{$us['phone_number']}}</td>
 								                <td>
 								                	 <a class="btn btn-primary btn-xs btn_update" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                         
 			                                    </td>

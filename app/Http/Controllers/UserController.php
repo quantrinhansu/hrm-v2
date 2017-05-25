@@ -9,8 +9,6 @@ use App\UserDepartment;
 use Auth;
 use App\Position;
 use App\JobType;
-use App\Department;
-use App\UserDepartment;
 use App\UserPositionJobtype;
 use App\EmployeeRelative;
 use Illuminate\Support\Facades\DB;
