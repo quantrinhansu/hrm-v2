@@ -1,6 +1,4 @@
-<script src="assets/js/jquery-1.10.2.min.js"></script>
-<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/js/jquery-ui.js"></script>
+<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>	
 <script src="js/custom.js"></script>
 <!--loading bootstrap js-->
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
@@ -28,14 +26,12 @@
 <!--LOADING SCRIPTS FOR PAGE-->
 <script src="assets/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- <script src="assets/js/form-components.js"></script> -->
-
-<script src="assets/vendors/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
-
-
 <script src="assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="assets/js/table-filter.js"></script>
-
-
+<script src="assets/vendors/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="assets/vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
+<script src="assets/vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script src="assets/js/table-datatables.js"></script>
 <script type="text/javascript">(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
     i[r] = i[r] || function () {
