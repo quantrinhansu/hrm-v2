@@ -49,7 +49,7 @@
 		                                <thead>
 				                            <tr>
 				                            	<th><input type="checkbox" class="checkall"></th>
-								                <th>Tên Nhân Viên {{$department['id']}}</th>
+								                <th>Tên Nhân Viên</th>
 								                <th>Username</th>
 								                <th>Giới Tính</th>
 				                            </tr>
@@ -67,7 +67,7 @@
 													  >
 				                            	</td>
 
-								                <td>{{$us['first_name']}} {{$us['last_name']}}</td>
+								                <td>{{$us['name']}}</td>
 								                <td>{{$us['username']}}</td>
 								                <td>
 								                	@if($us['gender'] == 1)

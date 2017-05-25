@@ -25,7 +25,7 @@
                 
                 $link = $_SERVER['REQUEST_URI'];
                 $link_array = explode('/',$link);
-                echo $match = '/' . end($link_array);
+                $match = '/' . end($link_array);
             ?>
             <li <?php if ($match == '/home') {
                        ?> class="active" <?php

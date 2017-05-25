@@ -96,7 +96,7 @@
 		                            <tbody>
 		                            @foreach($user_department as $ud)
 			                            <tr>
-							                <td>{{$ud->User['first_name']}} {{$ud->User['last_name']}}</td>
+							                <td>{{$ud->User['name']}}</td>
 							                <td>{{$ud->User['username']}}</td>
 							                <td>
 							            		@if($ud->User['gender'] == 1)

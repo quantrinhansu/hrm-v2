@@ -14,14 +14,12 @@ class DepartmentController extends Controller
     public function getList()
     {
     	$department = Department::all();
-    	//$user = User::all();
-    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
-    	return view('department.list', ['department' => $department, 'user' => $user]);
+    	return view('department.list', ['department' => $department]);
     }
 
     public function getAdd()
     {
-    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
     	return view('department.add_department', ['user' => $user]);
     }
     public function postAdd(Request $request)
@@ -89,7 +87,7 @@ class DepartmentController extends Controller
     {
     	 $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
     	 							   ->where('users_department.manager', null)
-    	 	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	 	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
     	 $department = Department::find($id);
     	return view('department.add_employee', ['user' => $user, 'department' => $department]);
     }
@@ -144,8 +142,7 @@ class DepartmentController extends Controller
     	$user_department = UserDepartment::where('department_id', $request->department_id)->update(['user_id' =>  $request->manager]);
 
         foreach ($user as $value) {
-            $arr['first_name'] = $value['first_name'];
-            $arr['last_name']   = $value['last_name'];
+            $arr['user_name'] = $value['name'];
         }
         foreach ($newdata as $key => $value) {
             $arr['name'] = $value['name'];
@@ -161,7 +158,7 @@ class DepartmentController extends Controller
         //$user = User::all();
         $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
     								  ->orwhere('users_department.department_id', $id)
-    	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
         $department = Department::find($id);
         return view('department.edit_department', ['user' => $user, 'department' => $department]);
     }
@@ -178,7 +175,7 @@ class DepartmentController extends Controller
     	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
     								  ->orwhere('users_department.department_id', $id)
     								  ->where('users_department.manager', null)
-    	->select('users.id', 'users.first_name', 'users.last_name', 'users.username', 'users.gender')->get();
+    	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
     	$department = Department::find($id);
     	$user_department = UserDepartment::where('department_id', $id)->get();
     	return view('department.edit_employee', ['user' => $user, 'department' => $department, 'user_department' => $user_department]);

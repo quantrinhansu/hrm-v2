@@ -24,7 +24,7 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>Danh Sách</span>
-	            		<button class="btn btn-info btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+	            		<button class="btn btn-info btn_access_save btn-sm" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Thêm</i></button>
 	            	</div>
 	               <div class="panel-body">
 	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá chức vụ thành công</div>

@@ -47,7 +47,7 @@
 													  <input type="checkbox" value="{{$us['id']}}" name="employee[]">
 				                            	</td>
 
-								                <td>{{$us['first_name']}} {{$us['last_name']}}</td>
+								                <td>{{$us['name']}}</td>
 								                <td>{{$us['username']}}</td>
 								                <td>
 								                	@if($us['gender'] == 1)
