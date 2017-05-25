@@ -28,7 +28,7 @@
 	            	<div class="panel-heading">
 	            		<span>Chọn Nhân Viên Thêm Vào Phòng {{$department['name']}}</span>
 	            		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/{{$department['id']}}"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
-	            		<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-plus">&nbsp;Sửa</i></button>
+	            		<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-floppy-o">&nbsp;Lưu</i></button>
 	            	</div>
 	            	@if(session('thongbao'))
 			            <div class="alert alert-success">

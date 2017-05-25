@@ -41,6 +41,12 @@
                             class="submenu-title">One Page</span></a></li>
                 </ul>
             </li>
+            <li<?php if ($match == '/employee') {
+                       ?> class="active" <?php
+                    } ?>><a href="employee"><i class="fa fa-laptop fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Danh Sách Nhân Viên</span></a>
+            </li>
             <li<?php if ($match == '/profile') {
                        ?> class="active" <?php
                     } ?>><a href="profile"><i class="fa fa-laptop fa-fw">

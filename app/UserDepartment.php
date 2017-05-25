@@ -13,4 +13,9 @@ class UserDepartment extends Model
     {
         return $this->belongsTo('App\User', 'user_id' ,'id');
     }
+
+    public function Department() 
+    {
+        return $this->belongsTo('App\Department', 'department_id' ,'id');
+    }
 }

@@ -28,4 +28,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function UserDepartment()
+    {
+        return $this->hasOne('App\UserDepartment', 'user_id', 'id');
+    }
+
+    public function UserPositionJobtype()
+    {
+        return $this->hasOne('App\UserPositionJobtype', 'user_id', 'id');
+    }
+
+     public function EmployeeRelative()
+    {
+        return $this->hasOne('App\EmployeeRelative', 'user_id', 'id');
+    }
 }
