@@ -89,7 +89,7 @@ $(document).ready(function(){
                     }
                 }else{
                     $('#name_' + id).text(data.name);
-                    $('#manager_' + id).text(data.first_name + ' ' + data.last_name);
+                    $('#manager_' + id).text(data.user_name);
 
                      $('#edit').modal('toggle');
                 }

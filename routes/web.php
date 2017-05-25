@@ -46,12 +46,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('department/edit', 'DepartmentController@postEdit');
 	Route::get('department/edit/{id}', 'DepartmentController@getEdit');
 	Route::post('department/delete', 'DepartmentController@postDelete');
+
+	//Employee
+	Route::get('employee', 'UserController@getList');
+	Route::get('employee/add', 'UserController@getAdd');
+	Route::post('employee/add', 'UserController@postAdd');
 });
 
 Route::get('/home', 'HomeController@index');
 
 
-Route::get('/employee', 'UserController@getList');
+
 
 Route::post('/employee/delete', 'UserController@postDelete');
 
@@ -59,8 +64,7 @@ Route::post('/employee/update', 'UserController@postUpdate');
 
 Route::post('/employee/setting/update', 'UserController@postSettingUpdate');
 
-Route::get('/employee/add', 'UserController@getAdd');
-Route::post('/employee/add', 'UserController@postAdd');
+
 
 Route::get('employee/contract', 'ContractController@getList');
 Route::get('employee/contract/add', 'ContractController@getAdd');
@@ -106,10 +110,6 @@ Route::get('congtac', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

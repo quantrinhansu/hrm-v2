@@ -21,7 +21,7 @@
 </div>
 
 
- <div class="page-content">
+<div class="page-content">
     <div id="form-layouts" class="row">
 		<div class="col-lg-12">
 		    <div style="background: transparent; border: 0; box-shadow: none !important"

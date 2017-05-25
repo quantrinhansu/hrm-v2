@@ -34,7 +34,7 @@
                         <tbody>
                         <tr>
                             <td width="50%"><i class="fa fa-user margin-r-5"></i> User Name</td>
-                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                            <td>{{ $user['name'] }}</td>
                         </tr>
                         <tr>
                             <td width="50%"><i class="fa fa-envelope margin-r-5"></i> Email</td>
