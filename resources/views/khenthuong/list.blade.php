@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <div class="list_notification">
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
@@ -30,25 +34,23 @@
 	            	<div class="employee" style="margin: 10px;">
 	            		<div class="container">
 	            		<form class="form-inline">
-						  <div class="form-group">
-						    <label for="email">Mã Nhân Viên:</label>
-						    <input type="text" class="form-control" id="email">
-						  </div>
-						  <div class="form-group">
-						    <label for="pwd">Tên Nhân Viên:</label>
-						    <input type="text" class="form-control" id="pwd">
+						  <div class="form-group ui-widget">
+						    <label for="searchname">Tên Nhân Viên:</label>
+						    <input type="text" class="form-control" id="searchname"	name="searchname" autocomplete>
 						  </div>
 							<div class="form-group">
 							    <label for="pwd">Loại Quyết Định:</label>
 							    <div class="form-group">
 								  <select class="form-control" id="sel1">
-								  	<option>Tất cả</option>
 								    <option>Khen Thưởng</option>
 								    <option>Kỷ Luật</option>
 								  </select>
 								</div>
 						  	</div>
 						  <button type="submit" class="btn btn-info"><i class="fa fa-search">&nbsp;Search</i></button>
+						  <div id="user_preview">
+						  	
+						  </div>	
 						</form>
 						</div>
 	            	</div>
@@ -248,6 +250,14 @@
 </div>
 
 </div>
-
-        
+<script type="text/javascript">
+		$('#searchname').autocomplete({
+			source : '{!!URL::route('autocomplete')!!}',
+			minlength: 1,
+			autoFocus: true,
+			select:function(e,ui){
+				$('#user_preview').text(ui.item.name)
+			}
+		});
+</script>
 @endsection
