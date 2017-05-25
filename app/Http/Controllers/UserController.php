@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Department;
+use App\UserDepartment;
 use Auth;
 class UserController extends Controller
 {
@@ -82,4 +84,18 @@ class UserController extends Controller
     {
         //
     }
+    public function autocomplete(Request $request){
+        $term = $request->term;
+        $uData = User::where('username', 'LIKE', '%'.$term.'%')->take(10)->get();
+       
+        $result = array();
+        foreach ($uData as $key => $value) {
+            //$uDepa = UserDepartment::where('user_id', $value->id)->first();
+            //$depa = DepartmentController::getDepartmentInfo($uDepa->department_id);
+            //$data = $value->username.'['.$value->id.' - '.$value->first_name.' '.$value->last_name.' - '.$depa->name.']';
+            array_push($result, $value->username);
+        }
+        return $result;
+    }
+
 }
