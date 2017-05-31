@@ -63,7 +63,9 @@
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Jobtype['name']}}</td>
 								                <td>
-								                	 <a href="employee/edit/{{$us['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                         
+								                @if(Auth::user()->can('staff_edit'))
+								                	 <a href="employee/edit/{{$us['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
+								                @endif          
 			                                    </td>
 								                <td>
 			                                         <button type="button" data-target="#modal-default" data-id="{{$us['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i

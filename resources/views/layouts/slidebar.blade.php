@@ -45,7 +45,7 @@
                        ?> class="active" <?php
                     } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Roles and Permission </span><span class="fa arrow"></span></i></a>
+            </i><span class="menu-title">Quyền và truy cập </span><span class="fa arrow"></span></i></a>
                 <ul  <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="nav nav-second-level collapse in" <?php
                     }else{
@@ -60,7 +60,7 @@
                         <?php
                     }
                     ?> ><a href="roles"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Roles</span></a></li>
+                            class="submenu-title">Phân quyền</span></a></li>
                     <li <?php 
                         if ($match == '/permission') {
                             
@@ -69,7 +69,18 @@
                         <?php
                     }
                     ?> ><a href="permission"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Permision</span></a></li>
+                            class="submenu-title">Quyền truy cập</span></a>
+                    </li>
+                    <li <?php 
+                        if ($match == '/users') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="roles/users"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Người dùng</span></a>
+                    </li>                    
                 </ul>
             </li>
             <li<?php if ($match == '/employee') {
@@ -84,9 +95,9 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Profile</span></a>
             </li>
-            <li<?php if ($match == '/access') {
+            <li<?php if ($match == '/manage-access') {
                        ?> class="active" <?php
-                    } ?>><a href="access"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="manage-access"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>

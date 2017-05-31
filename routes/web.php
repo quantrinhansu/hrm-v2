@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', 'UserController@index');
 	Route::get('profile/{id}', 'UserController@show');
 
-   //Chức vụ
+   //Ch?c v?
 	Route::get('position', 'PositionController@getlist');
 	Route::post('position/add', 'PositionController@postAdd');
 	Route::get('position/edit/{id}', 'PositionController@getEdit');
@@ -54,12 +54,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
-});
-Route::get('/roles', 'RolesController@index');
-Route::get('/roles/add', 'RolesController@create');
-Route::get('/permission', 'PermissionController@index');
-
-Route::get('/home', 'HomeController@index');
+	Route::get('/permission', 'PermissionController@index');
+	Route::post('/permission/update', 'PermissionController@update');
+	Route::post('/permission/delete', 'PermissionController@delete');
+	// Roles
+	Route::get('/roles', 'RolesController@index');
+	Route::post('/roles/add', 'RolesController@create');
+	Route::post('/roles/delete', 'RolesController@delete');
+	Route::get('/roles/users', 'RolesController@users');
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
 	Route::get('business-trip/add', 'BusinessTripController@getAdd');
@@ -69,7 +71,7 @@ Route::get('/home', 'HomeController@index');
 	Route::post('business-trip/edit/{id}', 'BusinessTripController@postEdit');
 	Route::post('business-trip/delete', 'BusinessTripController@postDelete');
 
-	//Khen thưởng / Kỷ luật
+	//Khen thu?ng / K? lu?t
 	Route::get('retribution', 'RetributionController@getList');
 	Route::post('retribution/add', 'RetributionController@postAdd');
 	Route::get('retribution/edit/{id}', 'RetributionController@getEdit');
@@ -94,13 +96,15 @@ Route::get('/home', 'HomeController@index');
 
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
-	Route::post('manage-access/add', 'ManageAccessController@postAdd');
+	Route::post('manage-access/add', 'ManageAccessController@postAdd');=
+	Route::get('contract/add', 'ContractController@getAdd');
+});
 // Roles
 Route::get('/roles', 'RolesController@index');
 Route::get('/roles/add', 'RolesController@create');
 Route::get('/permission', 'PermissionController@index');
+>>>>>>> 78cc616dc87c7c8ff6745aaf58c50838b2456a11
 
-Route::get('/home', 'HomeController@index');
 
 Auth::routes();
 

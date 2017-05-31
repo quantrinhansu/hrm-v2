@@ -27,7 +27,8 @@ class PermissionController extends Controller
         }*/
         // $user = User::find(Auth::user()->id);
         // return view('auth.permission', compact('user'));
-        //return view('auth.permission');
+        $per = Permission::all();
+        return view('auth.permission', compact('per'));
     }
 
     /**
@@ -37,11 +38,15 @@ class PermissionController extends Controller
      */
     public function create(Request $request)
     {
-        $newPer = new Permission();
-        $newPer->name         = $request->name;
-        $newPer->display_name = $request->display_name; // optional
-        $newPer->description  = $request->description; // optional
-        $newPer->save();
+        if (Auth::user()->can('permission_create')) {
+            $newPer = new Permission();
+            $newPer->name         = $request->name;
+            $newPer->display_name = $request->display_name; // optional
+            $newPer->description  = $request->description; // optional
+            $newPer->save();
+        }else{
+            return  redirect()->back()->with('msg','Bạn không có quyền này.');
+        }
     }
 
     /**
@@ -84,11 +89,31 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if (Auth::user()->can('permission_update')) {
+            $permission = Permission::findOrFail($request->id);
+            $permission->name         = $request->name;
+            $permission->display_name = $request->display_name; // optional
+            $permission->description  = $request->description; // optional
+            $permission->save();
+        }else{
+            return  redirect()->back()->with('msg','Bạn không có quyền này.');
+        }
     }
 
+    public function delete(Request $request)
+    {
+        if (Auth::user()->can('permission_delete')) {
+            $permission = Permission::findOrFail($request->id);
+            $permission->delete();
+            $permission->perms()->sync([]); 
+            $permission->forceDelete();
+            return  redirect()->back()->with('msg','Deleted.');
+        }else{
+            return  redirect()->back()->with('msg','Bạn không có đủ thẩm quyền để thực hiện tác vụ này.');
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
