@@ -54,6 +54,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
+});
+Route::get('/roles', 'RolesController@index');
+Route::get('/roles/add', 'RolesController@create');
+Route::get('/permission', 'PermissionController@index');
+
+Route::get('/home', 'HomeController@index');
 
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
@@ -90,7 +96,6 @@ Route::group(['middleware' => 'auth'], function () {
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
 	Route::post('manage-access/add', 'ManageAccessController@postAdd');
-});
 // Roles
 Route::get('/roles', 'RolesController@index');
 Route::get('/roles/add', 'RolesController@create');
