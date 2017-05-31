@@ -8,7 +8,7 @@ class Department extends Model
 {
     protected $table = 'departments';
 
-     public function User() 
+    public function User() 
     {
         return $this->belongsTo('App\User', 'manager_id' ,'id');
     }

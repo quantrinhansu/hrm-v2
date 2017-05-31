@@ -29,19 +29,36 @@
 	            		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/{{$department['id']}}"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
 	            		<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-plus">&nbsp;Thêm</i></button>
 	            	</div>
+					@if(session('thongbao'))
+			            <div class="alert alert-success">
+			                {{session('thongbao')}}
+			            </div>
+			        @endif
+			        
+			        @if ( $errors->any() )
+			            <div class="alert alert-danger">
+			                @foreach($errors->all() as $err)
+			                    {{$err}}<br>
+			                @endforeach
+			            </div>
+			        @endif
+
 	               <div class="panel-body">
+                        <div class="row mbm">
+                            <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-		                                <thead>
-				                            <tr>
-				                            	<th><input type="checkbox" class="checkall"></th>
-								                <th>Tên Nhân Viên</th>
-								                <th>Username</th>
-								                <th>Giới Tính</th>
-				                            </tr>
-			                            </thead>
-			                            <tbody>
-			                            @foreach($user as $us)
+                                    <table id="table_id"
+                                           class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 3%; padding: 10px; background: #efefef"><input
+                                                    type="checkbox" class="checkall"/></th>
+                                            <th>Tên Nhân Viên</th>
+								            <th>Username</th>
+								            <th>Giới Tính</th>
+                                        </tr>
+                                        <tbody>
+                                         @foreach($user as $us)
 				                            <tr>
 				                            	<td>
 													  <input type="checkbox" value="{{$us['id']}}" name="employee[]">
@@ -58,9 +75,13 @@
 								                </td>
 				                            </tr>
 				                        @endforeach
-			                            </tbody>
-                                    </table>
-                                </div>  
+                                       
+                                        </tbody>
+                                        </thead></table>
+                                </div>
+                            </div>
+                        </div>
+           
                     </div>
 	            </div>
 	        </form>
@@ -69,5 +90,34 @@
 	</div>
 </div>	
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//Xử lý submit form khi có phân trang
+		var table = $("#table_id").dataTable();
 
+		$('form').on('submit', function(e){
+	   var $form = $(this);
+
+	   // Iterate over all checkboxes in the table
+	   table.$('input[type="checkbox"]').each(function(){
+		      // If checkbox doesn't exist in DOM
+		      if(!$.contains(document, this)){
+		         // If checkbox is checked
+		         if(this.checked){
+		            // Create a hidden element 
+		            $form.append(
+		               $('<input>')
+		                  .attr('type', 'hidden')
+		                  .attr('name', this.name)
+		                  .val(this.value)
+		            );
+		         }
+		      } 
+		   });          
+		});
+
+		$("#table_id").dataTable().fnDestroy();
+	});
+	
+</script>
 @endsection

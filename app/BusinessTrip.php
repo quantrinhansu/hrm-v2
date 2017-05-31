@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Retribution extends Model
+class BusinessTrip extends Model
 {
-    protected $table = 'retribution';
+    protected $table = 'business_trip';
 
     public function User() 
     {

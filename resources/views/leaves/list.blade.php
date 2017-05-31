@@ -1,20 +1,16 @@
 @extends('layouts.app')
-
+@section('title','Danh Sách Xin Nghỉ')
 @section('content')
 <div class="list_notification">
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
-        <div class="page-title">List Leaves</div>
+        <div class="page-title">Danh Sách Xin Nghỉ</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
                 class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li class="active">Responsive Tables</li>
+        <li>Xin Nghỉ</li>
     </ol>
-    <div class="btn btn-blue reportrange hide"><i class="fa fa-calendar"></i>&nbsp;<span></span>&nbsp;report&nbsp;<i class="fa fa-angle-down"></i><input type="hidden" name="datestart"/><input type="hidden" name="endstart"/>
-    </div>
-    <div class="clearfix"></div>
 </div>
 
 <div class="table_list_notification">
@@ -24,47 +20,63 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
-	            		<span>List</span>
+	            		<span>Danh Sách</span>
 	            	</div>
 	                <div class="panel-body">
-	                    <div id="flip-scroll">
-	                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter mbn">
-	                            <thead class="cf">
-	                            <tr>
-		                            <th>STT</th>
-					                <th>Code</th>
-					                <th>Name</th>
-					                <th>Position</th>
-					                <th>Department</th>
-					                <th>Content</th>
-					                <th>From</th>
-					                <th>To</th>
-					                <th>Action</th>
-					                <th>Delete</th>
-	                            </tr>
-	                            </thead>
-	                            <tbody>
-	                            <tr>
-	                                <td>1</td>
-					                <td>NV002</td>
-					                <td>Binh</td>
-					                <td>Trưởng phòng</td>
-					                <td>It</td>
-					                <td>Đau Bụng</td>
-					                <td>20/4/2017</td>
-					                <td>21/4/2017</td>
-					                <td>
-					                	<button class="btn btn-primary btn-xs"><i class="fa fa-check">Yes</i></button>                                            
-					                	<button class="btn btn-primary btn-xs"><b>X</b> No</button>                                            
-                                    </td>
-					                <td>
-                                         <button type="button" data-target="#modal-default" data-toggle="modal" class="btn btn-primary btn-xs"><i
-                                            class="fa fa-trash-o"></i>&nbsp;Delete</button>
-                                    </td>
-	                            </tr>
-	                            </tbody>
-	                        </table>
-	                    </div>
+	                    <div class="row mbm">
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="table_id"
+                                           class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                        <thead>
+                                        <tr>
+				                            <th>STT</th>
+							                <th>Mã Nhân Viên</th>
+							                <th>Tên</th>
+							                <th>Chức Vụ</th>
+							                <th>Phòng Ban</th>
+							                <th>Lý Do</th>
+							                <th>Từ Ngày</th>
+							                <th>Đến Ngày</th>
+							                <th>Xác nhận</th>
+			                            </tr>
+                                        <tbody>
+                                        <?php  $i = 1; ?>
+                                        @foreach($leave as $le)
+                                         <tr>
+			                                <td><?php echo $i++; ?>
+			                                </td>
+							                <td>{{$le->User['username']}}</td>
+							                <td>{{$le->User['name']}}</td>
+							                <td>{{$le->User->UserPositionJobtype['user_id'] == null ? '' : $le->User->UserPositionJobtype->Position['name']}}</td>
+							                <td>
+												{{$le->User->UserDepartment['user_id'] == null ? '' : $le->User->UserDepartment->Department['name']}}
+							                </td>
+							                <td>{{$le['description']}}</td>
+							                <td>{{$le['from']}}</td>
+							                <td>{{$le['to']}}</td>
+							                <td>
+							                @if($le['type'] == null)
+							                	<button class="btn btn-primary btn-xs btn_yes btn_co_{{$le['id']}}" id="{{$le['id']}}"><i class="fa fa-check" >&nbsp;Có</i></button>                                            
+							                	<button class="btn btn-primary btn-xs btn_no btn_khong_{{$le['id']}}" id="{{$le['id']}}"><b>X</b>&nbsp;Không</button>
+											@endif
+											@if($le['type'] == 'chapnhan')
+							                	<button class="btn btn-primary btn-xs"><i class="fa fa-check">&nbsp;Đồng Ý</i></button>                
+							                @endif    
+
+							                @if($le['type'] == 'khongchapnhan')     
+							                	<button class="btn btn-primary btn-xs"><b>X</b>&nbsp;Không Đồng Ý</button>     
+							                @endif   
+
+							                <button class="btn btn-primary btn-xs btn_confirm_{{$le['id']}} btn_dongy"><i class="fa fa-check">&nbsp;Đồng Ý</i></button> <button class="btn btn-primary btn-xs btn_cancel_{{$le['id']}} btn_khongdongy"><b>X</b>&nbsp;Không Đồng Ý</button>                                      
+		                                    </td>
+			                            </tr>
+			                            @endforeach
+                                        </tbody>
+                                        </thead></table>
+                                </div>
+                            </div>
+                        </div>     
 	                </div>
 	            </div>
 	        </div>
@@ -72,25 +84,63 @@
 	</div>
 </div>	
 
-<!--Modal Default-->
-<div id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default-label"
-     aria-hidden="true" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" data-dismiss="modal" aria-hidden="true"
-                        class="close">&times;</button>
-                <h4 id="modal-default-label" class="modal-title">Delete</h4></div>
-            <div class="modal-body">Are you sure you want to delete?</div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
-                <button type="button" class="btn btn-primary">Yes</button>
-            </div>
-        </div>
-    </div>
 </div>
 
-</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.btn_dongy').hide();
+	$('.btn_khongdongy').hide();
 
-        
+	$('.btn_yes').click(function(){
+		var id = $(this).attr('id');
+		$('.btn_co_' + id).hide();
+		$('.btn_khong_' + id).hide();
+		
+
+		$.ajaxSetup(
+        {
+            headers:
+            {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: 'leave/confirm',
+            dataType: 'text',
+            data: {type : 'chapnhan', id : id },
+            success: function(data){
+                $('.btn_confirm_' + id).show();
+            }
+        });
+	});
+
+	$('.btn_no').click(function(){
+		var id = $(this).attr('id');
+
+		$('.btn_co_' + id).hide();
+		$('.btn_khong_' + id).hide();
+		
+
+		$.ajaxSetup(
+        {
+            headers:
+            {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: 'leave/cancel',
+            dataType: 'text',
+            data: {type : 'khongchapnhan', id : id },
+            success: function(data){
+                $('.btn_cancel_' + id).show();
+            }
+        });
+	});
+});
+</script>        
 @endsection

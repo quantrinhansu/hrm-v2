@@ -78,7 +78,7 @@
             </i><span class="menu-title">Xin Nghỉ</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="leave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Quản Lý</span></a></li>
-                     <li><a href="createleave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Tạo Mới</span></a></li>
+                     <li><a href="leave/add"><i class="fa fa-rocket"></i><spanclass="submenu-title">Tạo Mới</span></a></li>
                 </ul>
             </li>
             <li<?php if ($match == '/position') {
@@ -93,15 +93,15 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Chuyên Môn</span></a>
             </li>
-            <li<?php if ($match == '/khenthuong') {
+            <li<?php if ($match == '/retribution') {
                        ?> class="active" <?php
-                    } ?>><a href="khenthuong"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="retribution"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Khen Thưởng - Kỷ Luật</span></a>
             </li>
-            <li<?php if ($match == '/congtac') {
+            <li<?php if ($match == '/business-trip') {
                        ?> class="active" <?php
-                    } ?>><a href="congtac"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="business-trip"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Công Tác</span></a>
             </li>

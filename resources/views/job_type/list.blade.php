@@ -30,20 +30,23 @@
 	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá chuyên môn thành công</div>
 	               		<div class="alert alert-success" id="report_add" style="display: none">Bạn đã thêm chuyên môn thành công</div>
 	               		<div class="alert alert-success" id="report_edit" style="display: none">Bạn đã sửa chuyên môn thành công</div>
+                     	
+                     	<div class="row mbm">
+                            <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-		                                <thead>
-				                            <tr>
-								                <th>Tên Chuyên Môn</th>
-								                <th>Mã Chuyên Môn</th>
-								                <th>Ngày Tạo</th>
-								                <th>Ngày Sửa</th>
-								                <th>Sửa</th>
-								                <th>Xóa</th>
-				                            </tr>
-			                            </thead>
-			                            <tbody id="add_row">
-			                            @foreach($job_type as $jt)
+                                    <table id="table_id"
+                                           class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                        <thead>
+                                        <tr>
+                                            <th>Tên Chuyên Môn</th>
+							                <th>Mã Chuyên Môn</th>
+							                <th>Ngày Tạo</th>
+							                <th>Ngày Sửa</th>
+							                <th>Sửa</th>
+							                <th>Xóa</th>
+                                        </tr>
+                                        <tbody>
+                                        @foreach($job_type as $jt)
 				                            <tr class="tr{{$jt['id']}}">
 								                <td id="name_{{$jt->id}}">{{$jt['name']}}</td>
 								                <td id="description_{{$jt->id}}">{{$jt['code']}}</td>
@@ -58,13 +61,12 @@
 			                                    </td>
 				                            </tr>
 				                        @endforeach
-			                            </tbody>
-                                    </table>
+                                        </tbody>
+                                        </thead></table>
                                 </div>
-                                <div class="paginate" style="text-align: center;">
-				                 <!-- Phân trang -->
-				                    {!!$job_type->appends(request()->input())->links()!!}
-					            </div>
+                            </div>
+                        </div>          
+                                
                     </div>
 	            </div>
 	        </div>

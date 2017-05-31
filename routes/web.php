@@ -54,59 +54,49 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
+
+	//Business Trip
+	Route::get('business-trip', 'BusinessTripController@getList');
+	Route::get('business-trip/add', 'BusinessTripController@getAdd');
+	Route::post('business-trip/add', 'BusinessTripController@postAdd');
+	Route::post('business-trip/ajax', 'BusinessTripController@postAjax');
+	Route::get('business-trip/edit/{id}', 'BusinessTripController@getEdit');
+	Route::post('business-trip/edit/{id}', 'BusinessTripController@postEdit');
+	Route::post('business-trip/delete', 'BusinessTripController@postDelete');
+
+	//Khen thưởng / Kỷ luật
+	Route::get('retribution', 'RetributionController@getList');
+	Route::post('retribution/add', 'RetributionController@postAdd');
+	Route::get('retribution/edit/{id}', 'RetributionController@getEdit');
+	Route::post('retribution/edit', 'RetributionController@postEdit');
+	Route::post('retribution/delete', 'RetributionController@postDelete');
+
+	//Notification
+	Route::get('notification', 'NotificationController@getList');
+	Route::get('notification/add', 'NotificationController@getAdd');
+	Route::post('notification/add', 'NotificationController@postAdd');
+	Route::get('notification/edit/{id}', 'NotificationController@getEdit');
+	Route::post('notification/edit/{id}', 'NotificationController@postEdit');
+	Route::post('notification/delete', 'NotificationController@postDelete');
+	Route::get('notification/detail/{id}', 'NotificationController@getDetail');
+
+	//Leave
+	Route::get('leave', 'LeaveController@getList');
+	Route::get('leave/add', 'LeaveController@getAdd');
+	Route::post('leave/add', 'LeaveController@postAdd');
+	Route::post('leave/confirm', 'LeaveController@postConfirm');
+	Route::post('leave/cancel', 'LeaveController@postCancel');
+
+	//Manage Access
+	Route::get('manage-access', 'ManageAccessController@getList');
+	Route::post('manage-access/add', 'ManageAccessController@postAdd');
 });
 
 Route::get('/home', 'HomeController@index');
 
-
-
-
-Route::post('/employee/delete', 'UserController@postDelete');
-
-Route::post('/employee/update', 'UserController@postUpdate');
-
-Route::post('/employee/setting/update', 'UserController@postSettingUpdate');
-
-
-
 Route::get('employee/contract', 'ContractController@getList');
 Route::get('employee/contract/add', 'ContractController@getAdd');
 
-Route::get('access', function(){
-	return view('manage_access.list');
-});
-
-Route::get('notification', function(){
-	return view('notification.list');
-});
-
-Route::get('editnotification', function(){
-	return view('notification.edit');
-});
-
-Route::get('addnotification', function(){
-	return view('notification.add');
-});
-
-Route::get('createleave', function(){
-	return view('leaves.create');
-});
-
-Route::get('leave', function(){
-	return view('leaves.list');
-});
-
-Route::get('khenthuong', function(){
-	return view('khenthuong.list');
-});
-
-Route::get('taocongtac', function(){
-	return view('congtac.create');
-});
-
-Route::get('congtac', function(){
-	return view('congtac.list');
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

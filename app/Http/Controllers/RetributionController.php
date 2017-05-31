@@ -3,82 +3,133 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Retribution;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 class RetributionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getList()
     {
-        //
+    	$retribution = Retribution::all();
+    	return view('retribution.list', ['retribution' => $retribution]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function postAdd(Request $request)
     {
-        
+    	$message = ['staff.required' => 'Bạn chưa nhập tên nhân viên',
+    				'code.required'  => 'Bạn chưa nhập quyết định',
+    				'reason.required' => 'Bạn chưa nhập lý do',
+    				'description.required' => 'Bạn chưa nhập hình thức'
+                   ];
+        $validation = Validator::make( Input::all(), [
+                               'staff' => 'required',
+                               'code' => 'required',
+                               'description' => 'required',
+                               'reason'		=> 'required'
+                            ], $message);
+
+
+        if( $validation->fails() )
+	      {
+	        return json_encode([
+	                'errors' => $validation->errors()->getMessages(),
+	                'code' => 200
+	             ]);
+	      }
+
+    	$username = $request->staff;
+    	$space = strpos($username, " ");
+    	$username = substr($username, 0, $space);
+
+    	$id_user = User::where('username', $username)->value('id');
+
+    	$create_date = Carbon::createFromFormat('d/m/Y', $request->create_date)->toDateString();
+
+    	$retribution 				= new Retribution;
+    	$retribution->code 			= $request->code;
+    	$retribution->decide 		= $request->decide;
+    	$retribution->reason 		= $request->reason;
+    	$retribution->description 	= $request->description;
+    	$retribution->create_date 	= $create_date;
+    	$retribution->user_id 		= $id_user;
+    	$retribution->create_by 	= Auth::user()->id;
+    	$retribution->save();
+
+    	return json_encode([
+                    'success' => 'success'
+                 ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getEdit($id)
     {
-        //
+    	$retribution = Retribution::find($id);
+    	return view('retribution.edit', ['retribution' => $retribution]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function postEdit(Request $request)
     {
-        //
+    	$message = ['staff.required' => 'Bạn chưa nhập tên nhân viên',
+    				'code.required'  => 'Bạn chưa nhập quyết định',
+    				'reason.required' => 'Bạn chưa nhập lý do',
+    				'description.required' => 'Bạn chưa nhập hình thức'
+                   ];
+        $validation = Validator::make( Input::all(), [
+                               'staff' => 'required',
+                               'code' => 'required',
+                               'description' => 'required',
+                               'reason'		=> 'required'
+                            ], $message);
+
+
+        if( $validation->fails() )
+	      {
+	        return json_encode([
+	                'errors' => $validation->errors()->getMessages(),
+	                'code' => 200
+	             ]);
+	      }
+
+    	$username = $request->staff;
+    	$space = strpos($username, " ");
+    	$username = substr($username, 0, $space);
+
+    	$id_user = User::where('username', $username)->value('id');
+
+    	$create_date = Carbon::createFromFormat('d/m/Y', $request->create_date)->toDateString();
+
+    	$retribution 				= Retribution::find($request->id_retribution);
+    	$retribution->code 			= $request->code;
+    	$retribution->decide 		= $request->decide;
+    	$retribution->reason 		= $request->reason;
+    	$retribution->description 	= $request->description;
+    	$retribution->create_date 	= $create_date;
+    	$retribution->user_id 		= $id_user;
+    	$retribution->save();
+
+    	$test = Retribution::where('id', $request->id_retribution)->get();
+    	
+    	$newdata = array();
+    	foreach ($test as $value) {
+    		$newdata['code'] = $value['code'];
+    		$newdata['decide'] = ($value['decide'] == 'khenthuong' ? 'Khen Thưởng' : 'Kỷ Luật');
+    		$newdata['reason'] = $value['reason'];
+    		$newdata['description'] = $value['description'];
+    		$newdata['create_date'] = Carbon::parse($value['create_date'])->format('d-m-Y');
+    	}
+
+    	$newdata['username'] = User::where('username', $username)->value('username');
+    	$newdata['name'] = User::where('username', $username)->value('name');
+
+    	return json_encode($newdata);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function postDelete(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    	$retribution = Retribution::find($request->id);
+    	$retribution->delete();
     }
 }

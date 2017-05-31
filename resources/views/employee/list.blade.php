@@ -73,8 +73,11 @@
 				                        @endforeach
 			                            </tbody>
                                     </table>
-                                </div>
-                                
+                                      <!-- Phân trang -->
+                         				<div class="paginate" align="center">
+												{!!$user->render()!!}
+										</div>
+                                </div> 
                     </div>
 	            </div>
 	        </div>

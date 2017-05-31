@@ -17,15 +17,13 @@ class CreateLeavesTable extends Migration
         {
             $table->increments('id'); 
             $table->string('description')->nullable();  
-            $table->string('type'); 
-            $table->date('from');   
-            $table->date('to'); 
+            $table->string('type')->nullable(); 
+            $table->date('from')->nullable();   
+            $table->date('to')->nullable(); 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('accepter_id')->unsigned();
             $table->foreign('accepter_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('department_id')->unsigned();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }

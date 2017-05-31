@@ -21,7 +21,13 @@ class UsersTableSeeder extends Seeder
             'tri@gmail.com',
             'vu@gmail.com',
             'tuan@gmail.com',
-            'dieu@gmail.com'
+            'dieu@gmail.com',
+            'nhan@gmail.com',
+            'tai@gmail.com',
+            'minh@gmail.com',
+            'tra@gmail.com',
+            'cong@gmail.com',
+            'thanh@gmail.com'
         );
 
         $username = array(
@@ -34,10 +40,16 @@ class UsersTableSeeder extends Seeder
             'dungtruong',
             'vude',
             'cuongde',
-            'nhannguyen'
+            'nhannguyen',
+            'letai',
+            'thanhnhan',
+            'quangminh',
+            'ngoctra',
+            'huucong',
+            'ngocthanh'
         );
 
-        for($i = 0; $i < 10; $i++)
+        for($i = 0; $i < 15; $i++)
         {
             DB::table('users')->insert([
                 'username' => $username[$i],

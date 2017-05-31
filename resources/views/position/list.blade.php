@@ -30,20 +30,23 @@
 	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá chức vụ thành công</div>
 	               		<div class="alert alert-success" id="report_add" style="display: none">Bạn đã thêm chức vụ thành công</div>
 	               		<div class="alert alert-success" id="report_edit" style="display: none">Bạn đã sửa chức vụ thành công</div>
+                        
+                        <div class="row mbm">
+                            <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-		                                <thead>
-				                            <tr>
-								                <th>Tên Chức Vụ</th>
-								                <th>Mã Chức Vụ</th>
-								                <th>Ngày Tạo</th>
-								                <th>Ngày Sửa</th>
-								                <th>Sửa</th>
-								                <th>Xóa</th>
-				                            </tr>
-			                            </thead>
-			                            <tbody id="add_row">
-			                            @foreach($position as $po)
+                                    <table id="table_id"
+                                           class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                        <thead>
+                                        <tr>
+                                            <th>Tên Chức Vụ</th>
+							                <th>Mã Chức Vụ</th>
+							                <th>Ngày Tạo</th>
+							                <th>Ngày Sửa</th>
+							                <th>Sửa</th>
+							                <th>Xóa</th>
+                                        </tr>
+                                        <tbody>
+                                         @foreach($position as $po)
 				                            <tr class="tr{{$po['id']}}">
 								                <td id="name_{{$po->id}}">{{$po['name']}}</td>
 								                <td id="description_{{$po->id}}">{{$po['code']}}</td>
@@ -58,13 +61,13 @@
 			                                    </td>
 				                            </tr>
 				                        @endforeach
-			                            </tbody>
-                                    </table>
+                                       
+                                        </tbody>
+                                        </thead></table>
                                 </div>
-                                <div class="paginate" style="text-align: center;">
-				                 <!-- Phân trang -->
-				                    {!!$position->appends(request()->input())->links()!!}
-					            </div>
+                            </div>
+                        </div>
+                                
                     </div>
 	            </div>
 	        </div>

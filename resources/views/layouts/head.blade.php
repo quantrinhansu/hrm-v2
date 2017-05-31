@@ -13,7 +13,13 @@
     <link type="text/css" rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
    
-    <!--LOADING STYLESHEET FOR PAGE--><!--Loading style vendors-->
+    <!--LOADING STYLESHEET FOR PAGE-->
+     <!-- <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/jquery.dataTables.css"> -->
+    <link type="text/css" rel="stylesheet"
+          href="assets/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/dataTables.bootstrap.css">
+
+    <!--Loading style vendors-->
     <link type="text/css" rel="stylesheet" href="assets/vendors/animate.css/animate.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/jquery-pace/pace.css">
     <link type="text/css" rel="stylesheet" href="assets/vendors/iCheck/skins/all.css">
@@ -28,11 +34,5 @@
     <!-- ON/OFF -->
    <link type="text/css" rel="stylesheet" href="assets/vendors/bootstrap-switch/css/bootstrap-switch.css">
 
-    <link type="text/css" rel="stylesheet" href="assets/css/mystyle.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendors/jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/jquery.dataTables.css">
-    <link type="text/css" rel="stylesheet"
-          href="assets/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/vendors/DataTables/media/css/dataTables.bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/mystyle.css">  
 </head>

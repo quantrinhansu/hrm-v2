@@ -14,6 +14,7 @@ use App\EmployeeRelative;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use Mail;
 class UserController extends Controller
 {
     /**
@@ -108,6 +109,7 @@ class UserController extends Controller
     public function getList()
     {
         $user = User::all();
+        $user = User::paginate(10);
         return view('employee.list', ['user' => $user]);
     }
 
@@ -156,7 +158,7 @@ class UserController extends Controller
 
         try {
             $user = new User;
-            $user->username              = $request->username;
+            $user->username          = $request->username;
             $user->email             = $request->email;
             $user->password          = bcrypt('123456');
             $user->active            = 1;
@@ -165,7 +167,7 @@ class UserController extends Controller
             $user->name              = $request->name;
             $user->permanent_address = $request->permanent_address;
             $user->present_address   = $request->present_address;
-            $user->date_of_birth    = $birthday;
+            $user->date_of_birth     = $birthday;
             $user->joining_date      = $joining_date;
             $user->nationality       = $request->nationality;
             $user->ethnic            = $request->ethnic;
@@ -196,6 +198,21 @@ class UserController extends Controller
             $employee_relative->relation = $request->relative_relation;
             $employee_relative->user_id = $user_id;
             $employee_relative->save();
+
+            $email = $request->email;
+            $name = $request->name;
+            //Gửi mail về cho user khi tạo user thành công
+            $data = array('email' => $email, 'name' => $name);
+            Mail::send('mail.mail', $data, function ($message) use ($email, $name) {
+                $message->from('efode2017@gmail.com', 'Công Bình');
+            
+                $message->to($email, $name);
+                                    
+                $message->subject('Mail công ty');
+
+            });
+
+
 
              DB::commit();
             return redirect('employee/add')->with('thongbao', 'Bạn đã thêm thành công');

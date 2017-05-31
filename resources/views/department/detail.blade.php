@@ -84,17 +84,19 @@
             		<span>Danh Sách Nhân Viên</span>
             	</div>
                <div class="panel-body">
+                    <div class="row mbm">
+                        <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-	                                <thead>
-			                            <tr>
-							                <th>Tên Nhân Viên</th>
-								            <th>Username</th>
-								             <th>Giới Tính</th>
-			                            </tr>
-		                            </thead>
-		                            <tbody>
-		                            @foreach($user_department as $ud)
+                                <table id="table_id"
+                                       class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                                    <thead>
+                                    <tr>
+                                        <th>Tên Nhân Viên</th>
+								        <th>Username</th>
+								        <th>Giới Tính</th>
+                                    </tr>
+                                    <tbody>
+                                    @foreach($user_department as $ud)
 			                            <tr>
 							                <td>{{$ud->User['name']}}</td>
 							                <td>{{$ud->User['username']}}</td>
@@ -108,9 +110,13 @@
 
 			                            </tr>
 			                        @endforeach
-		                            </tbody>
+                                   
+                                    </tbody>
+                                    </thead>
                                 </table>
                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ class JobTypeController extends Controller
 {
     public function getList()
     {
-    	$job_type = JobType::orderBy('created_at', 'desc')->paginate(10);
+    	$job_type = JobType::orderBy('created_at', 'desc')->get();
     	return view('job_type.list', ['job_type' => $job_type]);
     }
 

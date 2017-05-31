@@ -11,7 +11,7 @@ class PositionController extends Controller
 {
     public function getList()
     {
-    	$position = Position::orderBy('created_at', 'desc')->paginate(10);
+    	$position = Position::orderBy('created_at', 'desc')->get();
     	return view('position.list', ['position' => $position]);
     }
 
