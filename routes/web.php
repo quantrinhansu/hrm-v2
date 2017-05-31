@@ -60,7 +60,6 @@ Route::get('/roles/add', 'RolesController@create');
 Route::get('/permission', 'PermissionController@index');
 
 Route::get('/home', 'HomeController@index');
-
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
 	Route::get('business-trip/add', 'BusinessTripController@getAdd');
