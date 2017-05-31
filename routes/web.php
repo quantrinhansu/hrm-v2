@@ -54,6 +54,27 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
+});
+Route::get('/roles', 'RolesController@index');
+Route::get('/roles/add', 'RolesController@create');
+Route::get('/permission', 'PermissionController@index');
+
+Route::get('/home', 'HomeController@index');
+
+Route::post('/employee/delete', 'UserController@postDelete');
+
+Route::post('/employee/update', 'UserController@postUpdate');
+
+Route::post('/employee/setting/update', 'UserController@postSettingUpdate');
+
+
+
+Route::get('employee/contract', 'ContractController@getList');
+Route::get('employee/contract/add', 'ContractController@getAdd');
+
+Route::get('access', function(){
+	return view('manage_access.list');
+});
 
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
