@@ -41,6 +41,37 @@
                             class="submenu-title">One Page</span></a></li>
                 </ul>
             </li>
+            <li <?php if ($match == '/roles' || $match == '/permission') {
+                       ?> class="active" <?php
+                    } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Roles and Permission </span><span class="fa arrow"></span></i></a>
+                <ul  <?php if ($match == '/roles' || $match == '/permission') {
+                       ?> class="nav nav-second-level collapse in" <?php
+                    }else{
+                        ?>
+                        class="nav nav-second-level" 
+                       <?php } ?>>
+                    <li <?php 
+                        if ($match == '/roles') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="roles"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Roles</span></a></li>
+                    <li <?php 
+                        if ($match == '/permission') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="permission"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Permision</span></a></li>
+                </ul>
+            </li>
             <li<?php if ($match == '/employee') {
                        ?> class="active" <?php
                     } ?>><a href="employee"><i class="fa fa-laptop fa-fw">

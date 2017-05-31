@@ -91,16 +91,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('manage-access', 'ManageAccessController@getList');
 	Route::post('manage-access/add', 'ManageAccessController@postAdd');
 });
+// Roles
+Route::get('/roles', 'RolesController@index');
+Route::get('/roles/add', 'RolesController@create');
+Route::get('/permission', 'PermissionController@index');
 
 Route::get('/home', 'HomeController@index');
-
-Route::get('employee/contract', 'ContractController@getList');
-Route::get('employee/contract/add', 'ContractController@getAdd');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
-
-Route::post('retribution', array('as' => 'retribution','uses' => 'RetributionController@create'));
