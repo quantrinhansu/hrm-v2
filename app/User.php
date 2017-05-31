@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use EntrustUserTrait; // add this trait to your user model
+    
     protected $table = 'users';
 
     /**
@@ -42,5 +44,9 @@ class User extends Authenticatable
      public function EmployeeRelative()
     {
         return $this->hasOne('App\EmployeeRelative', 'user_id', 'id');
+    }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
     }
 }

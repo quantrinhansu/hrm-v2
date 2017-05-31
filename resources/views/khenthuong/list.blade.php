@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('script')
-
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
 @endsection
@@ -8,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
 @endsection
 @section('content')
-
 <div class="list_notification">
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">

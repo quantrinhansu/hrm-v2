@@ -55,11 +55,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
 });
+// Roles
+Route::get('/roles', 'RolesController@index');
+Route::get('/roles/add', 'RolesController@create');
+Route::get('/permission', 'PermissionController@index');
 
 Route::get('/home', 'HomeController@index');
-
-
-
 
 Route::post('/employee/delete', 'UserController@postDelete');
 
