@@ -84,9 +84,9 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Profile</span></a>
             </li>
-            <li<?php if ($match == '/access') {
+            <li<?php if ($match == '/manage-access') {
                        ?> class="active" <?php
-                    } ?>><a href="access"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="manage-access"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>
