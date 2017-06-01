@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', 'UserController@index');
 	Route::get('profile/{id}', 'UserController@show');
 
-   //Chức vụ
+   //Ch?c v?
 	Route::get('position', 'PositionController@getlist');
 	Route::post('position/add', 'PositionController@postAdd');
 	Route::get('position/edit/{id}', 'PositionController@getEdit');
@@ -54,7 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
-	//Permission
 	Route::get('/permission', 'PermissionController@index');
 	Route::post('/permission/update', 'PermissionController@update');
 	Route::post('/permission/delete', 'PermissionController@delete');
@@ -74,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('business-trip/edit/{id}', 'BusinessTripController@postEdit');
 	Route::post('business-trip/delete', 'BusinessTripController@postDelete');
 
-	//Khen thưởng / Kỷ luật
+	//Khen thu?ng / K? lu?t
 	Route::get('retribution', 'RetributionController@getList');
 	Route::post('retribution/add', 'RetributionController@postAdd');
 	Route::get('retribution/edit/{id}', 'RetributionController@getEdit');
@@ -99,7 +98,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
-	Route::post('manage-access/add', 'ManageAccessController@postAdd');
+	Route::post('manage-access/add', 'ManageAccessController@postAdd');=
+
+	Route::get('contract/add', 'ContractController@getAdd');
+});
 
 
 Auth::routes();

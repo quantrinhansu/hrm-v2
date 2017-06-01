@@ -20,9 +20,7 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading head_manage_access">
-	            		<span>Danh Sách</span>
-	            		<input type="submit" name="" class="btn btn-info btn-sm btn_access_save" value="Save">
-	            		
+	            		<span>Danh Sách</span>        		
 	            	</div>
 	                <div class="panel-body">
 	                    <div class="row mbm">
@@ -52,7 +50,8 @@
 								                <td>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</td>
 								                <td>
 					                                <div id="enable" data-on="success" data-off="danger"
-					                                    class="make-switch switch-small"><input type="checkbox" id="{{$us['id']}}" checked="checked" class="switch" name="test"/></div>
+					                                    class="make-switch switch-small"><input type="checkbox" id="" checked="checked" class="switch" name="test"/>
+					                                </div>
 					                            </td>
 				                            </tr>
                                        	@endforeach
@@ -72,9 +71,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.switch').change(function(){
-		var id = $(this).attr('id');
-		var value = $('.switch-success span').text();
-		alert(value);
+		//var id = $(this).attr('id');
+		//var value = $('[name="test"]').is(':checked');
+
 		/*$.ajaxSetup(
 		{
 		    headers:
