@@ -225,11 +225,15 @@ class UserController extends Controller
 
     public function getEdit($id)
     {
-        $user = User::find($id);
-        $department = Department::all();
-        $position = Position::all();
-        $jobtype = JobType::all();
-        return view('employee.edit', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype, 'user' => $user]);
+        if (Auth::user()->can('staff_edit')) {
+            $user = User::find($id);
+            $department = Department::all();
+            $position = Position::all();
+            $jobtype = JobType::all();
+            return view('employee.edit', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype, 'user' => $user]);
+        }else{
+            return  redirect()->back()->with('msg','Bạn không có quyền này.');
+        }
     }
 
     public function postEdit(Request $request, $id)

@@ -7,6 +7,7 @@
 	}
 ?>
 @extends('layouts.app')
+@section('title','Phân quyền')
 @section('script')
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
@@ -18,35 +19,34 @@
 <div class="page-content">
 	<div class="row">
 	    <div class="col-lg-12">
-	        <div class="note note-success"><h4 class="box-heading">Role</h4>
+	        <div class="note note-success"><h4 class="box-heading">Phân quyền</h4>
 
-	            <p>Cấu hình permission cho các Role</p>
+	            <p>Cấu hình các quyền truy cập cho các nhóm người dùng.</p>
 
-	            <p>"Thêm cột" để thêm các permission
+	            <p>Nhấn "Thêm" để thêm các permission
 	            </p>
-
-	            <p>Check để đồng ý cho phép role đó được phép xem, thêm, xóa, Sửa
 	            </p></div>
 	    </div>
 
 	    <div class="col-lg-12">
-	        <div class="portlet box">
-	            <div class="portlet-header">
-	                <div class="caption">Role Table</div>
+	        <div class="panel panel-blue">
+	            <div class="panel-heading">
+	                <div class="caption">Bảng nhóm người dùng <a class="btn btn-info pull-right btn-sm" style="margin-bottom: 10px" data-toggle="modal" href='#modal-id'>Thêm</a></div>
 	            </div>
-	            <div class="portlet-body">
+
+	            <div class="panel-body">
 	                <div class="row mbm">
 	                    <div class="col-lg-12">
 	                    	    @if(Session::has('msg'))
-						        <div class="alert alert-danger">
+						        <div class="alert alert-info">
 						            <a class="close" data-dismiss="alert">×</a>
-						            <strong>Chú ý!</strong> {!!Session::get('msg')!!}
+						            <strong>Chú ý! </strong> {!!Session::get('msg')!!}
 						        </div>
 						    	@endif
 	                        <div class="table-responsive">
-	                     		<table class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+	                     		<table id="table_id" class="table table-hover table-striped table-bordered table-advanced tablesorter display">
 	                                <thead>
-	                                <a class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" href='#modal-id'>Thêm Role</a>	
+	                                	
 	                                <tr>
 	                                    <th style="width: 1%; padding: 10px; background: #efefef"><input
 	                                            type="checkbox" class="checkall"/></th>
@@ -68,7 +68,7 @@
 			        							<td>{{ $value['description'] }}</td>
 			        							<td>{{ $value['created_at'] }} / {{ $value['updated_at'] }}</td>
 		                                    <td><a id="edit_{{$value['id']}}" class="btn btn-warning edit_role" style="padding-left: 10px" data-toggle="modal" href='#modal-update' data-id="{{ $value['id'] }}" data-rolename="{{ $value['name'] }}" data-displayname="{{ $value['display_name'] }}" data-description="{{ $value['description'] }}" >Chỉnh sửa</a>
-		                                    <a id="delete_{{$value['id']}}" class="btn btn-danger" style="padding-left: 10px" data-toggle="modal" href='#modal-delete' data-rolekey="{{ $value['id'] }}" >Xóa</a>
+		                                    <a id="delete_{{$value['id']}}" class="btn btn-danger delete_role" style="padding-left: 10px" data-toggle="modal" href='#modal-delete' data-rolekey="{{ $value['id'] }}" >Xóa</a>
 		                                </tr>                                	     
 	                                <?php } ?>                           
 	                                </tbody>
@@ -84,12 +84,12 @@
 	            		<div class="modal-content">
 	            			<div class="modal-header">
 	            				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	            				<h4 class="modal-title">Thêm role</h4>
+	            				<h4 class="modal-title">Thêm</h4>
 	            			</div>
-	            			<form action="/roles/add" method="GET" role="form">
+	            			<form action="/roles/add" method="POST" role="form">
 	            			<div class="modal-body">
 	        					<div class="form-group">
-	        						<span class="Label">Tên Role </span><span class='require'>*</span>
+	        						<span class="Label">Tên </span><span class='require'>*</span>
 	        						<input type="text" name="name" class="form-control" required>
 	        					</div>
 	        					<div class="form-group">
@@ -128,12 +128,12 @@
 	            		<div class="modal-content">
 	            			<div class="modal-header">
 	            				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	            				<h4 class="modal-title">Chỉnh sửa role</h4>
+	            				<h4 class="modal-title">Chỉnh sửa</h4>
 	            			</div>
 	            			<form action="/roles/update" method="GET" role="form">
 	            			<div class="modal-body">
 	        					<div class="form-group">
-	        						<span class="Label">Tên Role </span><span class='require'>*</span>
+	        						<span class="Label">Tên </span><span class='require'>*</span>
 	        						<input type="text" name="name" class="form-control update_name" required>
 	        					</div>
 	        					<div class="form-group">
@@ -172,15 +172,19 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title">Xóa Role</h4>
+								<h4 class="modal-title">Xác Nhận Xóa</h4>
 							</div>
+							<form action="/roles/delete" method="POST">
 							<div class="modal-body">
-								<H3>Bạn thực sự muốn xóa role này ?</H3>
+							<input type="hidden" name="role_id" value="" id="delete_role">
+								<H3>Bạn thực sự muốn xóa nhóm người dùng này ?</H3>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
-								<button type="button" class="btn btn-primary">Đồng Ý</button>
+								<button type="submit" class="btn btn-primary">Đồng Ý</button>
+								
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -194,6 +198,9 @@ $(document).ready(function(){
     $('.edit_role').click(function(){
     	$('.update_name').val($(this).data("rolename"));
     	$('.update_displayname').val($(this).data("displayname"));
+    });
+    $('.delete_role').click(function(){
+    	$('#delete_role').val($(this).data("rolekey"));
     });
 });
 </script>

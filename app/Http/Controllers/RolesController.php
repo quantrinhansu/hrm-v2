@@ -17,7 +17,6 @@ class RolesController extends Controller
      */
     public function index()
     {   
-        
         $roles = Role::all();
         $permission = Permission::all();
         $user = User::find(Auth::user()->id);
@@ -25,39 +24,53 @@ class RolesController extends Controller
     }
     public function create(Request $request)
     {
-
-        if (!empty($request) && (trim($request->name,' ') != '') ) {
-            $db_role = Role::where('name',$request->name)->first();
-            if ($db_role == null) {
-                $newRole = new Role();
-                $newRole->name         = $request->name;
-                $newRole->display_name = $request->display_name; // optional
-                $newRole->description  = $request->description; // optional
-                $newRole->save();                  
-            }else{
-                return  redirect()->back()->with('msg','Tên role này đã tồn tại.');
-            }
-
-            // $add = new Permission();
-            // $add->name         = 'add';
-            // $add->display_name = 'Thêm mới'; // optional
-            // $add->description  = 'Thêm mới nghỉ phép'; // optional
-            // $add->save();
-            $per = $request->permission;
-            foreach ($per as $value) {
-                $db_per = Permission::where('name',$value)->first();
-                if ($db_per != null) {
-                    $newRole->attachPermission($db_per);
-                    return  redirect()->back()->with('msg','Thêm role và gán quyền thành công.');
+        if (Auth::user()->can('role_create')) {
+            if (!empty($request) && (trim($request->name,' ') != '') ) {
+                $db_role = Role::where('name',$request->name)->first();
+                if ($db_role == null) {
+                    $newRole = new Role();
+                    $newRole->name         = $request->name;
+                    $newRole->display_name = $request->display_name; // optional
+                    $newRole->description  = $request->description; // optional
+                    $newRole->save();                  
                 }else{
-                    return  redirect()->back()->with('msg','Chưa có Permission này.');
+                    return  redirect()->back()->with('msg','Tên role này đã tồn tại.');
                 }
+
+                // $add = new Permission();
+                // $add->name         = 'add';
+                // $add->display_name = 'Thêm mới'; // optional
+                // $add->description  = 'Thêm mới nghỉ phép'; // optional
+                // $add->save();
+                $per = $request->permission;
+                foreach ($per as $value) {
+                    $db_per = Permission::where('name',$value)->first();
+                    if ($db_per != null) {
+                        $newRole->attachPermission($db_per);
+                        return  redirect()->back()->with('msg','Thêm role và gán quyền thành công.');
+                    }else{
+                        return  redirect()->back()->with('msg','Bạn không có quyền này.');
+                    }
+                }
+            }else{
+                return  redirect()->back()->with('msg','Tên role không hợp lệ.');  
             }
-
-            //$newRole->attachPermission($add);
-        }else{
-            return  redirect()->back()->with('msg','Tên role không hợp lệ.');  
         }
-
-    }    
+    }
+    public function delete(Request $request){
+        if (Auth::user()->can('role_delete')) {
+            $role = Role::findOrFail($request->role_id);
+            $role->delete();
+            $role->users()->sync([]); 
+            $role->perms()->sync([]); 
+            $role->forceDelete(); 
+            return  redirect()->back()->with('msg','Deleted.');
+        }else{
+            return  redirect()->back()->with('msg','Bạn không có đủ thẩm quyền để thực hiện tác vụ này.');
+        }
+    }
+    public function users(){
+        $users = User::all();
+        return view('auth.users', compact('users'));
+    }
 }
