@@ -36,12 +36,6 @@ class RolesController extends Controller
                 }else{
                     return  redirect()->back()->with('msg','Tên role này đã tồn tại.');
                 }
-
-                // $add = new Permission();
-                // $add->name         = 'add';
-                // $add->display_name = 'Thêm mới'; // optional
-                // $add->description  = 'Thêm mới nghỉ phép'; // optional
-                // $add->save();
                 $per = $request->permission;
                 foreach ($per as $value) {
                     $db_per = Permission::where('name',$value)->first();

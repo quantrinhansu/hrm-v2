@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/roles/add', 'RolesController@create');
 	Route::post('/roles/delete', 'RolesController@delete');
 	Route::get('/roles/users', 'RolesController@users');
+	//Timekeeping
+	//Route::get('/timekeeping', 'SalaryController@timekeeping');
+	Route::get('/salary', 'SalaryController@index');
+	Route::get('/allowance', 'SalaryController@allowance');
 });
 
 	//Business Trip
@@ -98,11 +102,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
-	Route::post('manage-access/add', 'ManageAccessController@postAdd');=
-
+	Route::post('manage-access/add', 'ManageAccessController@postAdd');
 	Route::get('contract/add', 'ContractController@getAdd');
-});
-
 
 Auth::routes();
 
