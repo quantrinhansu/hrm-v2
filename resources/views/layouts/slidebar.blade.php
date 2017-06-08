@@ -153,6 +153,47 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Công Tác</span></a>
             </li>
+            <li <?php if ($match == '/roles' || $match == '/permission') {
+                       ?> class="active" <?php
+                    } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Lương Bổng </span><span class="fa arrow"></span></i></a>
+                <ul  <?php if ($match == '/salary' || $match == '/timepicking') {
+                       ?> class="nav nav-second-level collapse in" <?php
+                    }else{
+                        ?>
+                        class="nav nav-second-level" 
+                       <?php } ?>>
+                    <li <?php 
+                        if ($match == '/salary') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="salary"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Lương</span></a></li>
+                    <li <?php 
+                        if ($match == '/allowance') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="salary"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Phụ cấp</span></a></li>
+                    <li <?php 
+                        if ($match == '/timepicking') {
+                            
+                        ?>
+                        class="active"
+                        <?php
+                    }
+                    ?> ><a href="timepicking"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Chấm Công</span></a>
+                    </li>                    
+                </ul>
+            </li>       
         </ul>
     </div>
 </nav>
