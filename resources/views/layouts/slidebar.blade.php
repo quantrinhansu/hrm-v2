@@ -83,6 +83,12 @@
                     </li>                    
                 </ul>
             </li>
+            <li<?php if ($match == '/contract') {
+                       ?> class="active" <?php
+                    } ?>><a href="contract"><i class="fa fa-laptop fa-fw">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Danh Sách Hợp Đồng</span></a>
+            </li>
             <li<?php if ($match == '/employee') {
                        ?> class="active" <?php
                     } ?>><a href="employee"><i class="fa fa-laptop fa-fw">

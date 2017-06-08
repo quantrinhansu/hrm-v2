@@ -12,13 +12,17 @@ class LeaveController extends Controller
 {
     public function getList()
     {
-    	$leave = Leaves::all();
-    	return view('leaves.list', ['leave' => $leave]);
+        if (Auth::user()->can('leave_show')){
+        	$leave = Leaves::all();
+        	return view('leaves.list', ['leave' => $leave]);
+        }
     }
 
     public function getAdd()
     {
-    	return view('leaves.add');
+        if (Auth::user()->can('leave_add')){
+    	   return view('leaves.add');
+        }
     }
 
     public function postAdd(Request $request)

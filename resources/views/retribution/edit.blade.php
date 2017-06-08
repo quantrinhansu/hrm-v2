@@ -46,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="inputFirstName" class="control-label">Hình Thức <span class='require'>*</span></label>
-            <input name="description" class="form-control input" type="text" placeholder="VD: Tăng lương thêm 500k" value="{{$retribution['decide']}}">
+            <input name="description" class="form-control input" type="text" placeholder="VD: Tăng lương thêm 500k" value="{{$retribution['description']}}">
         </div>
         <div class="form-group">
             <label for="inputFirstName" class="control-label">Ngày Ra Quyết Định <span class='require'>*</span></label>

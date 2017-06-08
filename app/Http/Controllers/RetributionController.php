@@ -10,12 +10,34 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
+use Excel;
 class RetributionController extends Controller
 {
     public function getList()
     {
-    	$retribution = Retribution::all();
-    	return view('retribution.list', ['retribution' => $retribution]);
+        //if (Auth::user()->can('retribution_show')){
+        	$retribution = Retribution::all();
+        	return view('retribution.list', ['retribution' => $retribution]);
+        //}
+    }
+
+    public function getExport()
+    {
+        $fileName = "DanhSachKhenThuong_KyLuat_".date('d-m-Y_H:i:s');
+        $retribution = Retribution::all();
+        Excel::create($fileName, function($excel) use($retribution){
+            $excel->sheet('test1', function($sheet) use($retribution){
+                $sheet->loadView('retribution.export', ['retribution' => $retribution]);
+
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  14,
+                    )
+                ));
+            });
+
+        })->export('xlsx');  
     }
 
     public function postAdd(Request $request)
@@ -66,8 +88,10 @@ class RetributionController extends Controller
 
     public function getEdit($id)
     {
-    	$retribution = Retribution::find($id);
-    	return view('retribution.edit', ['retribution' => $retribution]);
+        //if (Auth::user()->can('retribution_edit')){
+        	$retribution = Retribution::find($id);
+        	return view('retribution.edit', ['retribution' => $retribution]);
+        //}
     }
 
     public function postEdit(Request $request)

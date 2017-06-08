@@ -11,8 +11,10 @@ class PositionController extends Controller
 {
     public function getList()
     {
-    	$position = Position::orderBy('created_at', 'desc')->get();
-    	return view('position.list', ['position' => $position]);
+        if (Auth::user()->can('position_show')){
+        	$position = Position::orderBy('created_at', 'desc')->get();
+        	return view('position.list', ['position' => $position]);
+        }
     }
 
     public function postAdd(Request $request)
@@ -48,8 +50,10 @@ class PositionController extends Controller
     
     public function getEdit($id)
     {
-        $position = Position::find($id);
-        return view('position.edit', ['position' => $position]);
+        if (Auth::user()->can('position_edit')){
+            $position = Position::find($id);
+            return view('position.edit', ['position' => $position]);
+        }
     }
     public function postEdit(Request $request)
     {

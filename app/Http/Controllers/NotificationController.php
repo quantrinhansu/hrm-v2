@@ -9,13 +9,17 @@ class NotificationController extends Controller
 {
     public function getList()
     {
-    	$notification = Notification::orderBy('created_at', 'desc')->get();
-    	return view('notification.list', ['notification' => $notification]);
+        if (Auth::user()->can('notification_show')){
+        	$notification = Notification::orderBy('created_at', 'desc')->get();
+        	return view('notification.list', ['notification' => $notification]);
+        }
     }
 
     public function getAdd()
     {
-    	return view('notification.add');
+        if (Auth::user()->can('notification_add')){
+    	   return view('notification.add');
+        }
     }
 
     public function postAdd(Request $request)
@@ -43,8 +47,10 @@ class NotificationController extends Controller
 
     public function getEdit($id)
     {
-    	$notification = Notification::find($id);
-    	return view('notification.edit', ['notification' => $notification]);
+        if (Auth::user()->can('notification_edit')){
+        	$notification = Notification::find($id);
+        	return view('notification.edit', ['notification' => $notification]);
+        }
     }
 
     public function postEdit($id, Request $request)
@@ -78,7 +84,9 @@ class NotificationController extends Controller
 
     public function getDetail($id)
     {
-    	$notification = Notification::find($id);
-    	return view('notification.detail', ['notification' => $notification]);
+        if (Auth::user()->can('notification_detail')){
+        	$notification = Notification::find($id);
+        	return view('notification.detail', ['notification' => $notification]);
+        }
     }
 }

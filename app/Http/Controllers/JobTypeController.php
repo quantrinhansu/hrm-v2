@@ -11,8 +11,10 @@ class JobTypeController extends Controller
 {
     public function getList()
     {
-    	$job_type = JobType::orderBy('created_at', 'desc')->get();
-    	return view('job_type.list', ['job_type' => $job_type]);
+        if (Auth::user()->can('jobtype_show')){
+        	$job_type = JobType::orderBy('created_at', 'desc')->get();
+        	return view('job_type.list', ['job_type' => $job_type]);
+        }
     }
 
     public function postAdd(Request $request)
@@ -49,8 +51,10 @@ class JobTypeController extends Controller
 
     public function getEdit($id)
     {
-        $jobtype = JobType::find($id);
-        return view('job_type.edit', ['jobtype' => $jobtype]);
+        if (Auth::user()->can('jobtype_edit')){
+            $jobtype = JobType::find($id);
+            return view('job_type.edit', ['jobtype' => $jobtype]);
+        }
     }
     public function postEdit(Request $request)
     {

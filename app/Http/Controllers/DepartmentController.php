@@ -9,18 +9,23 @@ use App\UserDepartment;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
+use Auth;
 class DepartmentController extends Controller
 {
     public function getList()
     {
-    	$department = Department::all();
-    	return view('department.list', ['department' => $department]);
+        if (Auth::user()->can('department_show')){
+        	$department = Department::all();
+        	return view('department.list', ['department' => $department]);
+        }
     }
 
     public function getAdd()
     {
-    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
-    	return view('department.add_department', ['user' => $user]);
+        if (Auth::user()->can('department_add')){
+        	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
+        	return view('department.add_department', ['user' => $user]);
+        }
     }
     public function postAdd(Request $request)
     {
@@ -77,19 +82,23 @@ class DepartmentController extends Controller
 
     public function getDetail($id)
     {
-    	$department = Department::find($id);
-    	$user_department = UserDepartment::where('department_id', $id)->get();
-    	$count_employee = count(UserDepartment::where('department_id', $id)->get());
-    	return view('department.detail', ['department' => $department, 'user_department' => $user_department, 'count_employee' => $count_employee]);
+        if (Auth::user()->can('department_detail')){
+        	$department = Department::find($id);
+        	$user_department = UserDepartment::where('department_id', $id)->get();
+        	$count_employee = count(UserDepartment::where('department_id', $id)->get());
+        	return view('department.detail', ['department' => $department, 'user_department' => $user_department, 'count_employee' => $count_employee]);
+        }
     }
 
     public function getAddEmployee($id)
     {
-    	 $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
-    	 							   ->where('users_department.manager', null)
-    	 	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
-    	 $department = Department::find($id);
-    	return view('department.add_employee', ['user' => $user, 'department' => $department]);
+        if (Auth::user()->can('department_add_employee')){
+        	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+        	 							   ->where('users_department.manager', null)
+        	 	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
+        	 $department = Department::find($id);
+        	return view('department.add_employee', ['user' => $user, 'department' => $department]);
+        }
     }
 
     public function postAddEmployee($id, Request $request)
@@ -155,12 +164,13 @@ class DepartmentController extends Controller
 
     public function getEdit($id)
     {
-        //$user = User::all();
-        $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
-    								  ->orwhere('users_department.department_id', $id)
-    	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
-        $department = Department::find($id);
-        return view('department.edit_department', ['user' => $user, 'department' => $department]);
+        if (Auth::user()->can('department_edit')){
+            $user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+        								  ->orwhere('users_department.department_id', $id)
+        	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
+            $department = Department::find($id);
+            return view('department.edit_department', ['user' => $user, 'department' => $department]);
+        }
     }
 
     public function postDelete(Request $request)
@@ -172,13 +182,15 @@ class DepartmentController extends Controller
 
     public function getEditEmployee($id)
     {
-    	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
-    								  ->orwhere('users_department.department_id', $id)
-    								  ->where('users_department.manager', null)
-    	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
-    	$department = Department::find($id);
-    	$user_department = UserDepartment::where('department_id', $id)->get();
-    	return view('department.edit_employee', ['user' => $user, 'department' => $department, 'user_department' => $user_department]);
+        if (Auth::user()->can('department_edit_employee')){
+        	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
+        								  ->orwhere('users_department.department_id', $id)
+        								  ->where('users_department.manager', null)
+        	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
+        	$department = Department::find($id);
+        	$user_department = UserDepartment::where('department_id', $id)->get();
+        	return view('department.edit_employee', ['user' => $user, 'department' => $department, 'user_department' => $user_department]);
+        }
     }
 
     public function postEditEmployee($id, Request $request)

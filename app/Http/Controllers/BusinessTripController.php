@@ -14,13 +14,17 @@ class BusinessTripController extends Controller
 {
     public function getList()
     {
-    	$business_trip = BusinessTrip::all();
-    	return view('business_trip.list', ['business_trip' => $business_trip]);
+        if (Auth::user()->can('business_trip_show')){
+            $business_trip = BusinessTrip::all();
+            return view('business_trip.list', ['business_trip' => $business_trip]);
+        }	
     }
 
     public function getAdd()
     {
-    	return view('business_trip.add');
+        if (Auth::user()->can('business_trip_add')){
+    	   return view('business_trip.add');
+        }
     }
 
     public function postAjax(Request $request)
@@ -91,8 +95,10 @@ class BusinessTripController extends Controller
 
     public function getEdit($id)
     {
-        $business_trip = BusinessTrip::find($id);
-        return view('business_trip.edit', ['business_trip' => $business_trip]);
+        if (Auth::user()->can('business_trip_edit')){
+            $business_trip = BusinessTrip::find($id);
+            return view('business_trip.edit', ['business_trip' => $business_trip]);
+        }
     }
 
     public function postEdit($id, Request $request)

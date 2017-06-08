@@ -30,6 +30,7 @@
                     <div class="panel-heading">
                         <span>Danh Sách</span>
                         <button class="btn btn-info btn-sm btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+                        <a href="retribution/export" class="btn btn-info btn_access_save btn-sm"><img src="images/xls.png" width="17px" class="mrx"/>&nbsp;Xuất Excel</i></a>
                     </div>
                    <div class="alert alert-success" id="report_delete" style="display: none">Đã xoá thành công</div>
                     <div class="panel-body">

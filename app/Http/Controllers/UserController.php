@@ -1,7 +1,5 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use App\Department;
@@ -15,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Mail;
+use Excel;
+use Illuminate\Support\Facades\Input;
+use PDF;
 class UserController extends Controller
 {
     /**
@@ -106,19 +107,76 @@ class UserController extends Controller
         }
         return $result;
     }
+
+    
+
     public function getList()
     {
-        $user = User::all();
-        $user = User::paginate(10);
-        return view('employee.list', ['user' => $user]);
+        //if (Auth::user()->can('user_show')){
+            $user = User::all();
+            $user = User::paginate(10);
+            return view('employee.list', ['user' => $user]);
+        //}
     }
 
+    public function getExport()
+    {
+        $fileName = "DanhSachNhanVien_".date('d-m-Y_H:i:s');
+        $user = User::all();
+        Excel::create($fileName, function($excel) use($user){
+            $excel->sheet('test1', function($sheet) use($user){
+                $sheet->loadView('employee.export', ['user' => $user]);
+
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  14,
+                    )
+                ));
+            });
+
+        })->export('xlsx');  
+    }
+
+    public function getExportPdf()
+    {
+        $fileName = "DanhSachNhanVien_".date('d-m-Y_H:i:s');
+        $user = User::all();
+        $pdf = PDF::loadView('employee.export_pdf', ['user' => $user]);
+        return $pdf->stream($fileName . '.pdf');
+    }
+
+    public function getImport()
+    {
+        return view('employee.import');
+    }
+
+    public function postImport()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    $insert[] = ['username' => $value->username, 'name' => $value->name, 'email' => $value->email, 'gender' => $value->gender, 'phone_number' => $value->phone_number];
+                }
+                if(!empty($insert)){
+                    User::insert($insert);
+                }
+            }
+        }
+        return back();
+    }
     public function getAdd()
     {
-        $department = Department::all();
-        $position = Position::all();
-        $jobtype = JobType::all();
-        return view('employee.add', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype]);
+        //if (Auth::user()->can('user_show')){
+            $department = Department::all();
+            $position = Position::all();
+            $jobtype = JobType::all();
+            return view('employee.add', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype]);
+        //}
     }
 
     public function postAdd(Request $request)

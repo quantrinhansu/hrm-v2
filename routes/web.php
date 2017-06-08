@@ -54,15 +54,20 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
+	Route::get('employee/export', 'UserController@getExport');
+	Route::get('employee/export/pdf', 'UserController@getExportPdf');
+	Route::get('employee/import', 'UserController@getImport');
+	Route::post('employee/import', 'UserController@postImport');
+
 	Route::get('/permission', 'PermissionController@index');
 	Route::post('/permission/update', 'PermissionController@update');
 	Route::post('/permission/delete', 'PermissionController@delete');
+
 	// Roles
 	Route::get('/roles', 'RolesController@index');
 	Route::post('/roles/add', 'RolesController@create');
 	Route::post('/roles/delete', 'RolesController@delete');
 	Route::get('/roles/users', 'RolesController@users');
-});
 
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
@@ -79,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('retribution/edit/{id}', 'RetributionController@getEdit');
 	Route::post('retribution/edit', 'RetributionController@postEdit');
 	Route::post('retribution/delete', 'RetributionController@postDelete');
+	Route::get('retribution/export', 'RetributionController@getExport');
 
 	//Notification
 	Route::get('notification', 'NotificationController@getList');
@@ -98,9 +104,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
-	Route::post('manage-access/add', 'ManageAccessController@postAdd');=
+	Route::post('manage-access/add', 'ManageAccessController@postAdd');
 
+	//Contract
+	Route::get('contract', 'ContractController@getList');
 	Route::get('contract/add', 'ContractController@getAdd');
+	Route::post('contract/add', 'ContractController@postAdd');
+	Route::get('contract/edit/{id}', 'ContractController@getEdit');
+	Route::post('contract/edit/{id}', 'ContractController@postEdit');
+	Route::post('contract/delete', 'ContractController@postDelete');
+	Route::get('contract/export/{id}', 'ContractController@getExport');
+		
+	
 });
 
 

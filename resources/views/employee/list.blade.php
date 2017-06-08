@@ -8,9 +8,9 @@
         <div class="page-title">Danh Sách Nhân Viên</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Trang Chủ</a>&nbsp;&nbsp;<i
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
                 class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li><a href="#">Danh Sách Nhân Viên</a></li>
+        <li>Danh Sách Nhân Viên</li>
     </ol>
 
     <div class="clearfix"></div>
@@ -25,6 +25,14 @@
 	            	<div class="panel-heading">
 	            		<span>Danh Sách</span>
 	            		<a href="employee/add" class="btn btn-info btn_access_save btn-sm"><i class="fa fa-plus">&nbsp;Thêm</i></a>
+	            		<a href="employee/import" class="btn btn-info btn_access_save btn-sm"><img src="images/xls.png" width="17px" class="mrx"/>&nbsp;Nhập Excel</i></a>
+	            		<div class="btn-group" style="float: right;"><span  data-toggle="dropdown" class="btn btn-warning btn-sm dropdown-toggle"><i  class="fa fa-wrench"></i>&nbsp; Xuất File</span>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="employee/export"> <img src="images/xls.png" width="24px" class="mrx"/>Xuất Excel</a></li>
+                                        <li><a href="employee/export/pdf"> <img src="images/pdf.png" width="24px" class="mrx"/>Xuất Pdf</a></li>
+                                    </ul>
+                        </div>
+	            		
 	            	</div>
 	               <div class="panel-body">
 	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá nhân viên thành công</div>
@@ -59,7 +67,7 @@
 													@endif
 								                </td>
 								                <td>{{$us['phone_number']}}</td>
-								                <th>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</th>
+								                <td>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Jobtype['name']}}</td>
 								                <td>
