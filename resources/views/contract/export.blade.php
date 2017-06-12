@@ -42,7 +42,7 @@
 					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;"><strong>Ông:&nbsp;</strong><strong>&nbsp;{{Auth::User()->name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</strong></span></span></span></div>
 				<div style="margin-left: 40px;">
 					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">Sinh ngày..{{Carbon\Carbon::parse(Auth::User()->date_of_birth)->format('d')}}..... tháng...{{Carbon\Carbon::parse(Auth::User()->date_of_birth)->format('m')}}.. năm....{{Carbon\Carbon::parse(Auth::User()->date_of_birth)->format('Y')}}..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<br>
-					Số CMND: {{Auth::User()->CMND}} cấp ngày..{{Carbon\Carbon::parse(Auth::User()->CMND)->format('d')}}.../..{{Carbon\Carbon::parse(Auth::User()->CMND)->format('m')}}.../..{{Carbon\Carbon::parse(Auth::User()->CMND)->format('Y')}}... tại..{{Auth::User()->address_CMND}}..<br>
+					Số CMND: {{Auth::User()->CMND}} cấp ngày..{{Carbon\Carbon::parse(Auth::User()->date_CMND)->format('d')}}.../..{{Carbon\Carbon::parse(Auth::User()->date_CMND)->format('m')}}.../..{{Carbon\Carbon::parse(Auth::User()->date_CMND)->format('Y')}}... tại..{{Auth::User()->address_CMND}}..<br>
 					Địa chỉ nơi cư trú: {{Auth::User()->present_address}}.<br>
 					Chức vụ: Giám đốc.</span></span></span></div>
 				<div>
@@ -64,7 +64,7 @@
 					- Chuyên môn: {{$contract->User->UserPositionJobtype->Jobtype['name']}}.<br>
 					- Công việc phải làm:</span></span></span></div>
 				<div style="margin-left: 40px;">
-					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">{{$contract['work_description']}}</span></span></span></div>
+					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">{!!nl2br($contract['work_description'])!!}</span></span></span></div>
 				<div>
 		<div class="page-break"></div>
 					<br>
@@ -83,17 +83,14 @@
 					<br>
 					<strong>Điều&nbsp;</strong><strong>4</strong><strong>:</strong>&nbsp;<strong>Nghĩa vụ và quyền lợi của người lao động</strong><br>
 					<strong>1. Quyền lợi:</strong><br>
-					-&nbsp;<strong>Mức lương chính</strong>: 4.000.000 đồng/tháng<br>
+					-&nbsp;<strong>Mức lương chính</strong>: {{number_format($contract->User->Salary['base_salary'])}} đồng/tháng<br>
 					-&nbsp;<strong>Phụ cấp</strong>:</span></span></span></div>
 				<div style="margin-left: 40px;">
-					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">+ Trách nhiệm: 2.000.000 đồng/tháng<br>
-					+ Ăn trưa: 1.000.000 đồng/tháng<br>
-					+ Điện thoại: 700.000 đồng/tháng<br>
-					+ Xăng xe: 500.000 đồng/tháng</span></span></span></div>
-				<div>
-					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;"><strong>-&nbsp;Hỗ trợ:</strong></span></span></span></div>
-				<div style="margin-left: 40px;">
-					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">+ Nhà ở: 1.500.000 đồng/tháng</span></span></span></div>
+					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">
+					@foreach($salary_allowance as $sa)
+						+ {{$sa->Allowance['name']}}: {{number_format($sa['value'])}} đồng/tháng<br>
+					@endforeach
+					</span></span></span></div>
 				<div>
 					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">- Tiền thưởng lễ, tết: Được hưởng theo quy chế lương thưởng chung của toàn công ty.<br>
 					- Hình thức trả lương: theo thời gian<br>

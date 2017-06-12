@@ -1,7 +1,48 @@
 @extends('layouts.app')
 @section('title','Danh Sách Nhân Viên')
 @section('content')
+    <style>
+        .dropdown.dropdown-lg .dropdown-menu {
+            margin-top: -1px;
+            padding: 6px 20px;
+        }
+        .input-group-btn .btn-group {
+            display: flex !important;
+        }
+        .btn-group .btn {
+            border-radius: 0;
+            margin-left: -1px;
+        }
+        .btn-group .btn:last-child {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .btn-group .form-horizontal .btn[type="submit"] {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .form-horizontal .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .form-group .form-control:last-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
 
+        @media screen and (min-width: 768px) {
+            #adv-search {
+                width: 500px;
+                margin: 0 auto;
+            }
+            .dropdown.dropdown-lg {
+                position: static !important;
+            }
+            .dropdown.dropdown-lg .dropdown-menu {
+                min-width: 500px;
+            }
+        }
+    </style>
 <div class="list_notification">
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
@@ -15,6 +56,8 @@
 
     <div class="clearfix"></div>
 </div>
+
+
 
 <div class="table_list_notification">
 	<!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
@@ -32,7 +75,34 @@
                                         <li><a href="employee/export/pdf"> <img src="images/pdf.png" width="24px" class="mrx"/>Xuất Pdf</a></li>
                                     </ul>
                         </div>
-	            		
+
+	            		 <!-- SEARCH -->
+						<div class="btn-group pull-right page-toolbar" role="group">
+						    <div class="dropdown dropdown-lg">
+						        <button type="button" class="btn btn-info btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						            <i class="fa fa-angle-down"></i>
+						            Tìm kiếm
+						        </button>
+						        <div class="dropdown-menu dropdown-menu-right pull-right" role="menu">
+						            <form class="form-horizontal" role="form">
+						                <div class="form-group">
+						                    <label class="color_search">Tên kế hoạch</label>
+						                    <input class="form-control" type="text" name="name"  value="" />
+						                </div>
+						                <div class="form-group">
+						                    <label class="color_search">Ngày sản xuất(dự kiến)</label>
+						                    <div class="input-icon right">
+						                        <i class="icon-calendar"></i>
+						                        <input class="form-control date-picker" name="processDate" type="text" value=""> </div>
+						                </div>
+						                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+						                <button type="reset" class="btn btn-primary" id="reset">Đặt lại</button>
+						            </form>
+						        </div>
+						    </div>
+						</div>
+						<!-- END SEARCH -->
+
 	            	</div>
 	               <div class="panel-body">
 	               		<div class="alert alert-success" id="report_delete" style="display: none">Đã xoá nhân viên thành công</div>
@@ -49,6 +119,7 @@
 								                <th>Phòng Ban</th>
 								                <th>Chức Vụ</th>
 								                <th>Chuyên Môn</th>
+								                <th>Hợp Đồng</th>
 								                <th>Sửa</th>
 								                <th>Xóa</th>
 				                            </tr>
@@ -71,9 +142,16 @@
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Jobtype['name']}}</td>
 								                <td>
-								                @if(Auth::user()->can('staff_edit'))
+								                	@if($us->Contract['employee'])
+								                	 <a href="contract/edit/{{$us->Contract['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
+								                	@else
+								                	<a href="contract/add/{{$us['id']}}" class="btn btn-info btn-xs" ><span class="fa fa-plus"></span>&nbsp;Tạo</span></a>
+								                	 @endif
+								                </td>
+								                <td>
+								             
 								                	 <a href="employee/edit/{{$us['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
-								                @endif          
+								         
 			                                    </td>
 								                <td>
 			                                         <button type="button" data-target="#modal-default" data-id="{{$us['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i

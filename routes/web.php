@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	//Profile
-	Route::get('profile', 'UserController@index');
 	Route::get('profile/{id}', 'UserController@show');
+	Route::post('profile/{id}', 'UserController@postEditProfile');
+	Route::post('profile/change-password/{id}', 'UserController@postChangePassword');
+	Route::post('profile/change-avatar/{id}', 'UserController@postChangeAvatar');
 
    //Ch?c v?
 	Route::get('position', 'PositionController@getlist');
@@ -51,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('employee', 'UserController@getList');
 	Route::get('employee/add', 'UserController@getAdd');
 	Route::post('employee/add', 'UserController@postAdd');
+	Route::post('employee/add/getUsername', 'UserController@postGetUsername');
 	Route::get('employee/edit/{id}', 'UserController@getEdit');
 	Route::post('employee/edit/{id}', 'UserController@postEdit');
 	Route::post('employee/delete', 'UserController@postDelete');
@@ -73,8 +76,6 @@ Route::group(['middleware' => 'auth'], function () {
 	//Route::get('/timekeeping', 'SalaryController@timekeeping');
 	Route::get('/salary', 'SalaryController@index');
 	Route::get('/allowance', 'SalaryController@allowance');
-
-
 
 	//Business Trip
 	Route::get('business-trip', 'BusinessTripController@getList');
@@ -116,8 +117,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Contract
 	Route::get('contract', 'ContractController@getList');
-	Route::get('contract/add', 'ContractController@getAdd');
-	Route::post('contract/add', 'ContractController@postAdd');
+	Route::get('contract/add/{id}', 'ContractController@getAdd');
+	Route::post('contract/add/{id}', 'ContractController@postAdd');
 	Route::get('contract/edit/{id}', 'ContractController@getEdit');
 	Route::post('contract/edit/{id}', 'ContractController@postEdit');
 	Route::post('contract/delete', 'ContractController@postDelete');
@@ -127,10 +128,12 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('home/edit', 'HomeController@getEdit');
+Route::post('home/edit', 'HomeController@postEdit');
 Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
+Route::get('test', function(){
+	return 'test';
+});

@@ -26,7 +26,7 @@
         @endforeach
     </div>
 @endif
-<form action="contract/add" method="post">
+<form action="contract/add/{{$user['id']}}" method="post">
  <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="page-content">
     <div id="form-layouts" class="row">
@@ -53,7 +53,7 @@
                                                 <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                              		class="input-group date datepicker-filter mbs">
-                                             		<input type="text" readonly="" class="form-control" name="from" value="{{Auth::User()->date_of_birth}}"/><span
+                                             		<input type="text" readonly="" class="form-control" name="from" value="{{Carbon\Carbon::parse(Auth::User()->date_of_birth)->format('d/m/Y')}}"/><span
                                                 	class="input-group-addon"><i class="fa fa-calendar" ></i></span>
                                         			</div>
 			                                    </div>
@@ -71,7 +71,7 @@
                                                 <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                              		class="input-group date datepicker-filter mbs">
-                                             		<input type="text" readonly="" class="form-control" name="from" value="{{Auth::User()->date_CMND}}"/><span
+                                             		<input type="text" readonly="" class="form-control" name="from" value="{{Carbon\Carbon::parse(Auth::User()->date_CMND)->format('d/m/Y')}}"/><span
                                                 	class="input-group-addon"><i class="fa fa-calendar" ></i></span>
                                         			</div>
 		                                        </div>
@@ -83,7 +83,7 @@
                                                     <input type="text" placeholder="Nhập Nơi Cấp" class="form-control" value="{{Auth::User()->address_CMND}}" readonly />
                                                 </div>
                                             </div>
-                                            <div class="form-group mbn"><label for="inputContent" class="col-md-3 control-label">Chức Vụ <span class='require'>*</span></label>
+                                            <div class="form-group"><label for="inputContent" class="col-md-3 control-label">Chức Vụ <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
                                                     <input type="text" class="form-control" readonly value="{{Auth::User()->UserDepartment['user_id'] == null ? '' :Auth::User()->UserDepartment->Department['name']}}" />
@@ -113,7 +113,7 @@
                                             	<label for="inputUsername" class="col-md-3 control-label">Họ Tên Nhân Viên <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
-                                                    <input type="text" name="name" placeholder="Nhập Họ Tên" class="form-control" value="{{old('name')}}" />
+                                                    <input type="text" name="name" placeholder="Nhập Họ Tên" readonly class="form-control" value="{{$user['name']}}" />
                                                 </div>
                                             </div>
                                             <div class="form-group"><label for="inputEmail" class="col-md-3 control-label">Ngày Sinh <span class='require'>*</span></label>
@@ -121,7 +121,7 @@
                                                 <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                              		class="input-group date datepicker-filter mbs">
-                                             		<input type="text" readonly="" class="form-control" name="birthday" value="{{old('birthday')}}"/><span
+                                             		<input type="text" readonly="" class="form-control" name="birthday" value="{{Carbon\Carbon::parse($user['date_of_birth'])->format('d/m/Y')}}"/><span
                                                 	class="input-group-addon"><i class="fa fa-calendar" ></i></span>
                                         			</div>
 		                                        </div>	
@@ -130,8 +130,16 @@
 
                                                 <div class="col-md-9">
                                                 	<select name="gender" class="form-control">
-                                                    <option value="1">Nam</option>
-                                                    <option value="0">Nữ</option>
+                                                    <option value="1"
+                                                        @if($user['gender'] == 1)
+                                                            selected
+                                                        @endif 
+                                                    >Nam</option>
+                                                    <option value="0"
+                                                        @if($user['gender'] == 0)
+                                                            selected
+                                                        @endif
+                                                    >Nữ</option>
                                                 	</select>
                                                 </div>
                                             </div>
@@ -139,7 +147,7 @@
                                             	<label for="inputUsername" class="col-md-3 control-label">Số CMND <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
-                                                    <input type="number" name="CMND" placeholder="Nhập Số CMND" class="form-control" value="{{old('CMND')}}"/>
+                                                    <input type="number" name="CMND" placeholder="Nhập Số CMND" readonly class="form-control" value="{{$user['CMND']}}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group"><label for="inputAddress" class="col-md-3 control-label">Ngày Cấp
@@ -148,7 +156,7 @@
                                                  <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
                                              		class="input-group date datepicker-filter mbs">
-                                             		<input type="text" readonly="" class="form-control" name="date_CMND" value="{{old('date_CMND')}}"/><span
+                                             		<input type="text" readonly="" class="form-control" name="date_CMND" value="{{Carbon\Carbon::parse($user['date_CMND'])->format('d/m/Y')}}"/><span
                                                 	class="input-group-addon"><i class="fa fa-calendar" ></i></span>
                                         			</div>
 		                                        </div>	
@@ -157,19 +165,19 @@
                                                 <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
-                                                    <input type="text" name="address_CMND" placeholder="Nhập Nơi Cấp" class="form-control" value="{{old('address_CMND')}}"/>
+                                                    <input type="text" name="address_CMND" placeholder="Nhập Nơi Cấp" readonly class="form-control" value="{{$user['address_CMND']}}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group"><label for="inputEmail" class="col-md-3 control-label">Nơi Đăng Ký Hộ Khẩu Thường Trú <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
-                                                	<textarea rows="3" placeholder="Nhập Nơi Đăng Ký Hộ Khẩu Thường Trú" class="form-control" name="permanent_address">{{old('permanent_address')}}</textarea>
+                                                	<textarea rows="3" placeholder="Nhập Nơi Đăng Ký Hộ Khẩu Thường Trú" readonly class="form-control" name="permanent_address">{{$user['permanent_address']}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group"><label for="inputEmail" class="col-md-3 control-label">Chỗ Ở Hiện Nay <span class='require'>*</span></label>
 
                                                 <div class="col-md-9">
-                                                	<textarea name="present_address" rows="3" placeholder="Nhập Chỗ Ở Hiện Nay" class="form-control">{{old('present_address')}}</textarea>
+                                                	<textarea name="present_address" rows="3" readonly placeholder="Nhập Chỗ Ở Hiện Nay" class="form-control">{{$user['present_address']}}</textarea>
                                                 </div>
                                             </div> 
                                         </div>
@@ -208,7 +216,11 @@
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="department">
                                                             @foreach($department as $de)
-                                                                <option value="{{$de['id']}}">{{$de['name']}}</option>
+                                                                <option value="{{$de['id']}}"
+                                                                    @if($user->UserDepartment['department_id'] == $de['id'])
+                                                                        selected
+                                                                    @endif 
+                                                                >{{$de['name']}}</option>
                                                             @endforeach
                                                             </select>
                                                         </div>
@@ -221,7 +233,11 @@
                                                         <div class="col-md-9">
                                                         	<select class="form-control" name="position">
                                                              @foreach($position as $po)
-                                                                <option value="{{$po['id']}}">{{$po['name']}}</option>
+                                                                <option value="{{$po['id']}}"
+                                                                    @if($user->UserPositionJobtype['position_id'] == $po['id'])
+                                                                        selected
+                                                                    @endif 
+                                                                >{{$po['name']}}</option>
                                                             @endforeach
                                                         	</select>
                                                         </div>
@@ -234,7 +250,11 @@
                                                         <div class="col-md-9">
                                                         	<select class="form-control" name="jobtype">
                                                             @foreach($jobtype as $jt)
-                                                                <option value="{{$jt['id']}}">{{$jt['name']}}</option>
+                                                                <option value="{{$jt['id']}}"
+                                                                 @if($user->UserPositionJobtype['jobtype_id'] == $jt['id'])
+                                                                        selected
+                                                                    @endif 
+                                                                >{{$jt['name']}}</option>
                                                             @endforeach
                                                         	</select>
                                                         </div>
@@ -309,7 +329,7 @@
                                                     <div class="form-group">
                                                     	<label for="inputAddress1" class="col-md-3 control-label">Mức Lương Chính <span class='require'>*</span></label>
 
-                                                        <div class="col-md-9"><input type="number" placeholder="Nhập Mức Lương Chính" class="form-control" name="salary" />
+                                                        <div class="col-md-9"><input type="number" placeholder="Nhập Mức Lương Chính" class="form-control" name="salary" id="salary" value="{{old('salary')}}" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -319,51 +339,26 @@
                                                 </div>
                                             </div>
                                             <h4>Phụ cấp</h4>
+                                            
                                             <div class="row">
+                                                @foreach($allowance as $al)
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                    	<label for="inputStates" class="col-md-3 control-label">Ăn Trưa <span class='require'>*</span></label>
+                                                        <label for="inputStates" class="col-md-3 control-label">{{$al['name']}} <span class='require'>*</span></label>
 
                                                         <div class="col-md-9">
-                                                        	<input id="inputStates" type="text" placeholder="" class="form-control"/>
+                                                            <input type="number" placeholder="" name="allowance[]" class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    	<label for="inputCity" class="col-md-3 control-label">Điện Thoại <span class='require'>*</span></label>
-
-                                                        <div class="col-md-9">
-                                                        	<input id="inputCity" type="text" placeholder="" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    	<label for="inputPostCode" class="col-md-3 control-label">Xăng Xe <span class='require'>*</span></label>
 
-                                                        <div class="col-md-9">
-                                                        	<input id="inputPostCode" type="text" placeholder="" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                    	<label for="selCountry" class="col-md-3 control-label">Nhà Ở <span class='require'>*</span></label>
-
-                                                        <div class="col-md-9">
-                                                        	<input id="inputPostCode" type="text" placeholder="" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="form-actions text-right pal">
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                             &nbsp;
-                                            <button type="button" class="btn btn-green">Cancel</button>
+                                            <a href="contract" class="btn btn-green">Trở Lại</a>
                                         </div>
                                     </div>	
                                 </div>

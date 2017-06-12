@@ -7,3 +7,12 @@
 	float: right;
 	margin-left: 20px;
 }
+
+label.color_search{
+	color: black!important;
+}
+
+label{
+	color: black;
+}
+

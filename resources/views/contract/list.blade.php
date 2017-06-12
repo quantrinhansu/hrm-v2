@@ -23,9 +23,7 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
-	            		<span>Danh Sách</span>
-	            		<a href="contract/add" class="btn btn-info btn_access_save btn-sm"><i class="fa fa-plus">&nbsp;Thêm</i></a>
-	            		
+	            		<span>Danh Sách</span>	            		
 	            	</div>
 	               <div class="panel-body">           
                         	<div class="row mbm">

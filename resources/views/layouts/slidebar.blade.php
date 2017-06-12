@@ -2,16 +2,11 @@
     <div class="sidebar-collapse menu-scroll">
         <ul id="side-menu" class="nav">
             <li class="user-panel">
-                <div class="thumb"><img src=""
-                                        alt="" class="img-circle"/></div>
-                <div class="info"><p>John Doe</p>
+                <div class="thumb"><img src="upload/avatar/{{Auth::User()->avatar}}" alt="" class="img-circle"/></div>
+                <div class="info"><p>{{Auth::User()->username}}</p>
                     <ul class="list-inline list-unstyled">
-                        <li><a href="extra-profile.html" data-hover="tooltip" title="Profile"><i
+                        <li><a href="profile/{{Auth::User()->id}}" data-hover="tooltip" title="Profile"><i
                                 class="fa fa-user"></i></a></li>
-                        <li><a href="email-inbox.html" data-hover="tooltip" title="Mail"><i
-                                class="fa fa-envelope"></i></a></li>
-                        <li><a href="#" data-hover="tooltip" title="Setting" data-toggle="modal"
-                               data-target="#modal-config"><i class="fa fa-cog"></i></a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  data-hover="tooltip" title="Logout"><i
                                 class="fa fa-sign-out"></i></a><form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                                 {{ csrf_field() }}
@@ -29,9 +24,9 @@
             ?>
             <li <?php if ($match == '/home') {
                        ?> class="active" <?php
-                    } ?>><a href="index.html"><i class="fa fa-tachometer fa-fw">
+                    } ?>><a href="home"><i class="fa fa-home">
                 <div class="icon-bg bg-orange"></div>
-            </i><span class="menu-title">Dashboard</span></a></li>
+            </i><span class="menu-title">Trang Chủ</span></a></li>
             <li><a href="#"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Frontend</span><span class="fa arrow"></span><span
@@ -95,11 +90,11 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Danh Sách Nhân Viên</span></a>
             </li>
-            <li<?php if ($match == '/profile') {
+            <li<?php if ($match == '/profile/') {
                        ?> class="active" <?php
-                    } ?>><a href="profile"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="profile/{{Auth::user()->id}}"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Profile</span></a>
+            </i><span class="menu-title">Hồ Sơ</span></a>
             </li>
             <li<?php if ($match == '/manage-access') {
                        ?> class="active" <?php

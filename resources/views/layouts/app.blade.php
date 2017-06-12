@@ -15,8 +15,8 @@
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
                         class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                         class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span
-                        class="logo-text">µAdmin</span><span style="display: none" class="logo-text-icon">µ</span></a>
+                <a id="logo" href="home" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                        class="logo-text">HRM</span><span style="display: none" class="logo-text-icon">HRM</span></a>
             </div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar-nav    ">
@@ -226,115 +226,108 @@
                             <li class="last"><a href="extra-user-list.html" class="text-right">See all alerts</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                            class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li><p>You have 14 new messages</p></li>
-                            <li>
-                                <div class="dropdown-slimscroll">
-                                    <ul>
-                                        <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
-                                                src=""
-                                                alt="" class="img-responsive img-circle"/></span><span
-                                                class="info"><span class="name">Jessica Spencer</span><span
-                                                class="desc">Lorem ipsum dolor sit amet...</span></span></a></li>
-                                        <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
-                                                src=""
-                                                alt="" class="img-responsive img-circle"/></span><span
-                                                class="info"><span class="name">John Smith<span
-                                                class="label label-blue pull-right">New</span></span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
-                                        </li>
-                                        <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
-                                                src=""
-                                                alt="" class="img-responsive img-circle"/></span><span
-                                                class="info"><span class="name">John Doe<span
-                                                class="label label-orange pull-right">10 min</span></span><span
-                                                class="desc">Lorem ipsum dolor sit amet...</span></span></a></li>
-                                        <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
-                                                src=""
-                                                alt="" class="img-responsive img-circle"/></span><span
-                                                class="info"><span class="name">John Smith</span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
-                                        </li>
-                                        <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
-                                                src=""
-                                                alt="" class="img-responsive img-circle"/></span><span
-                                                class="info"><span class="name">John Smith</span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
-                                        </li>
-                                    </ul>
+               <!--      <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                       class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
+                   <ul class="dropdown-menu dropdown-messages">
+                       <li><p>You have 14 new messages</p></li>
+                       <li>
+                           <div class="dropdown-slimscroll">
+                               <ul>
+                                   <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
+                                           src=""
+                                           alt="" class="img-responsive img-circle"/></span><span
+                                           class="info"><span class="name">Jessica Spencer</span><span
+                                           class="desc">Lorem ipsum dolor sit amet...</span></span></a></li>
+                                   <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
+                                           src=""
+                                           alt="" class="img-responsive img-circle"/></span><span
+                                           class="info"><span class="name">John Smith<span
+                                           class="label label-blue pull-right">New</span></span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
+                                   </li>
+                                   <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
+                                           src=""
+                                           alt="" class="img-responsive img-circle"/></span><span
+                                           class="info"><span class="name">John Doe<span
+                                           class="label label-orange pull-right">10 min</span></span><span
+                                           class="desc">Lorem ipsum dolor sit amet...</span></span></a></li>
+                                   <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
+                                           src=""
+                                           alt="" class="img-responsive img-circle"/></span><span
+                                           class="info"><span class="name">John Smith</span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
+                                   </li>
+                                   <li><a href="email-view-mail.html" target="_blank"><span class="avatar"><img
+                                           src=""
+                                           alt="" class="img-responsive img-circle"/></span><span
+                                           class="info"><span class="name">John Smith</span><span class="desc">Lorem ipsum dolor sit amet...</span></span></a>
+                                   </li>
+                               </ul>
+                           </div>
+                       </li>
+                       <li class="last"><a href="email-view-mail.html" target="_blank">Read all messages</a></li>
+                   </ul>
+               </li> -->
+        <!--             <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
+            <ul class="dropdown-menu dropdown-tasks">
+                <li><p>You have 14 pending tasks</p></li>
+                <li>
+                    <div class="dropdown-slimscroll">
+                        <ul>
+                            <li><a href="page-blog-item.html" target="_blank"><span class="task-item">Fix the HTML code<small
+                                    class="pull-right text-muted">40%
+                            </small></span>
+        
+                                <div class="progress progress-sm">
+                                    <div role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 40%;"
+                                         class="progress-bar progress-bar-orange"><span class="sr-only">40% Complete (success)</span>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="last"><a href="email-view-mail.html" target="_blank">Read all messages</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                            class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
-                        <ul class="dropdown-menu dropdown-tasks">
-                            <li><p>You have 14 pending tasks</p></li>
-                            <li>
-                                <div class="dropdown-slimscroll">
-                                    <ul>
-                                        <li><a href="page-blog-item.html" target="_blank"><span class="task-item">Fix the HTML code<small
-                                                class="pull-right text-muted">40%
-                                        </small></span>
-
-                                            <div class="progress progress-sm">
-                                                <div role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: 40%;"
-                                                     class="progress-bar progress-bar-orange"><span class="sr-only">40% Complete (success)</span>
-                                                </div>
-                                            </div>
-                                        </a></li>
-                                        <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Make a wordpress theme<small
-                                                class="pull-right text-muted">60%
-                                        </small></span>
-
-                                            <div class="progress progress-sm">
-                                                <div role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: 60%;"
-                                                     class="progress-bar progress-bar-blue"><span class="sr-only">60% Complete (success)</span>
-                                                </div>
-                                            </div>
-                                        </a></li>
-                                        <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Convert PSD to HTML<small
-                                                class="pull-right text-muted">55%
-                                        </small></span>
-
-                                            <div class="progress progress-sm">
-                                                <div role="progressbar" aria-valuenow="55" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: 55%;"
-                                                     class="progress-bar progress-bar-green"><span class="sr-only">55% Complete (success)</span>
-                                                </div>
-                                            </div>
-                                        </a></li>
-                                        <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Convert HTML to Wordpress<small
-                                                class="pull-right text-muted">78%
-                                        </small></span>
-
-                                            <div class="progress progress-sm">
-                                                <div role="progressbar" aria-valuenow="78" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: 78%;"
-                                                     class="progress-bar progress-bar-yellow"><span class="sr-only">78% Complete (success)</span>
-                                                </div>
-                                            </div>
-                                        </a></li>
-                                    </ul>
+                            </a></li>
+                            <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Make a wordpress theme<small
+                                    class="pull-right text-muted">60%
+                            </small></span>
+        
+                                <div class="progress progress-sm">
+                                    <div role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 60%;"
+                                         class="progress-bar progress-bar-blue"><span class="sr-only">60% Complete (success)</span>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="last"><a href="page-blog-item.html" target="_blank">See all tasks</a></li>
+                            </a></li>
+                            <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Convert PSD to HTML<small
+                                    class="pull-right text-muted">55%
+                            </small></span>
+        
+                                <div class="progress progress-sm">
+                                    <div role="progressbar" aria-valuenow="55" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 55%;"
+                                         class="progress-bar progress-bar-green"><span class="sr-only">55% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="page-blog-item.html" target="_blank"> <span class="task-item">Convert HTML to Wordpress<small
+                                    class="pull-right text-muted">78%
+                            </small></span>
+        
+                                <div class="progress progress-sm">
+                                    <div role="progressbar" aria-valuenow="78" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 78%;"
+                                         class="progress-bar progress-bar-yellow"><span class="sr-only">78% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
-                            src="" alt=""
-                            class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">John Doe</span>&nbsp;<span
+                    </div>
+                </li>
+                <li class="last"><a href="page-blog-item.html" target="_blank">See all tasks</a></li>
+            </ul>
+        </li> -->
+                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="upload/avatar/{{Auth::User()->avatar}}" alt=""
+                            class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{Auth::User()->username}}</span>&nbsp;<span
                             class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="extra-profile.html"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="page-calendar.html"><i class="fa fa-calendar"></i>My Calendar</a></li>
-                            <li><a href="email-inbox.html"><i class="fa fa-envelope"></i>My Inbox<span
-                                    class="badge badge-danger">3</span></a></li>
-                            <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span
-                                    class="badge badge-success">7</span></a></li>
-                            <li class="divider"></li>
+                            <li><a href="profile/{{Auth::User()->id}}"><i class="fa fa-user"></i>My Profile</a></li>
                             <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
                             <li><a href="{{ route('logout') }}" style="color: #333" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat btn_info"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -342,28 +335,13 @@
                                                             </form></li>
                         </ul>
                     </li>
-                    <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)" class="btn-chat"><i
-                            class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li>
+                   <!--  <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)" class="btn-chat"><i
+                           class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li> -->
                 </ul>
             </div>
         </nav>
         <!--BEGIN MODAL CONFIG PORTLET-->
-        <div id="modal-config" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                        <h4 class="modal-title">Modal title</h4></div>
-                    <div class="modal-body">
-                        <a href="">aaaaaaaaaaaaaaaaaa</a>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!--END MODAL CONFIG PORTLET--></div>
     <!--END TOPBAR-->
     <div id="wrapper">
@@ -376,73 +354,79 @@
 
         
         <!--BEGIN CHAT FORM-->
-        <div id="chat-form" class="fixed">
-            <div class="chat-inner"><h2 class="chat-header"><a href="javascript:;" class="chat-form-close pull-right"><i
-                    class="glyphicon glyphicon-remove"></i></a><i class="fa fa-user"></i>&nbsp;
-                Chat
-                &nbsp;<span class="badge badge-info">3</span></h2>
 
-                <div id="group-1" class="chat-group"><strong>Favorites</strong><a href="#"><span
-                        class="user-status is-online"></span>
-                    <small>Verna Morton</small>
-                    <span class="badge badge-info">2</span></a><a href="#"><span class="user-status is-online"></span>
-                    <small>Delores Blake</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-busy"></span>
-                    <small>Nathaniel Morris</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-idle"></span>
-                    <small>Boyd Bridges</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-offline"></span>
-                    <small>Meredith Houston</small>
-                    <span class="badge badge-info is-hidden">0</span></a></div>
-                <div id="group-2" class="chat-group"><strong>Office</strong><a href="#"><span
-                        class="user-status is-busy"></span>
-                    <small>Ann Scott</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-offline"></span>
-                    <small>Sherman Stokes</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-offline"></span>
-                    <small>Florence Pierce</small>
-                    <span class="badge badge-info">1</span></a></div>
-                <div id="group-3" class="chat-group"><strong>Friends</strong><a href="#"><span
-                        class="user-status is-online"></span>
-                    <small>Willard Mckenzie</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-busy"></span>
-                    <small>Jenny Frazier</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-offline"></span>
-                    <small>Chris Stewart</small>
-                    <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
-                        class="user-status is-offline"></span>
-                    <small>Olivia Green</small>
-                    <span class="badge badge-info is-hidden">0</span></a></div>
-            </div>
-            <div id="chat-box" style="top:400px">
-                <div class="chat-box-header"><a href="#" class="chat-box-close pull-right"><i
-                        class="glyphicon glyphicon-remove"></i></a><span class="user-status is-online"></span><span
-                        class="display-name">Willard Mckenzie</span>
-                    <small>Online</small>
-                </div>
-                <div class="chat-content">
-                    <ul class="chat-box-body">
-                        <li><p><img src=""
-                                    class="avt"/><span class="user">John Doe</span><span class="time">09:33</span></p>
 
-                            <p>Hi Swlabs, we have some comments for you.</p></li>
-                        <li class="odd"><p><img src=""
-                                                class="avt"/><span class="user">Swlabs</span><span
-                                class="time">09:33</span></p>
 
-                            <p>Hi, we're listening you...</p></li>
-                    </ul>
-                </div>
-                <div class="chat-textarea"><input placeholder="Type your message" class="form-control"/></div>
-            </div>
-        </div>
+      <!--   <div id="chat-form" class="fixed">
+          <div class="chat-inner"><h2 class="chat-header"><a href="javascript:;" class="chat-form-close pull-right"><i
+                  class="glyphicon glyphicon-remove"></i></a><i class="fa fa-user"></i>&nbsp;
+              Chat
+              &nbsp;<span class="badge badge-info">3</span></h2>
+      
+              <div id="group-1" class="chat-group"><strong>Favorites</strong><a href="#"><span
+                      class="user-status is-online"></span>
+                  <small>Verna Morton</small>
+                  <span class="badge badge-info">2</span></a><a href="#"><span class="user-status is-online"></span>
+                  <small>Delores Blake</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-busy"></span>
+                  <small>Nathaniel Morris</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-idle"></span>
+                  <small>Boyd Bridges</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-offline"></span>
+                  <small>Meredith Houston</small>
+                  <span class="badge badge-info is-hidden">0</span></a></div>
+              <div id="group-2" class="chat-group"><strong>Office</strong><a href="#"><span
+                      class="user-status is-busy"></span>
+                  <small>Ann Scott</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-offline"></span>
+                  <small>Sherman Stokes</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-offline"></span>
+                  <small>Florence Pierce</small>
+                  <span class="badge badge-info">1</span></a></div>
+              <div id="group-3" class="chat-group"><strong>Friends</strong><a href="#"><span
+                      class="user-status is-online"></span>
+                  <small>Willard Mckenzie</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-busy"></span>
+                  <small>Jenny Frazier</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-offline"></span>
+                  <small>Chris Stewart</small>
+                  <span class="badge badge-info is-hidden">0</span></a><a href="#"><span
+                      class="user-status is-offline"></span>
+                  <small>Olivia Green</small>
+                  <span class="badge badge-info is-hidden">0</span></a></div>
+          </div>
+          <div id="chat-box" style="top:400px">
+              <div class="chat-box-header"><a href="#" class="chat-box-close pull-right"><i
+                      class="glyphicon glyphicon-remove"></i></a><span class="user-status is-online"></span><span
+                      class="display-name">Willard Mckenzie</span>
+                  <small>Online</small>
+              </div>
+              <div class="chat-content">
+                  <ul class="chat-box-body">
+                      <li><p><img src=""
+                                  class="avt"/><span class="user">John Doe</span><span class="time">09:33</span></p>
+      
+                          <p>Hi Swlabs, we have some comments for you.</p></li>
+                      <li class="odd"><p><img src=""
+                                              class="avt"/><span class="user">Swlabs</span><span
+                              class="time">09:33</span></p>
+      
+                          <p>Hi, we're listening you...</p></li>
+                  </ul>
+              </div>
+              <div class="chat-textarea"><input placeholder="Type your message" class="form-control"/></div>
+          </div>
+      </div> -->
+
+
+
         <!--END CHAT FORM--><!--BEGIN PAGE WRAPPER-->
         <div id="page-wrapper"><!--BEGIN TITLE & BREADCRUMB PAGE-->
             <!-- <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">

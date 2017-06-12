@@ -41,12 +41,22 @@ class User extends Authenticatable
         return $this->hasOne('App\UserPositionJobtype', 'user_id', 'id');
     }
 
-     public function EmployeeRelative()
+    public function EmployeeRelative()
     {
         return $this->hasOne('App\EmployeeRelative', 'user_id', 'id');
     }
     public function roles()
     {
         return $this->belongsToMany('App\Role');
+    }
+
+    public function Salary()
+    {
+        return $this->hasOne('App\Salary', 'user_id', 'id');
+    }
+
+    public function Contract()
+    {
+        return $this->hasOne('App\Contract', 'employee', 'id');
     }
 }

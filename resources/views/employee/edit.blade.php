@@ -36,7 +36,7 @@
 		         class="tab-content pan mtl mbn responsive">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-color">
+                    <div class="panel panel-blue">
                     	<div class="panel-heading">Thông Tin Nhân Viên
 							<button class="btn btn-info btn_access_save btn-sm" type="submit"><i class="fa fa-floppy-o">&nbsp;Lưu</i></button>
 							<a class="btn btn-info btn_access_save btn-sm" href="employee"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
@@ -87,7 +87,7 @@
 	                                    </div>
 	                                    <div class="col-md-6">
 	                                    	<div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Ngày Sinh </label>
+		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Ngày Sinh <span class='require'>*</span></label>
 
 		                                        <div class="col-md-9">
 		                                        	<div data-date-format="dd/mm/yyyy"
@@ -165,7 +165,7 @@
 	        </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-color">
+                    <div class="panel panel-blue">
                     	<div class="panel-heading">Thông Tin Liên Hệ</div>
                         <div class="panel-body pan">
                             <div class="form-horizontal form-seperated">
@@ -173,14 +173,14 @@
                                 	<div class="row">
                                 		<div class="col-md-12">
 		                                    <div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-2 control-label"> Địa Chỉ Thường Trú </label>
+		                                    	<label for="inputFirstName" class="col-md-2 control-label"> Địa Chỉ Thường Trú <span class='require'>*</span></label>
 
 		                                        <div class="col-md-10"><input type="text" placeholder="Nhập Địa Chỉ Thường Trú" class="form-control" name="permanent_address" value="{{$user['permanent_address']}}"/></div>
 		                                    </div>
                                     	</div>
                                     	<div class="col-md-12">
 		                                    <div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-2 control-label"> Địa Chỉ Hiện Tại</label>
+		                                    	<label for="inputFirstName" class="col-md-2 control-label"> Địa Chỉ Hiện Tại<span class='require'>*</span></label>
 	
 		                                        <div class="col-md-10"><input type="text" placeholder="Nhập Địa Chỉ Hiện Tại" class="form-control" name="present_address" value="{{$user['present_address']}}"/></div>
 		                                    </div>
@@ -194,14 +194,14 @@
 	                                    </div>
 	                                    <div class="col-md-6">
 	                                    	<div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Số CMND </label>
+		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Số CMND <span class='require'>*</span></label>
 
 		                                        <div class="col-md-9"><input id="inputFirstName" type="text" placeholder="Nhập Số CMND" class="form-control" name="CMND" value="{{$user['CMND']}}"/></div>
 		                                    </div>
 	                                    </div>
 	                                    <div class="col-md-6">
 	                                    	<div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-4 control-label"> Ngày Cấp CMND </label>
+		                                    	<label for="inputFirstName" class="col-md-4 control-label"> Ngày Cấp CMND <span class='require'>*</span></label>
 
 		                                        <div class="col-md-8">
 		                                        	<div data-date-format="dd/mm/yyyy"
@@ -217,7 +217,7 @@
 	                                    </div>
 	                                    <div class="col-md-6">
 	                                    	<div class="form-group">
-		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Nơi Cấp CMND </label>
+		                                    	<label for="inputFirstName" class="col-md-3 control-label"> Nơi Cấp CMND <span class='require'>*</span></label>
 
 		                                        <div class="col-md-9"><input id="inputFirstName" type="text" placeholder="Nhập Nơi Cấp CMND" class="form-control" name="address_CMND" value="{{$user['address_CMND']}}"/></div>
 		                                    </div>
@@ -233,7 +233,7 @@
 	        </div>
 	        <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-color">
+                    <div class="panel panel-blue">
                     	<div class="panel-heading">Công Việc</div>
                         <div class="panel-body pan">
                             <div class="form-horizontal form-seperated">
@@ -299,7 +299,7 @@
 	        </div>
 	         <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-color">
+                    <div class="panel panel-blue">
                     	<div class="panel-heading">Thông Tin Liên Hệ Người Thân	</div>
                         <div class="panel-body pan">
                             <div class="form-horizontal form-seperated">
