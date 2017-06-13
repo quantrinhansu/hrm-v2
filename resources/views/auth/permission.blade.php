@@ -64,6 +64,38 @@
 		    </div>
 		</div>
 
+		<div class="modal fade" id="modal-id">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Thêm mới</h4>
+					</div>
+					<form action="/permission/create" method="POST">
+					<div class="modal-body">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<input type="hidden" name="id">
+						<div class="form-group">
+							<span class="Label">Tên </span><span class='require'>*</span>
+							<input type="text" name="name" class="form-control update_name" required>
+						</div>
+						<div class="form-group">
+							<span class="Label">Tên hiển thị </span><span class='require'>*</span>
+							<input type="text" name="display_name" class="form-control update_displayname" required>
+						</div>
+						<div class="form-group">
+							<span class="Label">Mô tả</span>
+							<input type="text" name="description" class="form-control update_description" required>
+						</div>						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Đồng ý</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div class="modal fade" id="modal-update">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -74,7 +106,7 @@
 					<form action="/permission/update" method="POST">
 					<div class="modal-body">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<input type="hidden" name="id">
+						<input type="hidden" name="id" value="" class="update_id">
 						<div class="form-group">
 							<span class="Label">Tên </span><span class='require'>*</span>
 							<input type="text" name="name" class="form-control update_name" required>
@@ -121,6 +153,7 @@
 </div>
 <script type="text/javascript">
 	$('.edit_permission').click(function(){
+		$('.update_id').val($(this).data("id"));
     	$('.update_name').val($(this).data("name"));
     	$('.update_displayname').val($(this).data("displayname"));
     	$('.update_description').val($(this).data("description"));

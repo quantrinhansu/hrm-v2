@@ -60,19 +60,32 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('employee/import', 'UserController@postImport');
 
 	Route::get('/permission', 'PermissionController@index');
+	Route::post('/permission/create', 'PermissionController@create');
 	Route::post('/permission/update', 'PermissionController@update');
 	Route::post('/permission/delete', 'PermissionController@delete');
 
 	// Roles
 	Route::get('/roles', 'RolesController@index');
-	Route::post('/roles/add', 'RolesController@create');
+	Route::post('/roles/create', 'RolesController@create');
+	Route::post('/roles/edit','RolesController@update');
 	Route::post('/roles/delete', 'RolesController@delete');
+
+
+	Route::get('/roles/viewedit/{id}', 'RolesController@view_edit');
+	Route::get('/roles/viewadd','RolesController@view_add');
+
 	Route::get('/roles/users', 'RolesController@users');
+	Route::post('/roles/users_role_update', 'RolesController@users_role_update');
+
 
 	//Timekeeping
+	Route::get('/timekeeping', 'TimekeepingController@index');
+	Route::post('/timekeeping/store', 'TimekeepingController@store');
 	//Route::get('/timekeeping', 'SalaryController@timekeeping');
 	Route::get('/salary', 'SalaryController@index');
 	Route::get('/allowance', 'SalaryController@allowance');
+	Route::post('/allowance/add', 'SalaryController@allowance_add');
+
 
 
 

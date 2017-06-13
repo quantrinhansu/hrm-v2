@@ -14,12 +14,33 @@ class SalaryController extends Controller
 {
     public function index(){
     	$users = User::all();
-    	return view('salary.salary', compact('users'));
+        $allowances = Allowance::all();
+    	return view('salary.salary', compact('users','allowances'));
     }
 
     public function allowance(){
-    	$allowance = Allowance::all();
-    	return view('salary.allowance', compact('allowance'));
+    	$allowances = Allowance::all();
+    	return view('salary.allowance', compact('allowances'));
+    }
+
+    public function allowance_add(Request $request){
+        if ($request) {
+            $allowance = new Allowance();
+            $allowance->name = $request->name;
+            $allowance->type = $request->type;
+            $allowance->save();
+            return  redirect()->back()->with('msg','Đã thêm phụ cấp.');            
+        }
+    }
+
+    public static function getAllowances($user_id){
+        $allowances = Salary_allowance::where('user_id',$user_id)->get();
+        return $allowances;
+    }
+
+    public static function getAllowance($allowance_id){
+        $allowance = Allowance::where('id',$allowance_id)->get();
+        return $allowance;
     }
 
     public static function getBaseSalaryOfUser($id){
@@ -66,5 +87,52 @@ class SalaryController extends Controller
     }
     public static function getPersonalIncomeWithInsurrance($user_id){
     	return (int)(SalaryController::getTotalSalary($user_id) - SalaryController::getTotalSalaryAllowanceWithoutInsurrance($user_id,true));
+    }
+
+    public static function getSalaryForInsurrance($user_id){
+        return (int)(SalaryController::getBaseSalaryOfUser($user_id) + SalaryController::getTotalSalaryAllowanceWithInsurrance($user_id, true));
+    }
+
+    public static function getWeekday($date){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $timestamp = strtotime($date);
+            $date = getdate($timestamp);
+            $weekday = strtolower($date['weekday']);
+
+            switch($weekday) {
+                case 'monday':
+                    $weekday = 'Thứ hai';
+                    break;
+                case 'tuesday':
+                    $weekday = 'Thứ ba';
+                    break;
+                case 'wednesday':
+                    $weekday = 'Thứ tư';
+                    break;
+                case 'thursday':
+                    $weekday = 'Thứ năm';
+                    break;
+                case 'friday':
+                    $weekday = 'Thứ sáu';
+                    break;
+                case 'saturday':
+                    $weekday = 'Thứ bảy';
+                    break;
+                default:
+                    $weekday = 'Chủ nhật';
+                    break;
+            }
+        return $weekday;
+            // return $weekday.', '.date('d/m/Y H:i:s');
+            // echo "Ngày: ".$date['mday']."<hr>";
+            // echo "Tháng: ".$date['mon']."<hr>";
+            // echo "Năm: ".$date['year']."<hr>";
+            // echo "Giờ: ".$date['hours']."<hr>";
+            // echo "Phút: ".$date['minutes']."<hr>";
+            // echo "Giây: ".$date['seconds']."<hr>";
+    }
+
+    public static function getAllDateInMonth($date){
+        return cal_days_in_month(CAL_GREGORIAN,6,2017);
     }
 }
