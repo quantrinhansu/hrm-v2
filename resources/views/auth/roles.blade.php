@@ -1,10 +1,12 @@
 <?php 
+use App\Http\Controllers\RolesController;
 	$per_name = array();
 	$per_display_name = array();
 	foreach ($permission as $value) {
 		array_push($per_name, $value['name']);
 		array_push($per_display_name, $value['display_name']);
 	}
+	$role_name_now = '';
 ?>
 @extends('layouts.app')
 @section('title','Phân quyền')
@@ -31,7 +33,7 @@
 	    <div class="col-lg-12">
 	        <div class="panel panel-blue">
 	            <div class="panel-heading">
-	                <div class="caption">Bảng nhóm người dùng <a class="btn btn-info pull-right btn-sm" style="margin-bottom: 10px" data-toggle="modal" href='#modal-id'>Thêm</a></div>
+	                <div class="caption">Bảng nhóm người dùng <a href="/roles/viewadd" class="btn btn-info pull-right btn-sm" >Thêm</a></div>
 	            </div>
 
 	            <div class="panel-body">
@@ -40,7 +42,7 @@
 	                    	    @if(Session::has('msg'))
 						        <div class="alert alert-info">
 						            <a class="close" data-dismiss="alert">×</a>
-						            <strong>Chú ý! </strong> {!!Session::get('msg')!!}
+						            <strong>Chú ý! : </strong> {!!Session::get('msg')!!}
 						        </div>
 						    	@endif
 	                        <div class="table-responsive">
@@ -67,7 +69,7 @@
 			        							<td>{{ $value['display_name'] }}</td>
 			        							<td>{{ $value['description'] }}</td>
 			        							<td>{{ $value['created_at'] }} / {{ $value['updated_at'] }}</td>
-		                                    <td><a id="edit_{{$value['id']}}" class="btn btn-warning edit_role" style="padding-left: 10px" data-toggle="modal" href='#modal-update' data-id="{{ $value['id'] }}" data-rolename="{{ $value['name'] }}" data-displayname="{{ $value['display_name'] }}" data-description="{{ $value['description'] }}" >Chỉnh sửa</a>
+		                                    <td><a href="/roles/viewedit/{{$value['id']}}" class="btn btn-warning edit_role" style="padding-left: 10px" >Chỉnh sửa</a>
 		                                    <a id="delete_{{$value['id']}}" class="btn btn-danger delete_role" style="padding-left: 10px" data-toggle="modal" href='#modal-delete' data-rolekey="{{ $value['id'] }}" >Xóa</a>
 		                                </tr>                                	     
 	                                <?php } ?>                           
@@ -78,95 +80,7 @@
 	                    </div>
 	                </div>
 	            </div>
-{{-- modal create --}}
-	            <div class="modal fade" id="modal-id">
-	            	<div class="modal-dialog">
-	            		<div class="modal-content">
-	            			<div class="modal-header">
-	            				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	            				<h4 class="modal-title">Thêm</h4>
-	            			</div>
-	            			<form action="/roles/add" method="POST" role="form">
-	            			<div class="modal-body">
-	        					<div class="form-group">
-	        						<span class="Label">Tên </span><span class='require'>*</span>
-	        						<input type="text" name="name" class="form-control" required>
-	        					</div>
-	        					<div class="form-group">
-	        						<span class="Label">Tên Hiển thị </span><span class='require'>*</span>
-	        						<input type="text" name="display_name" class="form-control" required>
-	        					</div>	        					
-	        					<div class="form-group">
-	        						<span class="Label"  data-toggle="tooltip" data-placement="top" title="Cho phép truy cập để xem, thêm, xóa, sửa..."  >Quyền truy cập </span><span class='require'>*</span>
-	        						<div class="panel panel-default">
-	        							<div class="panel-body">
-		        							<?php foreach ($per_name as $key => $value) { ?> 
-		        							<span class="permission" style="margin-left: 50px!important;">
-		        								<input  type="checkbox" name="permission[]" value="<?php echo $value; ?> " class="form-control">&#09; <?php echo $per_display_name[$key]; ?> 
-		        							</span>
-		        							<?php } ?> 
 
-		        						</div>
-	        						</div>
-	        					</div>
-	        					<div class="form-group">
-	        						<span class="Label">Mô tả</span>
-	        						<input type="text" name="description" class="form-control">
-	        					</div>
-	            			</div>
-	            			<div class="modal-footer">
-	            				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-	            				<button type="submit" class="btn btn-primary">Đồng Ý</button>
-	            				</form>
-	            			</div>
-	            		</div>
-	            	</div>
-	            </div>
-{{-- modal update --}}
-				<div class="modal fade" id="modal-update">
-	            	<div class="modal-dialog">
-	            		<div class="modal-content">
-	            			<div class="modal-header">
-	            				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	            				<h4 class="modal-title">Chỉnh sửa</h4>
-	            			</div>
-	            			<form action="/roles/update" method="GET" role="form">
-	            			<div class="modal-body">
-	        					<div class="form-group">
-	        						<span class="Label">Tên </span><span class='require'>*</span>
-	        						<input type="text" name="name" class="form-control update_name" required>
-	        					</div>
-	        					<div class="form-group">
-	        						<span class="Label">Tên Hiển thị </span><span class='require'>*</span>
-	        						<input type="text" name="display_name" class="form-control update_displayname" required>
-	        					</div>	        					
-	        					<div class="form-group">
-	        						<span class="Label"  data-toggle="tooltip" data-placement="top" title="Cho phép truy cập để xem, thêm, xóa, sửa..."  >Quyền truy cập </span><span class='require'>*</span>
-	        						<div class="panel panel-default">
-	        							<div class="panel-body">
-		        							<?php foreach ($per_name as $key => $value) { ?> 
-		        							<span class="permission" style="margin-left: 50px!important;">
-		        								<input  type="checkbox" name="permission[]" value="<?php echo $value; ?> " class="form-control">&#09; <?php echo $per_display_name[$key]; ?> 
-		        							</span>
-		        							<?php } ?> 
-
-		        						</div>
-	        						</div>
-	        					</div>
-	        					<div class="form-group">
-	        						<span class="Label">Mô tả</span>
-	        						<input type="text" name="description" class="form-control">
-	        					</div>
-	            			</div>
-	            			<div class="modal-footer">
-	            				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-	            				<button type="submit" class="btn btn-primary">Đồng Ý</button>
-	            				</form>
-	            			</div>
-	            		</div>
-	            	</div>
-	            </div>
-{{-- modal delete --}}
 				<div class="modal fade" id="modal-delete">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -176,6 +90,7 @@
 							</div>
 							<form action="/roles/delete" method="POST">
 							<div class="modal-body">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="role_id" value="" id="delete_role">
 								<H3>Bạn thực sự muốn xóa nhóm người dùng này ?</H3>
 							</div>

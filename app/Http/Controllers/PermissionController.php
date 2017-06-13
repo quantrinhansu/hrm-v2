@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Permission;
 use Auth;
+use App\Permission;
 use App\User;
-
+use App\PermissionRole;
 
 class PermissionController extends Controller
 {
@@ -44,11 +44,27 @@ class PermissionController extends Controller
             $newPer->display_name = $request->display_name; // optional
             $newPer->description  = $request->description; // optional
             $newPer->save();
+            return  redirect()->back()->with('msg','Đã thêm.');
         }else{
             return  redirect()->back()->with('msg','Bạn không có quyền này.');
         }
     }
+    public static function getPermissionID($permission_name){
+        $per = Permission::where('name',$permission_name)->first();
+        return $per->id;
+    }
+    public static function getAllPermissionOfRole($role_id){
+        $per = PermissionRole::where('role_id', $role_id)->get();
+        return $per;
+    }
 
+    public static function isOwnedPermission($role_id, $permission_id){
+        $out = PermissionRole::where('role_id',$role_id)->where('permission_id', $permission_id)->first();
+        if ($out != null) {
+            return true;
+        }
+        return false;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -97,6 +113,7 @@ class PermissionController extends Controller
             $permission->display_name = $request->display_name; // optional
             $permission->description  = $request->description; // optional
             $permission->save();
+            return  redirect()->back()->with('msg','Updated.');
         }else{
             return  redirect()->back()->with('msg','Bạn không có quyền này.');
         }
@@ -107,10 +124,9 @@ class PermissionController extends Controller
         if (Auth::user()->can('permission_delete')) {
             $permission = Permission::findOrFail($request->id);
             $permission->delete();
-            $permission->perms()->sync([]); 
-            $permission->forceDelete();
             return  redirect()->back()->with('msg','Deleted.');
         }else{
+
             return  redirect()->back()->with('msg','Bạn không có đủ thẩm quyền để thực hiện tác vụ này.');
         }
     }

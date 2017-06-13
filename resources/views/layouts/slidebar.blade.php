@@ -153,7 +153,7 @@
                     } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Lương Bổng </span><span class="fa arrow"></span></i></a>
-                <ul  <?php if ($match == '/salary' || $match == '/timepicking') {
+                <ul  <?php if ($match == '/salary' || $match == '/timekeeping') {
                        ?> class="nav nav-second-level collapse in" <?php
                     }else{
                         ?>
@@ -177,14 +177,16 @@
                     }
                     ?> ><a href="salary"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Phụ cấp</span></a></li>
-                    <li <?php 
-                        if ($match == '/timepicking') {
+                    <li <?php
+                        $month = date("m");
+                        $year = date("Y");
+                        if ($match == '/timekeeping?month='.$month.'?year='.$year) {
                             
                         ?>
                         class="active"
                         <?php
                     }
-                    ?> ><a href="timepicking"><i class="fa fa-rocket"></i><span
+                    ?> ><a href="/timekeeping{{'?month='.$month.'&year='.$year}}"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Chấm Công</span></a>
                     </li>                    
                 </ul>

@@ -37,7 +37,7 @@
 <script src="assets/vendors/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="assets/vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
 <script src="assets/js/table-datatables.js"></script>
-
+<script src="assets/js/jquery.doubleScroll.js"></script>
 <script type="text/javascript">(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
     i[r] = i[r] || function () {

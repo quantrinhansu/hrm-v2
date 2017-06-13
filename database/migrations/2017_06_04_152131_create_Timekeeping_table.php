@@ -16,7 +16,10 @@ class CreateTimekeepingTable extends Migration
         Schema::create('timekeeping', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('content');  
+            $table->text('content');
+            $table->text('user_ids'); 
+            $table->text('date');
+            $table->timestamps();
         });
     }
 
