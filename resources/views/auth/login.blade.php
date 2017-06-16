@@ -36,6 +36,11 @@
                             {{ session('status') }}
                         </div>
             @endif
+            @if (session('thongbao'))
+                <div class="alert alert-danger">
+                    {{ session('thongbao') }}
+                </div>
+            @endif
             @if ($errors->has('email'))
                         <div class="alert alert-danger">
                             <strong>{{ $errors->first('email') }}</strong>

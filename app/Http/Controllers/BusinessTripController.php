@@ -9,22 +9,22 @@ use App\Department;
 use App\UserPositionJobtype;
 use App\User;
 use Carbon\Carbon;
-
+use Auth;
 class BusinessTripController extends Controller
 {
     public function getList()
     {
-        if (Auth::user()->can('business_trip_show')){
+        //if (Auth::user()->can('business_trip_show')){
             $business_trip = BusinessTrip::all();
             return view('business_trip.list', ['business_trip' => $business_trip]);
-        }	
+        //}	
     }
 
     public function getAdd()
     {
-        if (Auth::user()->can('business_trip_add')){
+        //if (Auth::user()->can('business_trip_add')){
     	   return view('business_trip.add');
-        }
+        //}
     }
 
     public function postAjax(Request $request)
@@ -95,10 +95,10 @@ class BusinessTripController extends Controller
 
     public function getEdit($id)
     {
-        if (Auth::user()->can('business_trip_edit')){
+        //if (Auth::user()->can('business_trip_edit')){
             $business_trip = BusinessTrip::find($id);
             return view('business_trip.edit', ['business_trip' => $business_trip]);
-        }
+        //}
     }
 
     public function postEdit($id, Request $request)

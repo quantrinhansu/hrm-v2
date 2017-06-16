@@ -13,8 +13,10 @@ class ManageAccessController extends Controller
     	return view('manage_access.list', ['user' => $user]);
     }
 
-    public function postAdd(Request $request)
+    public function postUpdate(Request $request)
     {
-    	return $request->all();
+    	$user = User::find($request->id);
+    	$user->active = $request->status;
+    	$user->save();
     }
 }

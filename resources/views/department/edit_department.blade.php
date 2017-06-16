@@ -30,10 +30,10 @@
         </div>
         
         <div class="form-group">
-            <select class="form-control" id="manager" name="manager">
+            <select class="form-control" name="manager">
                 @foreach($user as $us)
                     <option 
-                      @if($department['manager_id'] == $us['id'])
+                      @if($us['manager'] == 1)
                         selected
                       @endif 
                     value="{{$us->id}}">{{$us->username}}</option>

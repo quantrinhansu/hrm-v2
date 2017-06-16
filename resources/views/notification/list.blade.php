@@ -34,7 +34,6 @@
                                         <tr>
 				                            <th>STT</th>
 							                <th>Tiêu Đề</th>
-							                <th>Mô Tả</th>
 							                <th>Nội Dung</th>
 							                <th>Ngày Tạo</th>
 							                <th>Nhân Viên Tạo</th>
@@ -48,7 +47,6 @@
                                         <tr id="notification_{{$nc['id']}}">
 			                                <td><?php echo $i++; ?></td>
 							                <td>{{$nc['title']}}</td>
-							                <td>{{$nc['description']}}</td>
 							                <td>{!! $nc['content'] !!}</td>
 							                <td>{{Carbon\Carbon::parse($nc['created_at'])->format('d-m-Y H:m:s')}}</td>
 							                <td>{{$nc->User['name']}}</td>

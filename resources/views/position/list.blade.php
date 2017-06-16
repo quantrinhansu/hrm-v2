@@ -38,6 +38,7 @@
                                            class="table table-hover table-striped table-bordered table-advanced tablesorter display">
                                         <thead>
                                         <tr>
+                                        	<th>STT</th>
                                             <th>Tên Chức Vụ</th>
 							                <th>Mã Chức Vụ</th>
 							                <th>Ngày Tạo</th>
@@ -46,8 +47,10 @@
 							                <th>Xóa</th>
                                         </tr>
                                         <tbody>
+                                        <?php $i = 1; ?>
                                          @foreach($position as $po)
 				                            <tr class="tr{{$po['id']}}">
+				                            	<td><?php echo $i++; ?></td>
 								                <td id="name_{{$po->id}}">{{$po['name']}}</td>
 								                <td id="description_{{$po->id}}">{{$po['code']}}</td>
 								                <td id="created_date_{{$po->id}}">{{ Carbon\Carbon::parse($po['created_at'])->format('d-m-Y') }}</td>
@@ -82,7 +85,7 @@
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-               <h4 id="modal-default-label" class="modal-title">Delete</h4></div>
+               <h4 id="modal-default-label" class="modal-title">Xóa</h4></div>
            <div class="modal-body">Bạn có chắc chắn muốn xóa không?</div>
            <div class="modal-footer">
                <button type="button" data-dismiss="modal" class="btn btn-default">Không</button>

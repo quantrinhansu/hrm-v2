@@ -53,8 +53,8 @@
 												{{$le->User->UserDepartment['user_id'] == null ? '' : $le->User->UserDepartment->Department['name']}}
 							                </td>
 							                <td>{{$le['description']}}</td>
-							                <td>{{$le['from']}}</td>
-							                <td>{{$le['to']}}</td>
+							                <td>{{ Carbon\Carbon::parse($le['from'])->format('d-m-Y') }}</td>
+							                <td>{{ Carbon\Carbon::parse($le['to'])->format('d-m-Y') }}</td>
 							                <td>
 							                @if($le['type'] == null)
 							                	<button class="btn btn-primary btn-xs btn_yes btn_co_{{$le['id']}}" id="{{$le['id']}}"><i class="fa fa-check" >&nbsp;Có</i></button>                                            

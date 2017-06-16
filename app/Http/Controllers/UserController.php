@@ -111,6 +111,18 @@ class UserController extends Controller
         return $result;
     }
 
+    public function autocomplete_department(Request $request){
+        $term = $request->term;
+        //$uData = User::where('username', 'LIKE', '%'.$term.'%')->take(10)->get();
+        $uData = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
+        $result = array();
+        foreach ($uData as $key => $value) {
+            $data = $value->username.' ('.$value->name.')';
+            array_push($result, $data);
+        }
+        return $result;
+    }
+
     public function postEditProfile($id, Request $request){
         $this->validate($request,
             [
@@ -231,12 +243,22 @@ class UserController extends Controller
         }        
     }
 
-    public function getList()
+    public function getList(Request $request)
     {
         //if (Auth::user()->can('user_show')){
-            $user = User::all();
-            $user = User::paginate(10);
-            return view('employee.list', ['user' => $user]);
+            $query = User::query();  
+            if($request->code != "")
+                $query->where("username", "like", "%". trim($request->code). "%")->get();
+            if($request->name != "")
+                $query->where("name", "like", "%". trim($request->name). "%")->get();
+            if($request->gender != ""){
+                $query->where("gender", $request->gender)->get();
+            }else{
+                $request->gender = 2;
+            }
+            //$user = $query->get();
+            $user = $query->paginate(10);
+            return view('employee.list', ['user' => $user, 'username' => $request->code, 'name' => $request->name, 'gender' => $request->gender, 'email' => $request->email]);
         //}
     }
 

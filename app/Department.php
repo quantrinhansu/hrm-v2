@@ -8,8 +8,8 @@ class Department extends Model
 {
     protected $table = 'departments';
 
-    public function User() 
+    public function UserDepartment()
     {
-        return $this->belongsTo('App\User', 'manager_id' ,'id');
+        return $this->hasOne('App\UserDepartment', 'department_id', 'id');
     }
 }

@@ -327,9 +327,9 @@
                             class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">{{Auth::User()->username}}</span>&nbsp;<span
                             class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="profile/{{Auth::User()->id}}"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
-                            <li><a href="{{ route('logout') }}" style="color: #333" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat btn_info"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+                            <li><a href="profile/{{Auth::User()->id}}"><i class="fa fa-user"></i>Hồ Sơ</a></li>
+                            <!-- <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li> -->
+                            <li><a href="logout" style="color: #333" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat btn_info"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng Xuất</a>
                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                                 {{ csrf_field() }}
                                                             </form></li>

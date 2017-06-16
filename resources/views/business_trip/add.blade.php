@@ -2,7 +2,7 @@
 @section('title','Thêm Công Tác')
 @section('script')
 
-<link rel="stylesheet" href="/assets/css/jquery-ui.css">
+<link rel="stylesheet" href="assets/css/jquery-ui.css">
 <script src="assets/js/jquery-1.9.1.js"></script>
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>

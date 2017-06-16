@@ -66,7 +66,7 @@ $(document).ready(function(){
   $("#btn_edit").click(function(event){
       event.preventDefault();
       $.ajax({
-          url : "home/edit",
+          url : "help/edit",
           type: "POST",
           dataType: 'json',
           data : new FormData($('#myform')[0]),

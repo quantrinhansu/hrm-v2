@@ -48,14 +48,6 @@
 	                                        	<input type="text" placeholder="Nhập Tiêu Đề" name="title" class="form-control" value="{{$notification['title']}}" />
 	                                         </div>
 	                                    </div>
-	                                    <div class="form-group">
-	                                    	<label for="inputLastName" class="col-md-2 control-label">Mô Tả <span class='require'>*</span>
-	                                    	</label>
-
-	                                        <div class="col-md-9">
-	                                            	<input type="text" placeholder="Nhập Mô Tả" name="description" class="form-control" value="{{$notification['description']}}"/>
-	                                        </div>
-	                                    </div>
 
 	                                    <div class="form-group">
 	                                    	<label for="inputLastName" class="col-md-2 control-label">Nội Dung <span class='require'>*</span>

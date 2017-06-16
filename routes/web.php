@@ -125,7 +125,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Manage Access
 	Route::get('manage-access', 'ManageAccessController@getList');
-	Route::post('manage-access/add', 'ManageAccessController@postAdd');
+	Route::post('manage-access/update', 'ManageAccessController@postUpdate');
 
 
 	//Contract
@@ -137,16 +137,21 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('contract/delete', 'ContractController@postDelete');
 	Route::get('contract/export/{id}', 'ContractController@getExport');
 		
-	
+	Route::get('help', 'HelpController@getIntroduce');
+	Route::get('help/edit', 'HelpController@getEdit');
+	Route::post('help/edit', 'HelpController@postEdit');
+	Route::get('help/feedback', 'HelpController@getFeedBack');
+	Route::post('help/feedback', 'HelpController@postFeedBack');
 });
 
 
 Auth::routes();
+Route::get('login', 'LoginController@getLogin');
+Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@postLogin']);
+Route::post('logout', [ 'as' => 'logout', 'uses' => 'LoginController@postLogout']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('home/edit', 'HomeController@getEdit');
 Route::post('home/edit', 'HomeController@postEdit');
 Route::get('autocomplete', array('as' => 'autocomplete', 'uses' => 'UserController@autocomplete'));
-Route::get('test', function(){
-	return 'test';
-});
+Route::get('autocomplete-department', array('as' => 'autocomplete-department', 'uses' => 'UserController@autocomplete_department'));

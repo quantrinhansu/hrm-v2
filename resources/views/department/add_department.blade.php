@@ -29,12 +29,7 @@
         </div>
         
         <div class="form-group">
-            <select class="form-control" id="manager" name="manager">
-                @foreach($user as $us)
-                    <option 
-                    value="{{$us->id}}">{{$us->username}}</option>
-                @endforeach
-            </select>
+             <input type="text" class="form-control input" id="add_staff" name="manager" autocomplete>
         </div>
    
     </div>
@@ -48,6 +43,12 @@
 <!-- /.modal-dialog --> 
 
 <script type="text/javascript">
+$('#add_staff').autocomplete({
+    source : '{!!URL::route('autocomplete-department')!!}',
+    minlength: 1,
+    autoFocus: true
+});   
+
 $(document).ready(function(){
     $('#btn_add').click(function(){
         $.ajaxSetup(
@@ -83,7 +84,7 @@ $(document).ready(function(){
                 }else{
                       $('.errorMsg1').hide();
                 }
-            }else{
+            }//else{
                 $('.input').val("");
               //  $('.someDivToDisplayErrors').attr("hidden","true");
                 $('#add').modal('toggle'); 
@@ -93,7 +94,7 @@ $(document).ready(function(){
                     {
                         $('#report_add').fadeOut();
                     },4000);
-            }             
+            //}             
           }
         });
     });

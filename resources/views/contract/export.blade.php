@@ -33,7 +33,7 @@
 					(Số: {{$contract['code']}}/HĐLĐ)</span></span></h3>
 				<div>
 					<span style="font-family:times new roman,times,serif;"><span style="color:#000000;"><span style="font-size:16px;">&nbsp;<br>
-					<strong>Chúng tôi, một bên là</strong>:&nbsp;</span></span><strong><span style="color: rgb(0, 0, 0); font-family: ''times new roman'', times, serif; font-size: 16px;">Công ty THH BÌNH PHẠM</span></strong></span></div>
+					<strong>Chúng tôi, một bên là</strong>:&nbsp;</span></span><strong><span style="color: rgb(0, 0, 0); font-family: ''times new roman'', times, serif; font-size: 16px;">Công ty THH SOLAZU</span></strong></span></div>
 				<div style="margin-left: 80px;">
 					<span style="font-family:times new roman,times,serif;"><span style="color: rgb(0, 0, 0); font-family: ''times new roman'', times, serif; font-size: 16px;">Địa chỉ: Ktx Khu B, Đông Hòa, Dĩ An, Bình Dương.</span></span></div>
 				<div>

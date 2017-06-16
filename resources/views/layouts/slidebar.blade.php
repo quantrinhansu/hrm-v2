@@ -27,7 +27,8 @@
                     } ?>><a href="home"><i class="fa fa-home">
                 <div class="icon-bg bg-orange"></div>
             </i><span class="menu-title">Trang Chủ</span></a></li>
-            <li><a href="#"><i class="fa fa-laptop fa-fw">
+
+            <!-- <li><a href="#"><i class="fa fa-laptop fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Frontend</span><span class="fa arrow"></span><span
                     class="label label-yellow">v3.0</span></a>
@@ -35,12 +36,13 @@
                     <li><a href="frontend-one-page.html"><i class="fa fa-rocket"></i><span
                             class="submenu-title">One Page</span></a></li>
                 </ul>
-            </li>
+            </li> -->
+
             <li <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="active" <?php
-                    } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
+                    } ?> ><a href="#"><i class="fa fa-lock">
                 <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Quyền và truy cập </span><span class="fa arrow"></span></i></a>
+            </i><span class="menu-title">Quyền Và Truy Cập </span><span class="fa arrow"></span></i></a>
                 <ul  <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="nav nav-second-level collapse in" <?php
                     }else{
@@ -55,7 +57,7 @@
                         <?php
                     }
                     ?> ><a href="roles"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Phân quyền</span></a></li>
+                            class="submenu-title">Phân Quyền</span></a></li>
                     <li <?php 
                         if ($match == '/permission') {
                             
@@ -64,7 +66,7 @@
                         <?php
                     }
                     ?> ><a href="permission"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Quyền truy cập</span></a>
+                            class="submenu-title">Quyền Truy Cập</span></a>
                     </li>
                     <li <?php 
                         if ($match == '/users') {
@@ -74,55 +76,33 @@
                         <?php
                     }
                     ?> ><a href="roles/users"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Người dùng</span></a>
+                            class="submenu-title">Người Dùng</span></a>
                     </li>                    
                 </ul>
             </li>
-            <li<?php if ($match == '/contract') {
+             <li<?php if ($match == '/manage-access') {
                        ?> class="active" <?php
-                    } ?>><a href="contract"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="manage-access"><i class="fa fa-key">
                 <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Danh Sách Hợp Đồng</span></a>
+            </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>
             <li<?php if ($match == '/employee') {
                        ?> class="active" <?php
-                    } ?>><a href="employee"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="employee"><i class="fa fa-group">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Danh Sách Nhân Viên</span></a>
             </li>
             <li<?php if ($match == '/profile/') {
                        ?> class="active" <?php
-                    } ?>><a href="profile/{{Auth::user()->id}}"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="profile/{{Auth::user()->id}}"><i class="fa fa-user">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Hồ Sơ</span></a>
             </li>
-            <li<?php if ($match == '/manage-access') {
+             <li<?php if ($match == '/contract') {
                        ?> class="active" <?php
-                    } ?>><a href="manage-access"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="contract"><i class="fa fa-file-text">
                 <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Quản Lý Truy Cập</span></a>
-            </li>
-            <li<?php if ($match == '/department') {
-                       ?> class="active" <?php
-                    } ?>><a href="department"><i class="fa fa-laptop fa-fw">
-                <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Danh Sách Phòng Ban</span></a>
-            </li>
-            <li<?php if ($match == '/notification') {
-                       ?> class="active" <?php
-                    } ?>><a href="notification"><i class="fa fa-laptop fa-fw">
-                <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Thông Báo</span></a>
-            </li>
-            <li<?php if ($match == '/leave') {
-                       ?> class="active" <?php
-                    } ?>><a href="leave"><i class="fa fa-laptop fa-fw">
-                <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Xin Nghỉ</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="leave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Quản Lý</span></a></li>
-                     <li><a href="leave/add"><i class="fa fa-rocket"></i><spanclass="submenu-title">Tạo Mới</span></a></li>
-                </ul>
+            </i><span class="menu-title">Danh Sách Hợp Đồng</span></a>
             </li>
             <li<?php if ($match == '/position') {
                        ?> class="active" <?php
@@ -136,21 +116,43 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Chuyên Môn</span></a>
             </li>
+            <li<?php if ($match == '/department') {
+                       ?> class="active" <?php
+                    } ?>><a href="department"><i class="fa fa-building">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Danh Sách Phòng Ban</span></a>
+            </li>
+            <li<?php if ($match == '/notification') {
+                       ?> class="active" <?php
+                    } ?>><a href="notification"><i class="fa fa-bell">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Thông Báo</span></a>
+            </li>
+            <li<?php if ($match == '/leave') {
+                       ?> class="active" <?php
+                    } ?>><a href="leave"><i class="fa fa-wheelchair">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Xin Nghỉ</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="leave"><i class="fa fa-rocket"></i><spanclass="submenu-title">Quản Lý</span></a></li>
+                     <li><a href="leave/add"><i class="fa fa-rocket"></i><spanclass="submenu-title">Tạo Mới</span></a></li>
+                </ul>
+            </li>
             <li<?php if ($match == '/retribution') {
                        ?> class="active" <?php
-                    } ?>><a href="retribution"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="retribution"><i class="fa fa-trophy">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Khen Thưởng - Kỷ Luật</span></a>
             </li>
             <li<?php if ($match == '/business-trip') {
                        ?> class="active" <?php
-                    } ?>><a href="business-trip"><i class="fa fa-laptop fa-fw">
+                    } ?>><a href="business-trip"><i class="fa fa-fighter-jet">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Công Tác</span></a>
             </li>
             <li <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="active" <?php
-                    } ?> ><a href="#"><i class="fa fa-laptop fa-fw">
+                    } ?> ><a href="#"><i class="fa fa-money">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Lương Bổng </span><span class="fa arrow"></span></i></a>
                 <ul  <?php if ($match == '/salary' || $match == '/timekeeping') {
@@ -186,11 +188,21 @@
                         class="active"
                         <?php
                     }
-                    ?> ><a href="/timekeeping{{'?month='.$month.'&year='.$year}}"><i class="fa fa-rocket"></i><span
+                    ?> ><a href="timekeeping{{'?month='.$month.'&year='.$year}}"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Chấm Công</span></a>
-                    </li>                    
+                    </li>  
                 </ul>
-            </li>       
+            </li>      
+            <li><a href="#"><i class="fa fa-question">
+                <div class="icon-bg bg-pink"></div>
+            </i><span class="menu-title">Trợ Gúp</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="help"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Giới Thiệu</span></a></li>
+                     <li><a href="help/feedback"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Phản Hồi</span></a></li>
+                </ul>
+            </li> 
         </ul>
     </div>
 </nav>

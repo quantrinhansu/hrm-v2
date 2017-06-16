@@ -7,14 +7,15 @@ use App\JobType;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
+use Auth;
 class JobTypeController extends Controller
 {
     public function getList()
     {
-        if (Auth::user()->can('jobtype_show')){
+        //if (Auth::user()->can('jobtype_show')){
         	$job_type = JobType::orderBy('created_at', 'desc')->get();
         	return view('job_type.list', ['job_type' => $job_type]);
-        }
+        //}
     }
 
     public function postAdd(Request $request)
@@ -51,10 +52,10 @@ class JobTypeController extends Controller
 
     public function getEdit($id)
     {
-        if (Auth::user()->can('jobtype_edit')){
+        //if (Auth::user()->can('jobtype_edit')){
             $jobtype = JobType::find($id);
             return view('job_type.edit', ['jobtype' => $jobtype]);
-        }
+        //}
     }
     public function postEdit(Request $request)
     {

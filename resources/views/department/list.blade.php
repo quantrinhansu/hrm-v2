@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('title','Danh Sách Phòng Ban')
+@section('script')
+
+<link rel="stylesheet" href="assets/css/jquery-ui.css">
+<script src="assets/js/jquery-1.9.1.js"></script>
+<script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="assets/js/jquery.dataTables.min.js"></script>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
 <div class="list_department">
 
@@ -9,8 +21,8 @@
         <div class="page-title">Danh Sách Phòng Ban</div>
     </div>
     <ol class="breadcrumb page-breadcrumb">
-        <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Trang Chủ</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-        <li><a href="#">Danh Sách Phòng Ban</a>
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Danh Sách Phòng Ban</li>
     </ol>
     <div class="clearfix"></div>
 </div>
@@ -36,7 +48,13 @@
                            
                             <div class="caption"><h3 style="text-align: center;"><span id="name_{{$de['id']}}">{{$de['name']}}</span></h3>
                                  
-                                <p style="text-align: center;">Trưởng Phòng: <span id="manager_{{$de['id']}}">{{$de->User['first_name']}} {{$de->User['last_name']}}</span></p>
+                                <p style="text-align: center;">Trưởng Phòng: <span id="manager_{{$de['id']}}">
+                                    @foreach($manager_department as $md)
+                                        @if($md['department_id'] == $de['id'])
+                                            {{$md->User['name']}}
+                                        @endif
+                                    @endforeach
+                                </span></p>
 
                                 <p style="text-align: center;"><a href="department/detail/{{$de['id']}}" role="button" class="btn btn-primary">Chi Tiết</a>          
                                 </p>
@@ -60,7 +78,7 @@
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-               <h4 id="modal-default-label" class="modal-title">Delete</h4></div>
+               <h4 id="modal-default-label" class="modal-title">Xóa</h4></div>
            <div class="modal-body">Bạn có chắc chắn muốn xóa không?</div>
            <div class="modal-footer">
                <button type="button" data-dismiss="modal" class="btn btn-default">Không</button>

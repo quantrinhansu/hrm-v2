@@ -20,7 +20,7 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading head_manage_access">
-	            		<span>Danh Sách</span>        		
+	            		<span>Danh Sách</span>    		
 	            	</div>
 	                <div class="panel-body">
 	                    <div class="row mbm">
@@ -36,7 +36,7 @@
 							                <th>Email</th>
 							                <th>Chức vụ</th>
 							                <th>Phòng Ban</th>
-							                <th>On/Off</th>
+							                <th>Trạng Thái</th>
                                         </tr>
                                         <tbody>
                                         <?php $i = 1; ?>
@@ -49,15 +49,31 @@
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
 								                <td>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</td>
 								                <td>
-					                                <div id="enable" data-on="success" data-off="danger"
-					                                    class="make-switch switch-small"><input type="checkbox" id="" checked="checked" class="switch" name="test"/>
-					                                </div>
+					                                <!-- <div id="enable" data-on="success" data-off="danger"
+					                                    class="make-switch switch-small"><input type="checkbox" checked="checked" class="switch" name="test"/>
+					                                </div> -->
+
+					                                 <div class="form-group">
+			                                            <select class="form-control click_status" id="{{$us->id}}" name="active">
+			                                                <option value="1"
+			                                                    @if($us->active == 1)
+			                                                        selected
+			                                                    @endif 
+			                                                >Hoạt Động</option>
+			                                                <option value="0"
+			                                                    @if($us->active == 0)
+			                                                        selected
+			                                                    @endif 
+			                                                >Ngưng Hoạt Động</option>
+			                                            </select>
+			                                        </div>
 					                            </td>
 				                            </tr>
                                        	@endforeach
                                         </tbody>
                                         </thead></table>
                                 </div>
+                                </form>
                             </div>
                         </div>
 	                </div>
@@ -70,11 +86,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('.switch').change(function(){
-		//var id = $(this).attr('id');
-		//var value = $('[name="test"]').is(':checked');
-
-		/*$.ajaxSetup(
+	$('.click_status').on('change', function(){
+	    var status = $(this).val();
+	    var id_user = $(this).attr('id');
+	        
+	    $.ajaxSetup(
 		{
 		    headers:
 		    {
@@ -82,21 +98,14 @@ $(document).ready(function(){
 		    }
 		});
 
-        $.ajax({
-            type: 'POST',
-            url: '',
-            dataType: 'text',
-            data: {id : id },
-            success: function(data){
-                $('.tr' + id).fadeOut();
-                $('.tr' + id).remove();
-                $("#report_delete").show();
-                setTimeout(function()
-                {
-                    $('#report_delete').fadeOut();
-                },4000);
-            }
-        });*/
+	    $.ajax({
+	        type: 'POST',
+	        url: 'manage-access/update',
+	        dataType: 'text',
+	        data: {status: status, id: id_user},
+	        success: function(data){
+	        }
+	    });
 	});
 });
 </script>

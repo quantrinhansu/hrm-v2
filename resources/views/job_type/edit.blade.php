@@ -27,7 +27,7 @@
     </div>
     </form>
     <div class="modal-footer ">
-			<button type="button" class="btn btn-warning btn-lg" id="btn_update_position" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign" ></span>Sửa</button>
+			<button type="button" class="btn btn-warning btn-lg" id="btn_update_position" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Sửa</button>
     </div>
   </div>
   <!-- /.modal-content --> 

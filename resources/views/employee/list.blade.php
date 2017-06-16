@@ -29,7 +29,7 @@
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
         }
-
+		
         @media screen and (min-width: 768px) {
             #adv-search {
                 width: 500px;
@@ -75,9 +75,9 @@
                                         <li><a href="employee/export/pdf"> <img src="images/pdf.png" width="24px" class="mrx"/>Xuất Pdf</a></li>
                                     </ul>
                         </div>
-
+				
 	            		 <!-- SEARCH -->
-						<div class="btn-group pull-right page-toolbar" role="group">
+						<div class="btn-group pull-right page-toolbar search-employee" role="group" style="margin-right: 20px">
 						    <div class="dropdown dropdown-lg">
 						        <button type="button" class="btn btn-info btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 						            <i class="fa fa-angle-down"></i>
@@ -86,17 +86,41 @@
 						        <div class="dropdown-menu dropdown-menu-right pull-right" role="menu">
 						            <form class="form-horizontal" role="form">
 						                <div class="form-group">
-						                    <label class="color_search">Tên kế hoạch</label>
-						                    <input class="form-control" type="text" name="name"  value="" />
+						                    <label class="color_search">Mã Nhân Viên</label>
+						                    <input class="form-control reset-value" type="text" name="code"  value="{{$username}}" />
 						                </div>
 						                <div class="form-group">
-						                    <label class="color_search">Ngày sản xuất(dự kiến)</label>
-						                    <div class="input-icon right">
-						                        <i class="icon-calendar"></i>
-						                        <input class="form-control date-picker" name="processDate" type="text" value=""> </div>
+						                    <label class="color_search">Tên Nhân Viên</label>
+						                    <input class="form-control reset-value" type="text" name="name"  value="{{$name}}" />
 						                </div>
-						                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-						                <button type="reset" class="btn btn-primary" id="reset">Đặt lại</button>
+						                <div class="form-group">
+						                    <label class="color_search">Email</label>
+						                    <input class="form-control reset-value" type="text" name="email"  value="{{$email}}" />
+						                </div>
+						                <div class="form-group">
+						                    <label class="color_search">Giới Tính</label>
+						                 	<div class="form-group">
+												  <select class="form-control " name="gender">
+												    <option value=""
+														@if($gender == 2)
+															selected
+														@endif 
+												    >Tất Cả</option>
+												    <option value="1" class="select-remove" 
+														@if($gender == 1)
+															selected
+														@endif 
+												    >Nam</option>
+												    <option value="0" class="select-remove" 
+														@if($gender == 0)
+															selected
+														@endif 
+												    >Nữ</option>
+												  </select>
+											</div>
+						                </div>
+						                <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+						                <button type="reset" class="btn btn-info" id="reset">Đặt lại</button>
 						            </form>
 						        </div>
 						    </div>
@@ -120,6 +144,7 @@
 								                <th>Chức Vụ</th>
 								                <th>Chuyên Môn</th>
 								                <th>Hợp Đồng</th>
+								                <th>Hồ Sơ</th>
 								                <th>Sửa</th>
 								                <th>Xóa</th>
 				                            </tr>
@@ -148,6 +173,9 @@
 								                	<a href="contract/add/{{$us['id']}}" class="btn btn-info btn-xs" ><span class="fa fa-plus"></span>&nbsp;Tạo</span></a>
 								                	 @endif
 								                </td>
+								                <td><a href="profile/{{$us['id']}}" class="btn btn-success btn-xs" ><span class="glyphicon glyphicon-hand-up"></span>&nbsp;Xem</span></a>
+													
+								                </td>
 								                <td>
 								             
 								                	 <a href="employee/edit/{{$us['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
@@ -162,9 +190,9 @@
 			                            </tbody>
                                     </table>
                                       <!-- Phân trang -->
-                         				<div class="paginate" align="center">
+                         			<div class="paginate" align="center">
 												{!!$user->render()!!}
-										</div>
+									</div>	
                                 </div> 
                     </div>
 	            </div>
@@ -180,7 +208,7 @@
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-               <h4 id="modal-default-label" class="modal-title">Delete</h4></div>
+               <h4 id="modal-default-label" class="modal-title">Xóa Nhân Viên</h4></div>
            <div class="modal-body">Bạn có chắc chắn muốn xóa không?</div>
            <div class="modal-footer">
                <button type="button" data-dismiss="modal" class="btn btn-default">Không</button>
@@ -228,5 +256,15 @@
         }); 
 	});
 
+	//Reset search form
+    $('#reset').on('click',function() {
+        $('.reset-value').removeAttr('value');
+        $('.select-search').attr('selected','selected');
+        $('.select-remove').removeAttr('selected');
+        $('.dropdown-menu').click(function(e) {  //Ngừng đóng dropdown-menu
+            e.stopPropagation();
+        });
+    });
 </script>
+
 @endsection

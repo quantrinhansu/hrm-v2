@@ -17,7 +17,7 @@ class CreateNotificationTable extends Migration
         {
             $table->increments('id');
             $table->string('title')->nullable();  
-            $table->string('description')->nullable();  
+            //$table->string('description')->nullable();  
             $table->text('content')->nullable();  
             $table->integer('create_by')->unsigned();
             $table->foreign('create_by')->references('id')->on('users')->onDelete('cascade');

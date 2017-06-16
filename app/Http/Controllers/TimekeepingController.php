@@ -19,10 +19,10 @@ class TimekeepingController extends Controller
 
     public function store(Request $request){
     	$tk = new Timekeeping();
-        // $tk->user_ids = json_encode($request->user_ids);
-        // $tk->date = json_encode($request->date);
-        // $tk->content = json_encode($request->tk);
-        // $tk->save();
+        $tk->user_ids = json_encode($request->user_ids);
+        $tk->date = json_encode($request->date);
+        $tk->content = json_encode($request->tk);
+        $tk->save();
         dd($request);
     }
 

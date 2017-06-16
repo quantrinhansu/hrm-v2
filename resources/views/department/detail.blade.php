@@ -91,13 +91,16 @@
                                        class="table table-hover table-striped table-bordered table-advanced tablesorter display">
                                     <thead>
                                     <tr>
+                                    	<th>STT</th>
                                         <th>Tên Nhân Viên</th>
-								        <th>Username</th>
+								        <th>Mã Nhân Viên</th>
 								        <th>Giới Tính</th>
                                     </tr>
                                     <tbody>
+                                    <?php $i = 1; ?>
                                     @foreach($user_department as $ud)
 			                            <tr>
+			                            	<td><?php echo $i++; ?></td>
 							                <td>{{$ud->User['name']}}</td>
 							                <td>{{$ud->User['username']}}</td>
 							                <td>
