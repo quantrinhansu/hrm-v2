@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/salary', 'SalaryController@index');
 	Route::get('/allowance', 'SalaryController@allowance');
 	Route::post('/allowance/add', 'SalaryController@allowance_add');
+	Route::post('/allowance/update', 'SalaryController@allowance_update');
+	Route::post('/allowance/delete', 'SalaryController@allowance_delete');
 
 
 	//Business Trip
@@ -142,6 +144,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('help/edit', 'HelpController@postEdit');
 	Route::get('help/feedback', 'HelpController@getFeedBack');
 	Route::post('help/feedback', 'HelpController@postFeedBack');
+
+	// System
+	Route::post('system/fetch', 'HomeController@SystemFetch');
 });
 
 
