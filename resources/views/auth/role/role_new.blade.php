@@ -17,7 +17,7 @@ use App\Http\Controllers\PermissionController;
 	        <div class="note note-success"><h4 class="box-heading">Thêm Phân quyền</h4>
 	        </div>
 	    </div>
-	    <form action="/roles/create" method="POST" role="form">
+	    <form action="roles/create" method="POST" role="form">
 	    <div class="col-lg-12">
 	        <div class="panel panel-blue">
 	            <div class="panel-heading">

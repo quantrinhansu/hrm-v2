@@ -9,7 +9,7 @@
 	            <p>Quản lí người dùng đối với các nhóm người dùng.</p>
 	        </div>
 	    </div>
-	    <form action="/roles/users_role_update" method="POST">
+	    <form action="roles/users_role_update" method="POST">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="col-lg-12">
 			<div class="panel panel-blue">

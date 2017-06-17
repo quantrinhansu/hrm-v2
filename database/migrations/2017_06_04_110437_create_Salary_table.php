@@ -18,11 +18,11 @@ class CreateSalaryTable extends Migration
             $table->increments('id'); 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('base_salary');
-            $table->string('insurrance_salary');
-            $table->integer('allowance_id');
-            $table->integer('overtime_id'); 
-            $table->integer('advance'); 
+            $table->string('base_salary')->nullable();
+            //$table->string('insurrance_salary');
+            //$table->integer('allowance_id');
+            //$table->integer('overtime_id'); 
+            //$table->integer('advance'); 
             $table->timestamps();
         });
     }

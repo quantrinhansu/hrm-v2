@@ -24,7 +24,7 @@ class CreateSalaryAllowanceTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['user_id', 'allowance_id']);
-            $table->string('value');
+            $table->string('value')->nullable();
         });
     }
 

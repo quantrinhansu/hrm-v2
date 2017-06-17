@@ -16,11 +16,11 @@ class CreateTimekeepingTable extends Migration
         Schema::create('timekeeping', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name');
-            $table->text('content');
-            $table->text('user_ids'); 
-            $table->text('date');
-            $table->text('date_work');
+            $table->string('name')->nullable();
+            $table->text('content')->nullable();
+            $table->text('user_ids')->nullable(); 
+            $table->text('date')->nullable();
+            $table->text('date_work')->nullable();
             $table->timestamps();
         });
     }

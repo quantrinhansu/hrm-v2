@@ -16,8 +16,9 @@ class CreateAllowanceTable extends Migration
         Schema::create('allowance', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name');
-            $table->string('type');
+            $table->string('name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

@@ -16,11 +16,11 @@ class CreateRetributionTable extends Migration
         Schema::create('retribution', function(Blueprint $table)
         {
             $table->increments('id'); 
-            $table->string('code');  
-            $table->string('decide');
-            $table->string('reason');             
-            $table->string('description');             
-            $table->date('create_date');  
+            $table->string('code')->nullable();  
+            $table->string('decide')->nullable();
+            $table->string('reason')->nullable();             
+            $table->string('description')->nullable();             
+            $table->date('create_date')->nullable();  
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('create_by')->unsigned();
