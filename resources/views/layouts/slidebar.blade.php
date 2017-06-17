@@ -17,9 +17,8 @@
                 <div class="clearfix"></div>
             </li>
             <?php 
-                
-                $link = $_SERVER['REQUEST_URI'];
-                $link_array = explode('/',$link);
+                $uri_parts = explode('?', $_SERVER['REQUEST_URI']);
+                $link_array = explode('/',$uri_parts[0]);
                 $match = '/' . end($link_array);
             ?>
             <li <?php if ($match == '/home') {
@@ -177,18 +176,17 @@
                         class="active"
                         <?php
                     }
-                    ?> ><a href="salary"><i class="fa fa-rocket"></i><span
+                    ?> ><a href="allowance"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Phụ cấp</span></a></li>
                     <li <?php
-                        $month = date("m");
-                        $year = date("Y");
-                        if ($match == '/timekeeping?month='.$month.'?year='.$year) {
+
+                        if ($match == '/timekeeping') {
                             
                         ?>
                         class="active"
                         <?php
                     }
-                    ?> ><a href="timekeeping{{'?month='.$month.'&year='.$year}}"><i class="fa fa-rocket"></i><span
+                    ?> ><a href="/timekeeping"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Chấm Công</span></a>
                     </li>  
                 </ul>

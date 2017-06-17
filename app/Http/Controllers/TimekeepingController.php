@@ -12,29 +12,52 @@ class TimekeepingController extends Controller
         // User
         $users = User::all();
         // get date by month
-        $req_month = $_GET['month'];
-
+        if (!empty($_GET['month']) && !empty($_GET['year'])) {
+            $req         = $_GET['month'].$_GET['year'];
+            $tk_db       = Timekeeping::where('name',$req)->first();
+            if ($tk_db) {
+                $tk_content  = $tk_db->content;
+                $tk_user_ids = $tk_db->user_ids;
+                $tk_date     = $tk_db->date;
+                return view('salary.timekeeping', compact('users','tk_content','tk_user_ids','tk_date'));
+            }
+            
+        }
         return view('salary.timekeeping', compact('users'));
     }
 
     public function store(Request $request){
-    	$tk = new Timekeeping();
+        $all_tk = Timekeeping::all();
+        foreach ($all_tk as $key => $value) {
+            if ($value['name'] == $request->name) {
+                $tk           = Timekeeping::where('name',$request->name)->first();
+                $tk->user_ids = json_encode($request->user_ids);
+                $tk->date     = json_encode($request->date);
+                $tk->content  = json_encode($request->tk);
+                $tk->date_work = json_encode($request->dw);
+                $tk->save();
+                return  redirect()->back()->with('msg','Đã cập nhật.'); 
+            }
+        }
+        $tk           = new Timekeeping();
+        $tk->name     = $request->name;
         $tk->user_ids = json_encode($request->user_ids);
-        $tk->date = json_encode($request->date);
-        $tk->content = json_encode($request->tk);
+        $tk->date     = json_encode($request->date);
+        $tk->content  = json_encode($request->tk);
+        $tk->date_work = json_encode($request->dw);
         $tk->save();
-        dd($request);
+        return  redirect()->back()->with('msg','Đã thêm mới.'); 
     }
-
-    // public static function getTimeKeeping($date){
-    //     $tk = Timekeeping::all();
-    //     $db_month = reset($tk);
-    //     foreach ($db_month as $key => $value) {
-    //         $db_time = reset($db_month)['time'];
-    //         $db_time = json_decode($db_time);
-    //         $db_time = reset($db_time);
-    //         $db_time_arr = explode('_', $db_time);
-    //         dd($db_time_arr);
-    //     }
-    // }
+    // monthday : vd 062017
+    public static function getDW($user_id , $month_date){
+        $dw = Timekeeping::where('name',$month_date)->first();
+        $dw_info = $dw->date_work;
+        $dw_info = json_decode($dw_info);
+        foreach ($dw_info as $key => $value) {
+            $out = explode('_', $value);
+            if ((int)$out[0] == $user_id) {
+                return $out[1];
+            }
+        }
+    }
 }

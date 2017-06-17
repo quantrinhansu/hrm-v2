@@ -123,13 +123,6 @@ class SalaryController extends Controller
                     break;
             }
         return $weekday;
-            // return $weekday.', '.date('d/m/Y H:i:s');
-            // echo "Ngày: ".$date['mday']."<hr>";
-            // echo "Tháng: ".$date['mon']."<hr>";
-            // echo "Năm: ".$date['year']."<hr>";
-            // echo "Giờ: ".$date['hours']."<hr>";
-            // echo "Phút: ".$date['minutes']."<hr>";
-            // echo "Giây: ".$date['seconds']."<hr>";
     }
 
     public static function getAllDateInMonth($date){

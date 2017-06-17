@@ -12,8 +12,18 @@ if (isset($_GET['year'])){
 }else{
 	$year = date('Y');
 }
-$all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 
+if (isset($tk_content) && isset($tk_date) && isset($tk_user_ids)) {
+	$tk_content  = json_decode($tk_content);
+	$tk_date     = json_decode($tk_date);
+	$tk_user_ids = json_decode($tk_user_ids);
+}else{
+	$tk_content  = '';
+	$tk_date     = '';
+	$tk_user_ids = '';
+}
+$all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+// dd($tk_content);
 ?>
 @extends('layouts.app')
 @section('title','Bảng Tính Lương')
@@ -23,6 +33,22 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 <script src="assets/js/jquery-1.9.1.js"></script>
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
+@endsection
+@section('styles')
+<style type="text/css">
+	.dataTables_scroll{
+    	border: 1px solid navajowhite;
+    	padding-top: 0px;
+    }
+    table.dataTable {
+    	clear: both;
+    	margin-top: 0px!important;
+    }
+    td.highlight {
+    	background-color: whitesmoke !important;
+	}
+}
+</style>
 @endsection
 @section('content')
 <div class="page-content">
@@ -55,6 +81,7 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 			    <div class="panel-body">
 	                <form action="/timekeeping/store" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="name" value="{{$month}}{{$year}}">
 		            <div class="row mbm">
 		                <div class="col-lg-12">
 		                	    @if(Session::has('msg'))
@@ -63,56 +90,186 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 						            <strong>Chú ý! </strong> {!!Session::get('msg')!!}
 						        </div>
 						    	@endif
-						    			                    <div class="table-responsive">
-		                 		<table id="table_id" class="table table-hover table-striped table-bordered table-advanced tablesorter display nowrap" cellspacing="0" style="overflow-y: scroll; min-width: 4000px;">
+						    	<div class="table-responsive" style="overflow-x: hidden; ">
+		                 		<table id="timekeeping_table" class="table table-hover table-striped  table-advanced tablesorter display nowrap" cellspacing="0" style="overflow-y: scroll;">
 	                                <thead>
-	                                <tr>
-	                                	<th></th>
-	                                	<th></th>
-	                                	<th></th>
+	                                	                                <tr>
+	                                	<th colspan="3" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thông tin Nhân viên</th>
 	                                	<th colspan="{{$all_date}}">NGÀY TRONG THÁNG/ THỨ TRONG TUẦN</th>
+	                                	<th colspan="4" style="border-left: 1px solid rgba(0, 0, 0, 0.08);">Tổng</th>
 	                                </tr>
 	                                <tr>
-	                                	<th width="10px">STT</th>
-	                                    <th width="100px">Mã Nhân viên</th>
-	                                    <th width="100px">Họ Tên</th>
+	                                	<th width="10px" valign="top">STT</th>
+	                                    <th width="100px" valign="top">Mã Nhân viên</th>
+	                                    <th width="100px"  valign="top" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Họ Tên</th>
 	                                    @for ($i = 1; $i <= $all_date; $i++)
-	                                    	<th width="10px">{{$i}} <br>({{SalaryController::getWeekday($i.'-'.$month.'-'.$year)}})</th>
+	                                    	<th width="30px"  valign="top" <?php 
+	                                    		if ($year == date('Y') && $month == date('n') && $i == date('j')) {
+	                                    			?>
+	                                    			style="
+	                                    			background-color: rgba(3, 81, 255, 0.64);
+    												color: #fff;" 
+	                                    			<?php
+	                                    		}
+	                                    	 ?> >{{$i}} <br>({{SalaryController::getWeekday($i.'-'.$month.'-'.$year)}})</th>
 	                                    @endfor
+	                                    <th width="10px"  valign="top" style="border-left: 1px solid rgba(0, 0, 0, 0.08);">Nghỉ Có Lương</th>
+	                                    <th width="10px"  valign="top" style="border-left: 1px solid rgba(0, 0, 0, 0.08);">Nghỉ Không Lương</th>
+	                                    <th width="10px"  valign="top" style="border-left: 1px solid rgba(0, 0, 0, 0.08);">Ngày Công</th>
 	                                </tr>
 	                                <tbody>
 	                                @foreach ($users as $key => $user)
 		                                <tr>
 		                                	<td align="center">{{$key}}</td>
 	                                		<td>{{$user['username']}}</td>
-	                                		<td>{{$user['name']}}</td>
+	                                		<td style="border-right: 1px solid rgba(0, 0, 0, 0.08);">{{$user['name']}}</td>
 	                                    @for ($i = 1; $i <= $all_date; $i++)
 	                                    <?php if ($i < 10) {
 	                                    	$i = '0'.$i;
 	                                    } ?> 
-	                                    	<th width="5px" class="bg-cl">
+	                                    	<th width="5px" class="bg-cl" style="<?php 
+
+	                                    	if (!empty($tk_content)) {
+	                                    		switch ($tk_content[$all_date*$key + ($i - 1)]) {
+	                                    		case 'cn':
+	                                    			?>
+	                                    			    background-color: rgb(92, 184, 92);
+	                                    			<?php
+	                                    			break;
+	                                    		case 's':
+	                                    			?>
+	                                    			    background-color: rgba(83, 154, 187, 0.88);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'c':
+	                                    			?>
+	                                    			    background-color: rgba(202, 115, 218, 0.65);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'nkl':
+	                                    			?>
+	                                    			    background-color: rgba(202, 192, 72, 0.65);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'ncl':
+	                                    			?>
+	                                    			    background-color: rgba(202, 102, 72, 0.65);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'nb':
+	                                    			?>
+	                                    			    background-color: rgba(157, 152, 154, 0.65);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'vc':
+	                                    			?>
+	                                    			    background-color: rgba(220, 231, 57, 0.75);
+	                                    			<?php
+	                                    			break;
+	                                    		case 'ot':
+	                                    			?>
+	                                    			    background-color: rgba(23, 27, 142, 0.83);
+	                                    			<?php
+	                                    			break;		
+	                                    		default:
+	                                    			break;
+	                                    	}
+	                                    	}
+
+	                                    	?>">
+
 	                                    		<input type="hidden" name="date[]" value="{{$i}}-{{$month}}-{{$year}}">
 	                                    		<input type="hidden" name="user_ids[]" value="{{$user['id']}}">
 	                                    		<select name="tk[]" id="input" style="width: 80px;padding-right: 0px;border-right-width: 0px;padding-left: 0px;" class="form-control bg-sl" required="required">
-	                                    			<option value="k">--trống--</option>
-	                                    			<option value="cn">Cả ngày</option>
-	                                    			<option value="s">Sáng</option>
-	                                    			<option value="c">Chiều</option>
-	                                    			<option value="ncp">Nghỉ Không Phép</option>
-	                                    			<option value="nkp">Nghỉ Có Phép</option>
-	                                    			<option value="nb">Nghỉ Bù</option>
-	                                    			<option value="vc">Việc Công</option>
-	                                    			<option value="ot">Tăng Ca</option>
+                                			<option value="k" 
+													<?php $i = (int)$i;
+													 ?> 
+	                                    			@if (!empty($tk_content) && ($tk_content[$all_date*$key + ($i - 1)] == 'k'))
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>--trống--</option>
+	                                    			<option value="cn" 
+	                                    			@if (!empty($tk_content) && ($tk_content[$all_date*$key + ($i - 1)] == 'cn'))
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Cả ngày</option>
+	                                    			<option value="s" 
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 's')
+	                                    				 selected 
+	                                    			@endif 	                                    			
+	                                    			>Sáng</option>
+	                                    			<option value="c"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'c')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Chiều</option>
+	                                    			<option value="ncl"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'ncl')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Nghỉ có Lương</option>
+	                                    			<option value="nkl"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'nkl')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Nghỉ Không Lương</option>
+	                                    			<option value="nb"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'nb')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Nghỉ Bù</option>
+	                                    			<option value="vc"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'vc')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Việc Công</option>
+	                                    			<option value="ot"
+	                                    			@if (!empty($tk_content) && $tk_content[$all_date*$key + ($i - 1)] == 'ot')
+	                                    				 selected 
+	                                    			@endif 
+	                                    			>Tăng Ca</option>
 	                                    		</select>
 	                                    	</th>
 	                                    @endfor
+	                                    <?php 
+	                                    	$nkl = 0;
+	                                    	$ncl = 0;
+	                                    	$ngayCong = 0;
+	                                    if (!empty($tk_content)) {
+	                                    	for ($i=0; $i < $all_date; $i++) { 
+	                                    		if ($tk_content[$all_date*$key + ($i)] == 'nkl') {
+	                                    			$nkl++;
+	                                    		}
+	                                    		if ($tk_content[$all_date*$key + ($i)] == 'ncl') {
+	                                    			$ncl++;
+	                                    			$ngayCong++;
+	                                    		}
+	                                    		if ($tk_content[$all_date*$key + ($i)] == 'cn') {
+	                                    			$ngayCong++;
+	                                    		}
+	                                    		if ($tk_content[$all_date*$key + ($i)] == 's' || $tk_content[$all_date*$key + ($i)] == 'c') {
+	                                    			$ngayCong += 0.5;
+	                                    		}
+	                                    		if ($tk_content[$all_date*$key + ($i)] == 'ot') {
+	                                    			$ngayCong += 2;
+	                                    		}	                                    		
+	                                    	}
+	                                    }
+	                                     ?> 
+	                                     <input type="hidden" name="dw[]" value="{{$user['id']}}_{{$ngayCong}}">
+	                                    	<td style="border-left: 1px solid rgba(0, 0, 0, 0.08);">{{$ncl}}</td>
+	                                    	
+	                                    	<td style="border-left: 1px solid rgba(0, 0, 0, 0.08);">{{$nkl}}</td>
+	                                    	<td style="border-left: 1px solid rgba(0, 0, 0, 0.08);">{{$ngayCong}}</td>
 		                                </tr> 
+
 	                                @endforeach
 	                                </form>
 	                                </tbody>
+
 	                                </thead>
 	                            	</table>
-		                    </div>
+		                    	</div>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-info pull-right btn-sm">Lưu Lại</button>
@@ -134,10 +291,10 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 		    if($(this).val() == 'c'){
 		    $(this).parent().css('background-color', 'rgba(202, 115, 218, 0.65)');
 		  }
-		    if($(this).val() == 'ncp'){
+		    if($(this).val() == 'ncl'){
 		    $(this).parent().css('background-color', 'rgba(202, 192, 72, 0.65)');
 		  }		    
-		  	if($(this).val() == 'nkp'){
+		  	if($(this).val() == 'nkl'){
 		    $(this).parent().css('background-color', 'rgba(202, 102, 72, 0.65)');
 		  }		    
 		  	if($(this).val() == 'nb'){
@@ -151,30 +308,23 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 		  }
 		});
 
+   var table = $('#timekeeping_table').DataTable( {
+        "scrollY": 450,
+        "scrollX": true,
+        "bLengthChange": false,
+        "bPaginate": false,
+        "bScrollCollapse": true,
+        "fixedColumns":   {
+            "leftColumns": 3,
+            "rightColumns": 1
+        }	
+    } );
+   $('#timekeeping_table tbody').on( 'mouseenter', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+ 
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+            $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+        } );
 	});
-</script>
-<script type="text/javascript">
-	var table = $('#table_id');
-
-$('form').on('submit', function(e){
-   var $form = $(this);
-
-   // Iterate over all checkboxes in the table
-   table.$('input[type="checkbox"]').each(function(){
-      // If checkbox doesn't exist in DOM
-      if(!$.contains(document, this)){
-         // If checkbox is checked
-         if(this.checked){
-            // Create a hidden element 
-            $form.append(
-               $('<input>')
-                  .attr('type', 'hidden')
-                  .attr('name', this.name)
-                  .val(this.value)
-            );
-         }
-      } 
-   });          
-});
 </script>
 @endsection

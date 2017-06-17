@@ -1,6 +1,6 @@
 <?php 
 use App\Http\Controllers\SalaryController;
-
+use App\Http\Controllers\TimekeepingController;
 ?> 
 @extends('layouts.app')
 @section('title','Bảng Tính Lương')
@@ -10,6 +10,13 @@ use App\Http\Controllers\SalaryController;
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
 @endsection
+@section('styles')
+<style type="text/css">
+	td {
+	border-right: 1px solid rgba(0, 0, 0, 0.08);
+	}
+</style>
+@stop
 @section('content')
 <div class="page-content">
 	<div class="row">
@@ -33,23 +40,23 @@ use App\Http\Controllers\SalaryController;
 						            <strong>Chú ý! </strong> {!!Session::get('msg')!!}
 						        </div>
 						    	@endif
-		                    <div class="table-responsive">
-		                 		<table id="table_id" class="table table-fixed table-hover table-striped table-bordered table-advanced tablesorter display" style="overflow-y: scroll;">
+		                    <div class="table-responsive" style="overflow-x: hidden; ">
+		                 		<table id="salary_table" class="table table-hover table-striped  table-advanced tablesorter display nowrap" style="overflow-y: scroll;">
 	                                <thead>
                                 	<tr>
 										<th></th>
 										<th></th>
 										<th></th>
+										<th style="border-right: 1px solid rgba(0, 0, 0, 0.08);"></th>
+										<th colspan="{{count($allowances)}}" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Phụ Cấp</th>
+										<th colspan="1" ></th>
+										<th colspan="1" ></th>
 										<th></th>
-										<th colspan="{{count($allowances)}}">Phụ Cấp</th>
-										<th colspan="1">Tổng Lương</th>
 										<th></th>
-										<th></th>
-										<th></th>
-										<th></th>	
-										<th colspan="5">Các khoản trích vào Chi phí của Doanh Nghiệp</th>
-										<th colspan="4">Các khoản trích trừ vào lương của Nhân Viên</th>
-										<th colspan="2">Giảm trừ</th>
+										<th style="border-right: 1px solid rgba(0, 0, 0, 0.08);"></th>	
+										<th colspan="5" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Các khoản trích vào Chi phí của Doanh Nghiệp</th>
+										<th colspan="4" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Các khoản trích trừ vào lương của Nhân Viên</th>
+										<th colspan="2" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Giảm trừ</th>
 										<th></th>
 										<th></th>
 										<th></th>
@@ -58,18 +65,18 @@ use App\Http\Controllers\SalaryController;
 	                                <tr>
 	                                    <th>STT #</th>
 	                                    <th>Mã Nhân viên</th>
-	                                    <th>Họ Tên</th>
-	                                    <th>Lương cơ bản</th>
+	                                    <th style="border-right: 3px solid rgba(0, 0, 0, 0.08);">Họ Tên</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);border-left: 1px solid rgba(0, 0, 0, 0.08);" >Lương cơ bản</th>
 										{{-- Phụ cấp --}}
 										@foreach ($allowances as $allowance)
 											<th class="allowance">{{ $allowance['name'] }}</th>
 										@endforeach
 										{{-- End Phụ cấp --}}
-	                                    <th></th>
-	                                    <th>Ngày công</th>
-	                                    <th>Tổng thu nhập thực tế</th>
-	                                    <th>Thu nhập chịu thuế TNCN</th>
-	                                    <th>Lương đóng BHXH</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);border-left: 1px solid rgba(0, 0, 0, 0.08);">Tổng Lương</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Ngày Công</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Tổng thu nhập thực tế</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thu nhập chịu thuế TNCN</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Lương đóng BHXH</th>
 	                                    <th class="CPDN">BHXH(18%)</th>
 	                                    <th class="CPDN">BHYT(3%)</th>
 	                                    <th class="CPDN">BHTN(1%)</th>
@@ -78,31 +85,31 @@ use App\Http\Controllers\SalaryController;
 	                                    <th class="CPCN">BHXH(8%)</th>
 	                                    <th class="CPCN">BHYT(1,5%)</th>
 	                                    <th class="CPCN">BHTN(1%)</th>
-	                                    <th class="CPCN">Cộng</th>	
+	                                    <th class="CPCN" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Cộng</th>	
 	                                    <th class="Giamtru">Bản thân</th>        
-	                                    <th class="Giamtru">Người Phụ thuộc</th>
-	                                    <th>Thu nhập tính thuế TNCN</th>       
-	                                    <th>Thuế TNCN phải nộp</th>                     
-	                                    <th>Tạm ứng</th>                                    
-	                                    <th>Thực lĩnh</th>                                    
+	                                    <th class="Giamtru" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Người Phụ thuộc</th>
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thu nhập tính thuế TNCN</th>       
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thuế TNCN phải nộp</th>                     
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Tạm ứng</th>                                    
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thực lĩnh</th>                                    
 	                                </tr>
 	                                <tbody>
 	                                 <?php foreach ($users as $key => $value) {  ?>
 		                                <tr>
 	                                		<td>{{ $key }}</td>
 	                                		<td>{{ $value['id'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ number_format(SalaryController::getBaseSalaryOfUser($value['id'])) }} </td>
+	                                		<td style="border-right: 1px solid rgba(0, 0, 0, 0.08);">{{ $value['name'] }}</td>
+	                                		<td style="border-right: 1px solid rgba(0, 0, 0, 0.08);">{{ number_format(SalaryController::getBaseSalaryOfUser($value['id'])) }} </td>
 	                                	{{-- Phụ cấp --}}
 										@foreach (SalaryController::getAllowances($value['id']) as $key => $user_allowance)
-											<td>{{ number_format($user_allowance['value']) }}</td>
+											<td style="border-right: 1px solid rgba(0, 0, 0, 0.08);">{{ number_format($user_allowance['value']) }}</td>
 										@endforeach
 										@for ($i = 0; $i < count($allowances) - count(SalaryController::getAllowances($value['id'])); $i++)
-											<td>0</td>
+											<td style="border-right: 1px solid rgba(0, 0, 0, 0.08);">0</td>
 										@endfor
 										{{-- End Phụ cấp --}}
-	                                		<td>{{ number_format(SalaryController::getTotalSalary($value['id'])) }}</td>
-	                                		<td> Lay tu bang ngay cong</td>
+	                                		<td >{{ number_format(SalaryController::getTotalSalary($value['id'])) }}</td>
+	                                		<td>{{TimekeepingController::getDW($value['id'], $_GET['month'])}}</td>
 	                                		<td>{{ number_format(SalaryController::getRealSalary($value['id'])) }}</td>
 	                                		<td>{{ number_format(SalaryController::getPersonalIncomeWithInsurrance($value['id'])) }}</td>
 	                                		<td>{{ number_format(SalaryController::getSalaryForInsurrance($value['id'])) }}</td>
@@ -134,5 +141,26 @@ use App\Http\Controllers\SalaryController;
 	    </div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
 
+   var table = $('#salary_table').DataTable( {
+        "scrollY": 450,
+        "scrollX": true,
+        "bLengthChange": false,
+        "bPaginate": false,
+        "bScrollCollapse": true,
+        "fixedColumns":   {
+            "leftColumns": 3,
+            "rightColumns": 0
+        }	
+    } );
+   $('#salary_table tbody').on( 'mouseenter', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+ 
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+            $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+        } );
+	});
+</script>
 @endsection
