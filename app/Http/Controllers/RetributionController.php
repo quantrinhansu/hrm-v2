@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\HomeController;
 use Excel;
 class RetributionController extends Controller
 {
@@ -65,6 +66,7 @@ class RetributionController extends Controller
 
     	$username = $request->staff;
     	$space = strpos($username, " ");
+
     	$username = substr($username, 0, $space);
 
     	$id_user = User::where('username', $username)->value('id');
@@ -80,7 +82,10 @@ class RetributionController extends Controller
     	$retribution->user_id 		= $id_user;
     	$retribution->create_by 	= Auth::user()->id;
     	$retribution->save();
-
+// make noti
+        $rec_list = array($id_user);
+        HomeController::createNoti($rec_list,'KT',$request->decide);
+// end
     	return json_encode([
                     'success' => 'success'
                  ]);

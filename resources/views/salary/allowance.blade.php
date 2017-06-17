@@ -49,6 +49,7 @@ use App\Http\Controllers\SalaryController;
 	                                <tbody>
 	                                 <?php foreach ($allowances as $key => $allowance) {  ?>
 		                                <tr>
+
 	                                		<td>{{ $key }}</td>
 	                                		<td>{{ $allowance['name'] }}</td>
 	                                		<td><?php if($allowance['type'] == 0){
@@ -57,7 +58,7 @@ use App\Http\Controllers\SalaryController;
 	                                			echo 'Phụ cấp tính thuế';
 	                                			}
 	                                		?></td>
-	                                		<td><a href="/salary/allowance-edit/{{$allowance['id']}}" class="btn btn-warning edit_role"  >Chỉnh sửa</a><a class="btn btn-primary" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
+	                                		<td><a class="btn btn-warning allowance_update" data-id="{{ $allowance['id'] }}" data-name="{{ $allowance['name'] }}" data-type="{{$allowance['type']}}" href='#modal-update' data-toggle="modal"  >Chỉnh sửa</a><a data-id="{{$allowance['id']}}" class="btn btn-primary allowance_delete" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
 		                                </tr>                                	     
 	                                <?php } ?>                           
 	                                </tbody>
@@ -70,8 +71,9 @@ use App\Http\Controllers\SalaryController;
 	                            					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                            					<h4 class="modal-title">Thêm Phụ Cấp</h4>
 	                            				</div>
-	                            				<form action="/allowance/add" method="POST">
+	                            				<form action="allowance/add" method="POST">
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												
 	                            				<div class="modal-body">
 	                            					<div class="form-group">
 	                            						<label>Tên Phụ Cấp</label>
@@ -94,6 +96,38 @@ use App\Http\Controllers\SalaryController;
 	                            			</div>
 	                            		</div>
 	                            	</div>
+	                            	<div class="modal fade" id="modal-update">
+	                            		<div class="modal-dialog">
+	                            			<div class="modal-content">
+	                            				<div class="modal-header">
+	                            					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                            					<h4 class="modal-title">Thêm Phụ Cấp</h4>
+	                            				</div>
+	                            				<form action="allowance/update" method="POST">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="id" id="id_update">
+	                            				<div class="modal-body">
+	                            					<div class="form-group">
+	                            						<label>Tên Phụ Cấp</label>
+	                            						<input type="text" id="name_update" name="name" class="form-control">
+
+	                            					</div>
+	                            					<div class="form-group">
+	                            						<label>Loại Phụ cấp</label>
+	                            						<select name="type" id="type_update" class="form-control" required="required">
+	                            							<option value="0">Phụ cấp không tính thuế</option>
+	                            							<option value="1">Phụ cấp tính thuế</option>
+	                            						</select>
+	                            					</div>
+	                            				</div>
+	                            				<div class="modal-footer">
+	                            					<button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+	                            					<button type="submit" class="btn btn-primary">Đồng Ý</button>
+	                            				</div>
+	                            				</form>
+	                            			</div>
+	                            		</div>
+	                            	</div>
                             		<div class="modal fade" id="modal-delete">
                             			<div class="modal-dialog">
                             				<div class="modal-content">
@@ -101,35 +135,20 @@ use App\Http\Controllers\SalaryController;
                             						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             						<h4 class="modal-title">Xác Nhận</h4>
                             					</div>
+                            					<form action="allowance/delete" method="POST">
                             					<div class="modal-body">
                             						<input type="hidden" name="_token" value="{{ csrf_token() }}">
                             						<h3>Bạn có muốn xóa phụ cấp này ?</h3>
                             					</div>
+                            					<input type="hidden" name="id" id="id_delete">
                             					<div class="modal-footer">
                             						<button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
-                            						<button type="button" class="btn btn-primary">Đồng Ý</button>
+                            						<button type="submit"  class="btn btn-primary">Đồng Ý</button>
                             					</div>
+                            					</form>
                             				</div>
                             			</div>
-                            		</div>
-                            		<div class="modal fade" id="modal-delete">
-                            			<div class="modal-dialog">
-                            				<div class="modal-content">
-                            					<div class="modal-header">
-                            						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            						<h4 class="modal-title">Xác Nhận</h4>
-                            					</div>
-                            					<div class="modal-body">
-                            						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            						<h3>Bạn có muốn xóa phụ cấp này ?</h3>
-                            					</div>
-                            					<div class="modal-footer">
-                            						<button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
-                            						<button type="button" class="btn btn-primary">Đồng Ý</button>
-                            					</div>
-                            				</div>
-                            			</div>
-                            		</div>                            			                            	
+                            		</div>                          			                            	
 		                    </div>
 		                </div>
 		            </div>
@@ -138,4 +157,17 @@ use App\Http\Controllers\SalaryController;
 	    </div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.allowance_update').click(function(){
+			$('#name_update').val($(this).data('name'));
+			$('#type_update').val($(this).data('type'));
+			$('#id_update').val($(this).data('id'));
+		});		
+		$('.allowance_delete').click(function(){
+			$('#id_delete').val($(this).data('id'));
+		});
+
+	});
+</script>
 @endsection
