@@ -51,13 +51,16 @@ class TimekeepingController extends Controller
     // monthday : vd 062017
     public static function getDW($user_id , $month_date){
         $dw = Timekeeping::where('name',$month_date)->first();
-        $dw_info = $dw->date_work;
-        $dw_info = json_decode($dw_info);
-        foreach ($dw_info as $key => $value) {
-            $out = explode('_', $value);
-            if ((int)$out[0] == $user_id) {
-                return $out[1];
-            }
+        if ($dw) {
+            $dw_info = $dw->date_work;
+            $dw_info = json_decode($dw_info);
+            foreach ($dw_info as $key => $value) {
+                $out = explode('_', $value);
+                if ((int)$out[0] == $user_id) {
+                    return $out[1];
+                }
+            }           
         }
+        return 0;
     }
 }

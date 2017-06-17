@@ -1,6 +1,15 @@
 <?php 
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\TimekeepingController;
+
+$my = '';
+if (isset($_GET['monthSelect'])) {
+	$my = $_GET['monthSelect'];
+}else{
+	$my = date('m').date('Y');
+}
+$month = mb_substr($my, 0,2);
+$year = mb_substr($my, 2);
 ?> 
 @extends('layouts.app')
 @section('title','Bảng Tính Lương')
@@ -29,7 +38,20 @@ use App\Http\Controllers\TimekeepingController;
 	    <div class="col-lg-12">
 	    	<div class="panel panel-blue">
 				<div class="panel-heading">
-					<div class="caption">Bảng các quyền truy cập <a class="btn btn-info pull-right btn-sm" href='#modal-id'>Lưu lại</a></div>
+				<form action="salary" method="GET">
+					<div class="caption">Bảng các quyền truy cập <button class="btn btn-info pull-right btn-sm" type="submit">Truy cập</button>					
+					<select style="width: 14%; height: 29px; padding-top: 0px; margin-right: 5px;" name="monthSelect" id="inputMonth" class="pull-right form-control inline" required="required">
+						@for ($i = 1; $i <= 12; $i++)
+							@if ($i < 10)
+								<?php $i = '0'.$i; ?>
+							@endif
+							<option value="{{$i.$year}}" @if ($month == $i)
+								 selected 
+							@endif>{{$i}} / {{date("Y")}}</option>
+						@endfor
+					</select>
+					</div>
+				</form>
 				</div>
 			    <div class="panel-body">
 		            <div class="row mbm">
@@ -109,7 +131,7 @@ use App\Http\Controllers\TimekeepingController;
 										@endfor
 										{{-- End Phụ cấp --}}
 	                                		<td >{{ number_format(SalaryController::getTotalSalary($value['id'])) }}</td>
-	                                		<td>{{TimekeepingController::getDW($value['id'], $_GET['month'])}}</td>
+	                                		<td>{{TimekeepingController::getDW($value['id'], $my)}}</td>
 	                                		<td>{{ number_format(SalaryController::getRealSalary($value['id'])) }}</td>
 	                                		<td>{{ number_format(SalaryController::getPersonalIncomeWithInsurrance($value['id'])) }}</td>
 	                                		<td>{{ number_format(SalaryController::getSalaryForInsurrance($value['id'])) }}</td>

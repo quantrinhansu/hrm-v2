@@ -15,7 +15,10 @@ class SalaryController extends Controller
     public function index(){
     	$users = User::all();
         $allowances = Allowance::all();
-    	return view('salary.salary', compact('users','allowances'));
+        
+        return view('salary.salary', compact('users','allowances'));
+        
+    	
     }
 
     public function allowance(){
