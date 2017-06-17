@@ -1,5 +1,8 @@
 <?php 
 use App\Http\Controllers\SalaryController;
+
+
+
 ?> 
 @extends('layouts.app')
 @section('title','Bảng Tính Lương')
