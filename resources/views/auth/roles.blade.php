@@ -14,9 +14,7 @@ use App\Http\Controllers\RolesController;
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
 @endsection
-@section('styles')
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.min.css">
-@endsection
+
 @section('content')
 <div class="page-content">
 	<div class="row">
@@ -33,7 +31,7 @@ use App\Http\Controllers\RolesController;
 	    <div class="col-lg-12">
 	        <div class="panel panel-blue">
 	            <div class="panel-heading">
-	                <div class="caption">Bảng nhóm người dùng <a href="/roles/viewadd" class="btn btn-info pull-right btn-sm" >Thêm</a></div>
+	                <div class="caption">Bảng nhóm người dùng <a href="roles/viewadd" class="btn btn-info pull-right btn-sm" >Thêm</a></div>
 	            </div>
 
 	            <div class="panel-body">

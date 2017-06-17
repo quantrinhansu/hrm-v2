@@ -54,7 +54,7 @@ class RolesController extends Controller
         return  redirect()->back()->with('msg','Chỉnh sửa thành công.'); 
     }
     public function create(Request $request){
-        if (Auth::user()->can('role_create') || Auth::user()->hasRole('admin')) {
+        //if (Auth::user()->can('role_create') || Auth::user()->hasRole('admin')) {
             if (!empty($request) && (trim($request->name,' ') != '') ) {
                 $db_role = Role::where('name',$request->name)->first();
                 if ($db_role == null) {
@@ -79,7 +79,7 @@ class RolesController extends Controller
             }else{
                 return  redirect()->back()->with('msg','Tên role không hợp lệ.');  
             }
-        }
+        //}
     }
     public function delete(Request $request){
         if (Auth::user()->can('role_delete')) {

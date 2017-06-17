@@ -38,16 +38,16 @@ class PermissionController extends Controller
      */
     public function create(Request $request)
     {
-        if (Auth::user()->can('permission_create')) {
+        //if (Auth::user()->can('permission_create')) {
             $newPer = new Permission();
             $newPer->name         = $request->name;
             $newPer->display_name = $request->display_name; // optional
             $newPer->description  = $request->description; // optional
             $newPer->save();
             return  redirect()->back()->with('msg','Đã thêm.');
-        }else{
-            return  redirect()->back()->with('msg','Bạn không có quyền này.');
-        }
+        //}else{
+        //    return  redirect()->back()->with('msg','Bạn không có quyền này.');
+        //}
     }
     public static function getPermissionID($permission_name){
         $per = Permission::where('name',$permission_name)->first();
@@ -107,16 +107,16 @@ class PermissionController extends Controller
      */
     public function update(Request $request)
     {
-        if (Auth::user()->can('permission_update')) {
+        //if (Auth::user()->can('permission_update')) {
             $permission = Permission::findOrFail($request->id);
             $permission->name         = $request->name;
             $permission->display_name = $request->display_name; // optional
             $permission->description  = $request->description; // optional
             $permission->save();
             return  redirect()->back()->with('msg','Updated.');
-        }else{
-            return  redirect()->back()->with('msg','Bạn không có quyền này.');
-        }
+        //}else{
+         //   return  redirect()->back()->with('msg','Bạn không có quyền này.');
+        //}
     }
 
     public function delete(Request $request)

@@ -16,11 +16,11 @@ class CreateBusinessTripTable extends Migration
          Schema::create('business_trip', function(Blueprint $table)
         {
             $table->increments('id'); 
-            $table->string('reason');  
-            $table->string('place');
-            $table->string('allowance');             
-            $table->date('from'); 
-            $table->date('to'); 
+            $table->string('reason')->nullable();  
+            $table->string('place')->nullable();
+            $table->string('allowance')->nullable();             
+            $table->date('from')->nullable(); 
+            $table->date('to')->nullable(); 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
