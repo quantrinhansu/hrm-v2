@@ -15,7 +15,10 @@ class SalaryController extends Controller
     public function index(){
     	$users = User::all();
         $allowances = Allowance::all();
-    	return view('salary.salary', compact('users','allowances'));
+        
+        return view('salary.salary', compact('users','allowances'));
+        
+    	
     }
 
     public function allowance(){
@@ -123,13 +126,6 @@ class SalaryController extends Controller
                     break;
             }
         return $weekday;
-            // return $weekday.', '.date('d/m/Y H:i:s');
-            // echo "Ngày: ".$date['mday']."<hr>";
-            // echo "Tháng: ".$date['mon']."<hr>";
-            // echo "Năm: ".$date['year']."<hr>";
-            // echo "Giờ: ".$date['hours']."<hr>";
-            // echo "Phút: ".$date['minutes']."<hr>";
-            // echo "Giây: ".$date['seconds']."<hr>";
     }
 
     public static function getAllDateInMonth($date){
