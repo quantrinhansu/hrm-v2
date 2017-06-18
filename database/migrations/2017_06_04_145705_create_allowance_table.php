@@ -17,7 +17,6 @@ class CreateAllowanceTable extends Migration
         {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('name')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });

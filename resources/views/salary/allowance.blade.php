@@ -57,7 +57,7 @@ use App\Http\Controllers\SalaryController;
 	                                			echo 'Phụ cấp tính thuế';
 	                                			}
 	                                		?></td>
-	                                		<td><a href="/salary/allowance-edit/{{$allowance['id']}}" class="btn btn-warning edit_role"  >Chỉnh sửa</a><a class="btn btn-primary" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
+	                                		<td><a href="salary/allowance-edit/{{$allowance['id']}}" class="btn btn-warning edit_role"  >Chỉnh sửa</a><a class="btn btn-primary" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
 		                                </tr>                                	     
 	                                <?php } ?>                           
 	                                </tbody>

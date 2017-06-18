@@ -149,8 +149,10 @@ class BusinessTripController extends Controller
 
     public function postDelete(Request $request)
     {
-        $id = $request->id;
-        $business_trip = BusinessTrip::find($id);
-        $business_trip->delete();
+        if (Auth::user()->can('business_trip_show')){
+            $id = $request->id;
+            $business_trip = BusinessTrip::find($id);
+            $business_trip->delete();
+        }
     }
 }

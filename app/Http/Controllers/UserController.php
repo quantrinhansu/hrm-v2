@@ -245,7 +245,7 @@ class UserController extends Controller
 
     public function getList(Request $request)
     {
-        //if (Auth::user()->can('user_show')){
+        if (Auth::user()->can('user_show')){
             $query = User::query();  
             if($request->code != "")
                 $query->where("username", "like", "%". trim($request->code). "%")->get();
@@ -259,7 +259,7 @@ class UserController extends Controller
             //$user = $query->get();
             $user = $query->paginate(10);
             return view('employee.list', ['user' => $user, 'username' => $request->code, 'name' => $request->name, 'gender' => $request->gender, 'email' => $request->email]);
-        //}
+        }
     }
 
     public function getExport()

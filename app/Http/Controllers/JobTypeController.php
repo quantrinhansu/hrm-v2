@@ -12,10 +12,10 @@ class JobTypeController extends Controller
 {
     public function getList()
     {
-        //if (Auth::user()->can('jobtype_show')){
+        if (Auth::user()->can('jobtype_show')){
         	$job_type = JobType::orderBy('created_at', 'desc')->get();
         	return view('job_type.list', ['job_type' => $job_type]);
-        //}
+        }
     }
 
     public function postAdd(Request $request)
@@ -89,7 +89,9 @@ class JobTypeController extends Controller
 
     public function postDelete(Request $request)
     {
-    	$jobtype = JobType::find($request->id);
-    	$jobtype->delete();
+        if (Auth::user()->can('jobtype_delete')){
+        	$jobtype = JobType::find($request->id);
+        	$jobtype->delete();
+        }
     }
 }

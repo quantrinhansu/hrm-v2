@@ -9,21 +9,23 @@ use App\User;
 class TimekeepingController extends Controller
 {
     public function index(){
-        // User
-        $users = User::all();
-        // get date by month
-        if (!empty($_GET['month']) && !empty($_GET['year'])) {
-            $req         = $_GET['month'].$_GET['year'];
-            $tk_db       = Timekeeping::where('name',$req)->first();
-            if ($tk_db) {
-                $tk_content  = $tk_db->content;
-                $tk_user_ids = $tk_db->user_ids;
-                $tk_date     = $tk_db->date;
-                return view('salary.timekeeping', compact('users','tk_content','tk_user_ids','tk_date'));
+        if (Auth::user()->can('timekeeping_show')){
+            // User
+            $users = User::all();
+            // get date by month
+            if (!empty($_GET['month']) && !empty($_GET['year'])) {
+                $req         = $_GET['month'].$_GET['year'];
+                $tk_db       = Timekeeping::where('name',$req)->first();
+                if ($tk_db) {
+                    $tk_content  = $tk_db->content;
+                    $tk_user_ids = $tk_db->user_ids;
+                    $tk_date     = $tk_db->date;
+                    return view('salary.timekeeping', compact('users','tk_content','tk_user_ids','tk_date'));
+                }
+                
             }
-            
+            return view('salary.timekeeping', compact('users'));
         }
-        return view('salary.timekeeping', compact('users'));
     }
 
     public function store(Request $request){

@@ -12,10 +12,10 @@ class PositionController extends Controller
 {
     public function getList()
     {
-        //if (Auth::user()->can('position_show')){
+        if (Auth::user()->can('position_show')){
         	$position = Position::orderBy('created_at', 'desc')->get();
         	return view('position.list', ['position' => $position]);
-        //}
+        }
     }
 
     public function postAdd(Request $request)

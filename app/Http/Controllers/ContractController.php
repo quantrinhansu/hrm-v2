@@ -237,10 +237,12 @@ class ContractController extends Controller
 
     public function postDelete(Request $request)
     {
-        $user_id = Contract::where('id', $request->id)->value('employee');
-        $salary = Salary::where('user_id', $user_id)->delete();
-        $salary_allowance = Salary_allowance::where('user_id', $user_id)->delete();
-    	$contract = Contract::find($request->id);
-    	$contract->delete();
+        if (Auth::user()->can('contract_add')){
+            $user_id = Contract::where('id', $request->id)->value('employee');
+            $salary = Salary::where('user_id', $user_id)->delete();
+            $salary_allowance = Salary_allowance::where('user_id', $user_id)->delete();
+        	$contract = Contract::find($request->id);
+        	$contract->delete();
+        }
     }
 }

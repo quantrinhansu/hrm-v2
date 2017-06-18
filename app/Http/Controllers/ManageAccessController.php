@@ -9,8 +9,10 @@ class ManageAccessController extends Controller
 {
     public function getList()
     {
-    	$user = User::all();
-    	return view('manage_access.list', ['user' => $user]);
+        if (Auth::user()->can('jobtype_show')){
+        	$user = User::all();
+        	return view('manage_access.list', ['user' => $user]);
+        } 
     }
 
     public function postUpdate(Request $request)

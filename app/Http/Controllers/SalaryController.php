@@ -13,12 +13,12 @@ use App\Salary_allowance;
 class SalaryController extends Controller
 {
     public function index(){
-    	$users = User::all();
-        $allowances = Allowance::all();
-        
-        return view('salary.salary', compact('users','allowances'));
-        
-    	
+        if (Auth::user()->can('salary_show')){
+        	$users = User::all();
+            $allowances = Allowance::all();
+            
+            return view('salary.salary', compact('users','allowances')); 
+        } 	
     }
 
     public function allowance(){

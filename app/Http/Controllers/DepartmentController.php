@@ -14,11 +14,11 @@ class DepartmentController extends Controller
 {
     public function getList()
     {
-        if (Auth::user()->can('department_show')){
+        //if (Auth::user()->can('department_show')){
         	$department = Department::all();
             $manager_department = UserDepartment::where('manager', 1)->get();
         	return view('department.list', ['department' => $department, 'manager_department' => $manager_department]);
-        }
+        //}
     }
 
     public function getAdd()
