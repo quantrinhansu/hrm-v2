@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $table = 'notification';
+    protected $table = 'noti';
     public function User() 
     {
         return $this->belongsTo('App\User', 'create_by' ,'id');

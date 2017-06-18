@@ -59,4 +59,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Contract', 'employee', 'id');
     }
+    public function Notis(){
+        return $this->belongsToMany('App\Noti');
+    }
 }

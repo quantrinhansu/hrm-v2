@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Header -->
 @include('layouts.head')
 @yield('styles')
@@ -190,36 +190,14 @@
                             class="fa fa-search"></i></a></span></div>
                 </form>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                            class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+                    <li class="dropdown"><a data-hover="dropdown" style="cursor: pointer;" class="dropdown-toggle" aria-expanded="false"><i
+                            class="fa fa-bell fa-fw"></i><span class="badge badge-green count"></span></a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li><p>You have 14 new notifications</p></li>
                             <li>
                                 <div class="dropdown-slimscroll">
-                                    <ul>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-blue"><i class="fa fa-comment"></i></span>New Comment<span
-                                                class="pull-right text-muted small">4 mins ago</span></a></li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-violet"><i class="fa fa-twitter"></i></span>3 New
-                                            Followers<span class="pull-right text-muted small">12 mins ago</span></a>
-                                        </li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-pink"><i class="fa fa-envelope"></i></span>Message
-                                            Sent<span class="pull-right text-muted small">15 mins ago</span></a></li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-green"><i class="fa fa-tasks"></i></span>New
-                                            Task<span class="pull-right text-muted small">18 mins ago</span></a></li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-yellow"><i class="fa fa-upload"></i></span>Server
-                                            Rebooted<span class="pull-right text-muted small">19 mins ago</span></a>
-                                        </li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-green"><i class="fa fa-tasks"></i></span>New
-                                            Task<span class="pull-right text-muted small">2 days ago</span></a></li>
-                                        <li><a href="extra-user-list.html" target="_blank"><span
-                                                class="label label-pink"><i class="fa fa-envelope"></i></span>Message
-                                            Sent<span class="pull-right text-muted small">5 days ago</span></a></li>
+                                    <ul class="dropdown-menu-item">
+                                        
                                     </ul>
                                 </div>
                             </li>
@@ -460,3 +438,42 @@
     @include('layouts.footer')
 </body>
 </html>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+  $.ajax({
+   url:"/system/fetch",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu-item').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+});
+</script>

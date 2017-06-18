@@ -29,16 +29,16 @@ class BusinessTripController extends Controller
 
     public function postAjax(Request $request)
     {
-    	$username = $request->username;
-    	$space = strpos($username, " ");
-    	$username = substr($username, 0, $space);
-
-    	$id_user = User::where('username', $username)->value('id');
-    	$name = User::where('username', $username)->value('name');
-
-    	$department = UserDepartment::join('departments', 'users_department.department_id', 'departments.id')->where('users_department.user_id', $id_user)->value('name');
-    	
-    	$position = UserPositionJobtype::join('position', 'user_position_jobtype.position_id', 'position.id')->where('user_position_jobtype.user_id', $id_user)->value('name');
+        $username   = $request->username;
+        $space      = strpos($username, " ");
+        $username   = substr($username, 0, $space);
+        
+        $id_user    = User::where('username', $username)->value('id');
+        $name       = User::where('username', $username)->value('name');
+        
+        $department = UserDepartment::join('departments', 'users_department.department_id', 'departments.id')->where('users_department.user_id', $id_user)->value('name');
+        
+        $position   = UserPositionJobtype::join('position', 'user_position_jobtype.position_id', 'position.id')->where('user_position_jobtype.user_id', $id_user)->value('name');
     	
     	$newdata = array();
     	$newdata['name'] = $name;

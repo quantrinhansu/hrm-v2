@@ -36,6 +36,25 @@ class SalaryController extends Controller
         }
     }
 
+    public function allowance_delete(Request $request){
+        if ($request) {
+            $allowance = Allowance::findOrFail($request->id);
+            $allowance->delete();
+        }
+    }
+
+    public function allowance_update(Request $request){
+        if ($request) {
+            $allowance = Allowance::findOrFail($request->id)->update(array('name' => $request->name,'type' => $request->type));
+            if ($allowance) {
+                return  redirect()->back()->with('msg','Đã cập nhật.'); 
+            }
+            return  redirect()->back()->with('msg','Không thể cập nhật.');         
+        }
+    }    
+
+
+
     public static function getAllowances($user_id){
         $allowances = Salary_allowance::where('user_id',$user_id)->get();
         return $allowances;
