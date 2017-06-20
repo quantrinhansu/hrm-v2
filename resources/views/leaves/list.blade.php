@@ -56,9 +56,11 @@
 							                <td>{{ Carbon\Carbon::parse($le['from'])->format('d-m-Y') }}</td>
 							                <td>{{ Carbon\Carbon::parse($le['to'])->format('d-m-Y') }}</td>
 							                <td>
+							                @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 							                @if($le['type'] == null)
 							                	<button class="btn btn-primary btn-xs btn_yes btn_co_{{$le['id']}}" id="{{$le['id']}}"><i class="fa fa-check" >&nbsp;Có</i></button>                                            
 							                	<button class="btn btn-primary btn-xs btn_no btn_khong_{{$le['id']}}" id="{{$le['id']}}"><b>X</b>&nbsp;Không</button>
+											@endif
 											@endif
 											@if($le['type'] == 'chapnhan')
 							                	<button class="btn btn-primary btn-xs"><i class="fa fa-check">&nbsp;Đồng Ý</i></button>                

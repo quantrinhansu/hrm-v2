@@ -17,19 +17,29 @@ class PermissionTableSeeder extends Seeder
             'position_show',
             'jobtype_show',
             'salary_show',
-            'timekeeping_show'    	
+            'timekeeping_show',
+            'department',
+            'retribution',
+            'business_trip',
+            'manage_access',  
+            'ACL'  	
         );
 
         $display_name = array(
-            'Xem danh sách nhân viên',
-            'Xem danh sách hợp đồng',
+            'Quản lý nhân viên',
+            'Quản lý hợp đồng',
             'Chức vụ',
             'Chuyên môn',
             'Danh sách lương',
-           	'Chấm công'
+           	'Chấm công',
+            'Quản lý phòng ban',
+            'Quản lý khen thưởng',
+            'Quản lý công tác',
+            'Quản lý truy cập',
+            'Quản lý phân quyền'
         );
 
-        for($i = 0; $i < 6; $i++)
+        for($i = 0; $i < 11; $i++)
         {
             DB::table('permissions')->insert([
                 'name' => $name[$i],

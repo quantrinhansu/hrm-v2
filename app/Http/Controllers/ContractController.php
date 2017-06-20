@@ -22,10 +22,12 @@ class ContractController extends Controller
 {
 	public function getList()
 	{
-        //if (Auth::user()->can('contract_show')){
+        if (Auth::user()->can('contract_show')){
     		$contract = Contract::all();
     		return view('contract.list', ['contract'	=> $contract]);
-        //}
+        }else{
+            return redirect('home');
+        }
 	}
 
     public function getExport($id)
@@ -36,20 +38,22 @@ class ContractController extends Controller
         $contract = Contract::find($id);
         $salary_allowance = Salary_allowance::where('user_id', $employee)->get();
 
-        $pdf = PDF::loadView('contract.export', ['contract' => $contract, 'salary_allowance' => $salary_allowance]);
+        $pdf = PDF::loadView('contract.test', ['contract' => $contract, 'salary_allowance' => $salary_allowance]);
         return $pdf->stream($fileName . '.pdf');     
     }
 
     public function getAdd($id)
     {
-        //if (Auth::user()->can('contract_add')){
+        if (Auth::user()->can('contract_show')){
         	$position = Position::all();
         	$department = Department::all();
         	$jobtype = JobType::all();
             $user = User::find($id);
             $allowance = Allowance::all();
         	return view('contract.add', ['position' => $position, 'department' => $department, 'jobtype' => $jobtype, 'user' => $user, 'allowance' => $allowance]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postAdd(Request $request, $id)
@@ -137,7 +141,7 @@ class ContractController extends Controller
 
     public function getEdit($id)
     {
-        //if (Auth::user()->can('contract_edit')){
+        if (Auth::user()->can('contract_show')){
         	$contract = Contract::find($id);
         	$position = Position::all();
         	$department = Department::all();
@@ -147,7 +151,9 @@ class ContractController extends Controller
             $salary_allowance = Salary_allowance::where('user_id', $user_id)->get();
 
         	return view('contract.edit', ['contract' => $contract, 'position'	=> $position, 'department'	=> $department, 'jobtype'	=> $jobtype, 'allowance' => $allowance, 'salary_allowance' => $salary_allowance]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postEdit(Request $request, $id)
@@ -237,12 +243,12 @@ class ContractController extends Controller
 
     public function postDelete(Request $request)
     {
-        if (Auth::user()->can('contract_add')){
+        //if (Auth::user()->can('contract_add')){
             $user_id = Contract::where('id', $request->id)->value('employee');
             $salary = Salary::where('user_id', $user_id)->delete();
             $salary_allowance = Salary_allowance::where('user_id', $user_id)->delete();
         	$contract = Contract::find($request->id);
         	$contract->delete();
-        }
+        //}
     }
 }

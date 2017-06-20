@@ -17,20 +17,31 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $roles      = Role::all();
-        $permission = Permission::all();
-        $user       = User::find(Auth::user()->id);
-        return view('auth.roles', compact('user','permission','roles'));
+    {   if (Auth::user()->can('ACL')){
+            $roles      = Role::all();
+            $permission = Permission::all();
+            $user       = User::find(Auth::user()->id);
+            return view('auth.roles', compact('user','permission','roles'));
+        }else{
+            return redirect('home');
+        }
     }
     public function view_edit($id){
-        $role = Role::findOrFail($id);
-        $per  = Permission::all();
-        return view('auth.role.role_edit', compact('per','role'));
+        if (Auth::user()->can('ACL')){
+            $role = Role::findOrFail($id);
+            $per  = Permission::all();
+            return view('auth.role.role_edit', compact('per','role'));
+        }else{
+            return redirect('home');
+        }
     }
     public function view_add(){
-        $per  = Permission::all();        
-        return view('auth.role.role_new',compact('per'));
+        if (Auth::user()->can('ACL')){
+            $per  = Permission::all();        
+            return view('auth.role.role_new',compact('per'));
+        }else{
+            return redirect('home');
+        }
     }
     public function update(Request $request){
         $role = Role::findOrFail($request->id);
@@ -94,9 +105,13 @@ class RolesController extends Controller
         }
     }
     public function users(){
-        $users = User::all();
-        $roles = Role::all();
-        return view('auth.users', compact('users','roles'));
+        if (Auth::user()->can('ACL')){
+            $users = User::all();
+            $roles = Role::all();
+            return view('auth.users', compact('users','roles'));
+        }else{
+            return redirect('home');
+        }
     }
 
     public function users_role_update(Request $request){

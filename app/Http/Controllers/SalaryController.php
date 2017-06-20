@@ -8,8 +8,9 @@ use App\User;
 use App\Salary;
 use App\Allowance;
 use App\Salary_allowance;
-
-
+use Auth;
+use App\EmployeeRelative;
+use App\Timekeeping;
 class SalaryController extends Controller
 {
     public function index(){
@@ -18,12 +19,18 @@ class SalaryController extends Controller
             $allowances = Allowance::all();
             
             return view('salary.salary', compact('users','allowances')); 
+        }else{
+            return redirect('home');
         } 	
     }
 
     public function allowance(){
-    	$allowances = Allowance::all();
-    	return view('salary.allowance', compact('allowances'));
+        if (Auth::user()->can('salary_show')){
+        	$allowances = Allowance::all();
+        	return view('salary.allowance', compact('allowances'));
+        }else{
+            return redirect('home');
+        }   
     }
 
     public function allowance_add(Request $request){
@@ -104,8 +111,8 @@ class SalaryController extends Controller
     	$Salary_With_Ins_val = SalaryController::getTotalSalaryAllowanceWithInsurrance($user_id,true);
     	return $Salary_No_Ins_val + $Salary_With_Ins_val + (int)$base_salary;
     }
-    public static function getRealSalary($user_id){
-    	return SalaryController::getTotalSalary($user_id)*(/*(int)Timekeeping::getWorkday($user_id)/26*/ 1);
+    public static function getRealSalary($user_id, $month){
+    	return SalaryController::getTotalSalary($user_id)*((int)TimekeepingController::getDW($user_id, $month)/26);
     }
     public static function getPersonalIncomeWithInsurrance($user_id){
     	return (int)(SalaryController::getTotalSalary($user_id) - SalaryController::getTotalSalaryAllowanceWithoutInsurrance($user_id,true));
@@ -149,5 +156,10 @@ class SalaryController extends Controller
 
     public static function getAllDateInMonth($date){
         return cal_days_in_month(CAL_GREGORIAN,6,2017);
+    }
+
+    public static function getEmployeeRelative($user_id){
+        $employee_relative = count(EmployeeRelative::where('user_id', $user_id)->get());
+        return (int)$employee_relative;
     }
 }

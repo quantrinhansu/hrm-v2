@@ -10,7 +10,9 @@ class NotificationController extends Controller
     public function getList()
     {
         //if (Auth::user()->can('notification_show')){
-        	$notification = Notification::orderBy('created_at', 'desc')->get();
+        	//$notification = Notification::orderBy('created_at', 'desc')->get();
+            $notification = Notification::all();
+            //dd($notification);
         	return view('notification.list', ['notification' => $notification]);
         //}
     }

@@ -24,11 +24,13 @@
 	                <div class="col-lg-12">
 	                    <div class="panel panel-blue">
 	                    	<div class="panel-heading">Thông Tin Phòng
+	                    	@if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 	                    	@if($count_employee > 1)
 	                    		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/edit-employee/{{$department['id']}}"><i class="fa fa-floppy-o">&nbsp;Sửa Nhân Viên</i></a>
 	                    	@endif
 	                    	@if($count_employee == 1)
 	                    		<a class="btn btn-info btn_access_save btn-sm" href="department/detail/add-employee/{{$department['id']}}"><i class="fa fa-plus">&nbsp;Thêm Nhân Viên</i></a>
+	                    	@endif
 	                    	@endif
 	                    	<a class="btn btn-info btn_access_save btn-sm" href="department"><i class="fa fa-arrow-left">&nbsp;Quay Lại</i></a>
 	                    	</div>
@@ -55,7 +57,7 @@
 		                                    	<div class="form-group">
 			                                    	<label for="inputFirstName" class="col-md-3 control-label"> Trưởng Phòng </label>
 
-			                                        <div class="col-md-9"><input type="text" class="form-control" value="{{$department->User['username']}}" readonly/></div>
+			                                        <div class="col-md-9"><input type="text" class="form-control" value="{{$manager}}" readonly/></div>
 			                                    </div>
 		                                    </div>
 		                                    <div class="col-md-6">

@@ -1,18 +1,22 @@
 @extends('layouts.app')
 @section('title','Quyền truy cập')
 @section('content')
+
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Danh Sách Quyền Truy Cập</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Danh Sách Quyền Truy Cập</li>
+    </ol>
+
+    <div class="clearfix"></div>
+</div>
+
 <div class="page-content">
 	<div class="row">
-	    <div class="col-lg-12">
-	        <div class="note note-success">
-	        	<h4 class="box-heading">Quyền truy cập</h4>
-	            <p>Quản lí các quyền truy cập.</p>
-
-	            <p>Nhấn "Thêm" để thêm các quyền.
-	            </p>
-	            </p>
-	        </div>
-	    </div>
 		<div class="col-lg-12">
 			<div class="panel panel-blue">
 				<div class="panel-heading">

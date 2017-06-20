@@ -93,10 +93,12 @@ class RetributionController extends Controller
 
     public function getEdit($id)
     {
-        //if (Auth::user()->can('retribution_edit')){
+        if (Auth::user()->can('retribution')){
         	$retribution = Retribution::find($id);
         	return view('retribution.edit', ['retribution' => $retribution]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postEdit(Request $request)

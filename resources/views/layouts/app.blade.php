@@ -449,7 +449,7 @@ $(document).ready(function(){
         }
     })
   $.ajax({
-   url:"/system/fetch",
+   url:"system/fetch",
    method:"POST",
    data:{view:view},
    dataType:"json",

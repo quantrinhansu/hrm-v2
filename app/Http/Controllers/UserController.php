@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Input;
 use PDF;
 use Illuminate\Support\Facades\Hash;
 use Validator;
-
+use App\Role;
 class UserController extends Controller
 {
     /**
@@ -245,7 +245,7 @@ class UserController extends Controller
 
     public function getList(Request $request)
     {
-        if (Auth::user()->can('user_show')){
+        //if (Auth::user()->can('user_show')){
             $query = User::query();  
             if($request->code != "")
                 $query->where("username", "like", "%". trim($request->code). "%")->get();
@@ -259,7 +259,9 @@ class UserController extends Controller
             //$user = $query->get();
             $user = $query->paginate(10);
             return view('employee.list', ['user' => $user, 'username' => $request->code, 'name' => $request->name, 'gender' => $request->gender, 'email' => $request->email]);
-        }
+        //}else{
+          //  return redirect('home');
+        //}
     }
 
     public function getExport()
@@ -362,12 +364,14 @@ class UserController extends Controller
     }
     public function getAdd()
     {
-        //if (Auth::user()->can('user_show')){
+        if (Auth::user()->can('user_show')){
             $department = Department::all();
             $position = Position::all();
             $jobtype = JobType::all();
             return view('employee.add', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postGetUsername(Request $request)
@@ -446,6 +450,9 @@ class UserController extends Controller
             $user->address_CMND      = $request->address_CMND;
             $user->save();
 
+            $role = Role::where('name', 'nhanvien')->value('id');
+            $user->attachRole($role);
+
             $user_id = $user->id;
             $user_department = new UserDepartment;
             $user_department->user_id = $user_id;
@@ -492,15 +499,15 @@ class UserController extends Controller
 
     public function getEdit($id)
     {
-        //if (Auth::user()->can('staff_edit')) {
+        if (Auth::user()->can('user_show')) {
             $user = User::find($id);
             $department = Department::all();
             $position = Position::all();
             $jobtype = JobType::all();
             return view('employee.edit', ['department' => $department, 'position' => $position, 'jobtype' => $jobtype, 'user' => $user]);
-        //}else{
-        //    return  redirect()->back()->with('msg','Bạn không có quyền này.');
-        //}
+        }else{
+           return redirect('home');
+        }
     }
 
     public function postEdit(Request $request, $id)

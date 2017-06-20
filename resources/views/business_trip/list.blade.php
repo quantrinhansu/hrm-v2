@@ -21,7 +21,9 @@
 	            <div class="panel panel-blue">
 	            	<div class="panel-heading">
 	            		<span>Danh Sách</span>
+                        @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 	            		<a class="btn btn-info btn-sm btn_access_save btn-sm" href="business-trip/add" style="color: #fff;"><i class="fa fa-plus">&nbsp;Thêm</i></a>
+                        @endif
 	            	</div>
                    <div class="alert alert-success" id="report_delete" style="display: none">Đã xoá công tác thành công</div>
 	                <div class="panel-body">
@@ -42,8 +44,10 @@
 							                <th>Phụ Cấp</th>
 							                <th>Từ Ngày</th>
 							                <th>Đến Ngày</th>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 							                <th>Sửa</th>
 							                <th>Xóa</th>
+                                            @endif
                                         </tr>
                                         <tbody>
                                         <?php $i = 1; ?>
@@ -59,6 +63,7 @@
 							                <td>{{number_format($bt['allowance'])}} VND</td>
 							                <td>{{Carbon\Carbon::parse($bt['from'])->format('d-m-Y')}}</td>
 							                <td>{{Carbon\Carbon::parse($bt['to'])->format('d-m-Y')}}</td>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 							                <td>
 							                	 <a class="btn btn-primary btn-xs" href="business-trip/edit/{{$bt['id']}}"><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                            
 		                                    </td>
@@ -66,6 +71,7 @@
 		                                         <button type="button" data-target="#modal-default" data-toggle="modal" class="btn btn-primary btn-xs btn_delete" data-id="{{$bt['id']}}"><i
 		                                            class="fa fa-trash-o"></i>&nbsp;Xoá</button>
 		                                    </td>
+                                            @endif
 			                            </tr>
                                        	@endforeach
                                         </tbody>

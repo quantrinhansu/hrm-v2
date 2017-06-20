@@ -15,6 +15,8 @@ class PositionController extends Controller
         if (Auth::user()->can('position_show')){
         	$position = Position::orderBy('created_at', 'desc')->get();
         	return view('position.list', ['position' => $position]);
+        }else{
+            return redirect('home');
         }
     }
 
@@ -51,10 +53,12 @@ class PositionController extends Controller
     
     public function getEdit($id)
     {
-        //if (Auth::user()->can('position_edit')){
+        if (Auth::user()->can('position_show')){
             $position = Position::find($id);
             return view('position.edit', ['position' => $position]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
     public function postEdit(Request $request)
     {

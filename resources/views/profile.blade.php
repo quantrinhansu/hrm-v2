@@ -141,14 +141,14 @@
                                                 class="col-sm-3 control-label">Địa Chỉ Thường Trú</label>
 
                                             <div class="col-sm-9 controls">
-                                            <input type="text" readonly placeholder="Nhập Địa Chỉ Thường Trú" class="form-control" name="permanent_address" value="{{$user['permanent_address']}}" />
+                                             <textarea class="form-control" readonly rows="3" name="permanent_address">{{$user['permanent_address']}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group"><label
                                                 class="col-sm-3 control-label">Địa Chỉ Hiện Tại</label>
 
                                             <div class="col-sm-9 controls">
-                                            <input type="text" placeholder="Nhập Địa Chỉ Hiện Tại"  class="form-control" name="present_address" value="{{$user['present_address']}}" />
+                                             <textarea class="form-control" rows="3" name="present_address" placeholder="Nhập Địa Chỉ Hiện Tại">{{$user['present_address']}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group mbn"><label
@@ -221,7 +221,7 @@
                                                 class="col-sm-3 control-label">Địa Chỉ</label>
 
                                             <div class="col-sm-9 controls">
-                                                <input type="text" placeholder="Nhập Địa Chỉ" class="form-control" name="address_relative" value="{{$user->EmployeeRelative['address']}}"/>
+                                                 <textarea class="form-control" rows="3" name="address_relative" placeholder="Nhập Địa Chỉ">{{$user->EmployeeRelative['address']}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group"><label

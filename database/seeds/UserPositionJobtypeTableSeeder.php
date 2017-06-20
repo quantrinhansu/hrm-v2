@@ -39,7 +39,7 @@ class UserPositionJobtypeTableSeeder extends Seeder
 
         for($i = 8; $i <= 30; $i++){
         	 DB::table('user_position_jobtype')->insert([
-            	'user_id'	=> '7',
+            	'user_id'	=> $i,
 	        	'position_id'	=> '2',
 	        	'jobtype_id'	=> '3'
             ]);

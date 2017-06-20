@@ -95,10 +95,12 @@ class BusinessTripController extends Controller
 
     public function getEdit($id)
     {
-        //if (Auth::user()->can('business_trip_edit')){
+        if (Auth::user()->can('business_trip')){
             $business_trip = BusinessTrip::find($id);
             return view('business_trip.edit', ['business_trip' => $business_trip]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postEdit($id, Request $request)

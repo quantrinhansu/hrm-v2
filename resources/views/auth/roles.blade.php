@@ -9,25 +9,28 @@ use App\Http\Controllers\RolesController;
 	$role_name_now = '';
 ?>
 @extends('layouts.app')
-@section('title','Phân quyền')
+@section('title','Danh Sách Quyền')
 @section('script')
 <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
 <script src="assets/js/jquery.dataTables.min.js"></script>
 @endsection
 
 @section('content')
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Danh Sách Quyền</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Danh Sách Quyền</li>
+    </ol>
+
+    <div class="clearfix"></div>
+</div>
+
 <div class="page-content">
 	<div class="row">
-	    <div class="col-lg-12">
-	        <div class="note note-success"><h4 class="box-heading">Phân quyền</h4>
-
-	            <p>Cấu hình các quyền truy cập cho các nhóm người dùng.</p>
-
-	            <p>Nhấn "Thêm" để thêm các permission
-	            </p>
-	            </p></div>
-	    </div>
-
 	    <div class="col-lg-12">
 	        <div class="panel panel-blue">
 	            <div class="panel-heading">
@@ -67,7 +70,7 @@ use App\Http\Controllers\RolesController;
 			        							<td>{{ $value['display_name'] }}</td>
 			        							<td>{{ $value['description'] }}</td>
 			        							<td>{{ $value['created_at'] }} / {{ $value['updated_at'] }}</td>
-		                                    <td><a href="/roles/viewedit/{{$value['id']}}" class="btn btn-warning edit_role" style="padding-left: 10px" >Chỉnh sửa</a>
+		                                    <td><a href="roles/viewedit/{{$value['id']}}" class="btn btn-warning edit_role" style="padding-left: 10px" >Chỉnh sửa</a>
 		                                    <a id="delete_{{$value['id']}}" class="btn btn-danger delete_role" style="padding-left: 10px" data-toggle="modal" href='#modal-delete' data-rolekey="{{ $value['id'] }}" >Xóa</a>
 		                                </tr>                                	     
 	                                <?php } ?>                           

@@ -24,7 +24,7 @@ use App\Http\Controllers\PermissionController;
 	            <p>Sửa role sẽ anh hưởng tới các người dùng thuộc role này.</p>
 	        </div>
 	    </div>
-	    <form action="/roles/edit" method="POST" role="form">
+	    <form action="roles/edit" method="POST" role="form">
 	    <div class="col-lg-12">
 	        <div class="panel panel-blue">
 	            <div class="panel-heading">

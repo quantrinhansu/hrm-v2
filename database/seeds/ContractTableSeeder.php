@@ -19,11 +19,7 @@ class ContractTableSeeder extends Seeder
                 'code'		=>	$i,
                 'name'		=> 	'Hợp Đồng Lao Động',
                 'type'		=>	'12',
-                'work_description'	=>	'Xây dựng các kế hạch kinh doanh
-										Thực hiện các chiến lược kinh doanh theo chủ trương của ban lãnh đạo công ty
-										Quản lý và phát triển nhân sự phòng kinh doanh
-										Thực hiện các công việc khác theo yêu cầu của ban giám đốc
-                						',
+                'work_description'	=>	'Xây dựng các kế hạch kinh doanh',
                 'from'		=>	'2017-03-20',
                 'to'		=>	'2018-03-20'
             ]);
@@ -33,7 +29,7 @@ class ContractTableSeeder extends Seeder
         {
             DB::table('salary')->insert([
             	'user_id'	=>	$i,
-            	'base_salary'	=>	'8000000'
+            	'base_salary'	=>	'10000000'
             ]);
         }
 

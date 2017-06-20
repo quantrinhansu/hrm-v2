@@ -14,18 +14,24 @@ use App\Http\Controllers\SalaryController;
 <script src="assets/js/jquery.dataTables.min.js"></script>
 @endsection
 @section('content')
+
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Danh Sách Phụ Cấp</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Danh Sách Phụ Cấp</a>
+    </ol>
+</div>
+
 <div class="page-content">
 	<div class="row">
 	    <div class="col-lg-12">
-	        <div class="note note-success">
-	        	<h4 class="box-heading">Quản lý người dùng</h4>
-	            <p>Quản lí người dùng đối với các nhóm người dùng.</p>
-	        </div>
-	    </div>
-	    <div class="col-lg-12">
 	    	<div class="panel panel-blue">
 				<div class="panel-heading">
-					<div class="caption">Bảng các quyền truy cập <a class="btn btn-info pull-right btn-sm" href='#modal-add' data-toggle="modal">Thêm</a>
+					<div class="caption">Danh Sách Phụ Cấp <a class="btn btn-info pull-right btn-sm" href='#modal-add' data-toggle="modal">Thêm</a>
 					</div>
 				</div>
 			    <div class="panel-body">
@@ -44,7 +50,7 @@ use App\Http\Controllers\SalaryController;
 	                                    <th>STT #</th>
 	                                    <th>Tên Phụ Cấp</th>
 	                                    <th>Loại Phụ Cấp</th>
-	                                    <th>Hành Động</th>
+	                                    <!-- <th>Hành Động</th> -->
 	                                </tr>
 	                                <tbody>
 	                                 <?php foreach ($allowances as $key => $allowance) {  ?>
@@ -59,10 +65,9 @@ use App\Http\Controllers\SalaryController;
 	                                			}
 	                                		?></td>
 
-	                                		<td><a href="salary/allowance-edit/{{$allowance['id']}}" class="btn btn-warning edit_role"  >Chỉnh sửa</a><a class="btn btn-primary" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
+	                                		<!-- <td><a href="salary/allowance-edit/" class="btn btn-warning edit_role"  >Chỉnh sửa</a><a class="btn btn-primary" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td> -->
 
-	                                		<td><a class="btn btn-warning allowance_update" data-id="{{ $allowance['id'] }}" data-name="{{ $allowance['name'] }}" data-type="{{$allowance['type']}}" href='#modal-update' data-toggle="modal"  >Chỉnh sửa</a><a data-id="{{$allowance['id']}}" class="btn btn-primary allowance_delete" data-toggle="modal" style="margin-left: 10px" href='#modal-delete'>Xóa</a></td>
-
+	               
 		                                </tr>                                	     
 	                                <?php } ?>                           
 	                                </tbody>

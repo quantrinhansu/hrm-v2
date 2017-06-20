@@ -34,16 +34,18 @@
                 <div class="alert alert-success" id="report_add" style="display: none">Bạn đã thêm phòng ban thành công</div>
                 <div class="alert alert-success" id="report_edit" style="display: none">Bạn đã sửa phòng ban thành công</div>
                 <div id="generalTabContent" class="tab-content responsive">
+                @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
                     <a class="btn btn-info btn_access_save btn_add_modal"><i class="fa fa-plus">&nbsp;Thêm</i></a>
-
+                @endif
                     <h3>Danh Sách Phòng Ban</h3>
                     <div class="row">
                     @foreach($department as $de)
                         <div class="col-sm-6 col-md-3" id="department_{{$de['id']}}">
+                        @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
                             <button type="button" data-target="#modal-default" data-id="{{$de['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete" style="float:right; margin-left: 5px; margin-right: 5px;"><i class="fa fa-trash-o"></i></button>
 
                             <a class="btn_update" id="{{$de['id']}}" style="float:right; "><span class="glyphicon glyphicon-pencil"></span></a>
-
+                        @endif
                             <div class="thumbnail"><img src="images/department.png" width="150px"/>
                            
                             <div class="caption"><h3 style="text-align: center;"><span id="name_{{$de['id']}}">{{$de['name']}}</span></h3>

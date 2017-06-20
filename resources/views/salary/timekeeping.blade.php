@@ -26,7 +26,7 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 // dd($tk_content);
 ?>
 @extends('layouts.app')
-@section('title','Bảng Tính Lương')
+@section('title','Bảng Chấm Công')
 @section('script')
 <link rel="stylesheet" href="/assets/css/jquery-ui.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/scroller/1.4.2/css/scroller.bootstrap.min.css">
@@ -51,19 +51,24 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 </style>
 @endsection
 @section('content')
+
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Bảng Chấm Công</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Bảng Chấm Công</a>
+    </ol>
+
 <div class="page-content">
 	<div class="row">
 	    <div class="col-lg-12">
-	        <div class="note note-success">
-	        	<h4 class="box-heading">Quản lý người dùng</h4>
-	            <p>Quản lí người dùng đối với các nhóm người dùng.</p>
-	        </div>
-	    </div>
-	    <div class="col-lg-12">
 	    	<div class="panel panel-blue">
 				<div class="panel-heading">
-				<form action="/timekeeping" method="GET">
-					<div class="caption">Bảng các quyền truy cập <button type="submit" class="btn btn-info pull-right btn-sm" >Truy Cập</button>
+				<form action="timekeeping" method="GET">
+					<div class="caption">Bảng Chấm công <button type="submit" class="btn btn-info pull-right btn-sm" >Truy Cập</button>
 					<select style="width: 14%; height: 29px; padding-top: 0px; margin-right: 5px;" name="month" id="inputMonth" class="pull-right form-control inline" required="required">
 						@for ($i = 1; $i <= 12; $i++)
 							@if ($i < 10)
@@ -79,7 +84,7 @@ $all_date = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 				</form>
 				</div>
 			    <div class="panel-body">
-	                <form action="/timekeeping/store" method="POST">
+	                <form action="timekeeping/store" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<input type="hidden" name="name" value="{{$month}}{{$year}}">
 		            <div class="row mbm">

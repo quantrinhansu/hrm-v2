@@ -38,8 +38,10 @@
 							                <th>Ngày Tạo</th>
 							                <th>Nhân Viên Tạo</th>
                                             <th>Chi Tiết</th>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 							                <th>Sửa</th>
 							                <th>Xóa</th>
+                                            @endif
 			                            </tr>
                                         <tbody>
                                         <?php $i = 1; ?>
@@ -53,6 +55,7 @@
                                             <td>
                                                 <a href="notification/detail/{{$nc['id']}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-check"></i>&nbsp;Chi Tiết</a>
                                             </td>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
 							                <td>
 							                	<a href="notification/edit/{{$nc['id']}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
 		                                    </td>
@@ -60,6 +63,7 @@
 		                                         <button type="button" data-target="#modal-default" data-toggle="modal" class="btn btn-primary btn-xs btn_delete" data-id="{{$nc['id']}}"><i
 		                                            class="fa fa-trash-o"></i>&nbsp;Xoá</button>
 		                                    </td>
+                                            @endif
 			                            </tr>
 			                            @endforeach
                                         </tbody>

@@ -23,10 +23,12 @@ class DepartmentController extends Controller
 
     public function getAdd()
     {
-        //if (Auth::user()->can('department_add')){
+        if (Auth::user()->can('department')){
         	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
         	return view('department.add_department', ['user' => $user]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
     public function postAdd(Request $request)
     {
@@ -74,21 +76,26 @@ class DepartmentController extends Controller
     {
         //if (Auth::user()->can('department_detail')){
         	$department = Department::find($id);
-        	$user_department = UserDepartment::where('department_id', $id)->get();
+            $user_department = UserDepartment::where('department_id', $id)->get();
+        	$manager = UserDepartment::where('department_id', $id)
+                                        ->where('manager', 1)->value('user_id');
+            $manager = User::where('id', $manager)->value('name');
         	$count_employee = count(UserDepartment::where('department_id', $id)->get());
-        	return view('department.detail', ['department' => $department, 'user_department' => $user_department, 'count_employee' => $count_employee]);
+        	return view('department.detail', ['department' => $department, 'user_department' => $user_department, 'count_employee' => $count_employee, 'manager' => $manager]);
         //}
     }
 
     public function getAddEmployee($id)
     {
-        //if (Auth::user()->can('department_add_employee')){
+        if (Auth::user()->can('department')){
         	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
         	 							   ->where('users_department.manager', null)
         	 	->select('users.id', 'users.name', 'users.username', 'users.gender')->get();
         	 $department = Department::find($id);
         	return view('department.add_employee', ['user' => $user, 'department' => $department]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postAddEmployee($id, Request $request)
@@ -162,12 +169,14 @@ class DepartmentController extends Controller
 
     public function getEdit($id)
     {
-        //if (Auth::user()->can('department_edit')){
+        if (Auth::user()->can('department')){
             $user = User::join('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', $id)
                 ->select('users.id', 'users.name', 'users.username', 'users.gender', 'users_department.manager')->get();
             $department = Department::find($id);
             return view('department.edit_department', ['user' => $user, 'department' => $department]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postDelete(Request $request)
@@ -179,7 +188,7 @@ class DepartmentController extends Controller
 
     public function getEditEmployee($id)
     {
-        //if (Auth::user()->can('department_edit_employee')){
+        if (Auth::user()->can('department')){
         	$user = User::leftJoin('users_department', 'users.id', '=', 'users_department.user_id')->where('users_department.department_id', null)
         								  ->orwhere('users_department.department_id', $id)
         								  ->where('users_department.manager', null)
@@ -187,7 +196,9 @@ class DepartmentController extends Controller
         	$department = Department::find($id);
         	$user_department = UserDepartment::where('department_id', $id)->get();
         	return view('department.edit_employee', ['user' => $user, 'department' => $department, 'user_department' => $user_department]);
-        //}
+        }else{
+            return redirect('home');
+        }
     }
 
     public function postEditEmployee($id, Request $request)

@@ -28,5 +28,8 @@ class DatabaseSeeder extends Seeder
          $this->call(LeaveTableSeeder::class);
          $this->call(RetributionTableSeeder::class);
          $this->call(BussinessTripTableSeeder::class);
+         $this->call(HomeTableSeeder::class);
+         //$this->call(TimekeepingTableSeeder::class);
+
     }
 }

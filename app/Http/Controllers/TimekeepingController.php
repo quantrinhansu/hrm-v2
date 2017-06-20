@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Timekeeping;
 use App\User;
-
+use Auth;
 class TimekeepingController extends Controller
 {
     public function index(){
-        if (Auth::user()->can('timekeeping_show')){
+        if (Auth::user()->can('salary_show')){
             // User
             $users = User::all();
             // get date by month
@@ -25,6 +25,8 @@ class TimekeepingController extends Controller
                 
             }
             return view('salary.timekeeping', compact('users'));
+        }else{
+            return redirect('home');
         }
     }
 

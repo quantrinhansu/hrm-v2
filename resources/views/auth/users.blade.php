@@ -1,20 +1,28 @@
 @extends('layouts.app')
-@section('title','Người dùng')
+@section('title','Phân Quyền')
 @section('content')
+
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Phân Quyền</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Phân Quyền</li>
+    </ol>
+
+    <div class="clearfix"></div>
+</div>
+
 <div class="page-content">
 	<div class="row">
-	    <div class="col-lg-12">
-	        <div class="note note-success">
-	        	<h4 class="box-heading">Quản lý người dùng</h4>
-	            <p>Quản lí người dùng đối với các nhóm người dùng.</p>
-	        </div>
-	    </div>
 	    <form action="roles/users_role_update" method="POST">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="col-lg-12">
 			<div class="panel panel-blue">
 				<div class="panel-heading">
-					<div class="caption">Bảng các quyền truy cập <button type="submit" class="btn btn-info pull-right btn-sm" >Lưu lại</button></div>
+					<div class="caption">Phân Quyền <button type="submit" class="btn btn-info pull-right btn-sm" >Lưu lại</button></div>
 
 				</div>
 			    <div class="panel-body">

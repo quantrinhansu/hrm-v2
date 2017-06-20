@@ -29,7 +29,9 @@
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <span>Danh Sách</span>
+                        @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
                         <button class="btn btn-info btn-sm btn_access_save" data-title="Add" data-toggle="modal" data-target="#add"><i class="fa fa-plus">&nbsp;Thêm</i></button>
+                        @endif
                         <a href="retribution/export" class="btn btn-info btn_access_save btn-sm"><img src="images/xls.png" width="17px" class="mrx"/>&nbsp;Xuất Excel</i></a>
                     </div>
                    <div class="alert alert-success" id="report_delete" style="display: none">Đã xoá thành công</div>
@@ -49,8 +51,10 @@
                                             <th>Lý Do</th>
                                             <th>Hình Thức</th>
                                             <th>Ngày ra quyết định</th>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
                                             <th>Sửa</th>
                                             <th>Xóa</th>
+                                            @endif
                                         </tr>
                                         <tbody>
                                           <?php $i = 1; ?>
@@ -70,6 +74,7 @@
                                             <td id="reason_{{$re['id']}}">{{$re['reason']}}</td>
                                             <td id="description_{{$re['id']}}">{{$re['description']}}</td>
                                             <td id="create_date_{{$re['id']}}">{{Carbon\Carbon::parse($re['create_date'])->format('d-m-Y')}}</td>
+                                            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
                                             <td>
                                                  <a class="btn btn-primary btn-xs btn_update" id="{{$re['id']}}"><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>                                            
                                             </td>
@@ -77,6 +82,7 @@
                                                  <button type="button" data-target="#modal-default" data-id="{{$re['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i
                                                         class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                             </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                        

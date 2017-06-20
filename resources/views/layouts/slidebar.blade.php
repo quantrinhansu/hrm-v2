@@ -36,7 +36,8 @@
                             class="submenu-title">One Page</span></a></li>
                 </ul>
             </li> -->
-
+            
+            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
             <li <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="active" <?php
                     } ?> ><a href="#"><i class="fa fa-lock">
@@ -56,7 +57,7 @@
                         <?php
                     }
                     ?> ><a href="roles"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Phân Quyền</span></a></li>
+                            class="submenu-title">Danh Sách Quyền</span></a></li>
                     <li <?php 
                         if ($match == '/permission') {
                             
@@ -68,23 +69,26 @@
                             class="submenu-title">Quyền Truy Cập</span></a>
                     </li>
                     <li <?php 
-                        if ($match == '/users') {
+                        if ($match == '/roles/users') {
                             
                         ?>
                         class="active"
                         <?php
                     }
                     ?> ><a href="roles/users"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Người Dùng</span></a>
+                            class="submenu-title">Phân Quyền</span></a>
                     </li>                    
                 </ul>
             </li>
+            @endif
+            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
              <li<?php if ($match == '/manage-access') {
                        ?> class="active" <?php
                     } ?>><a href="manage-access"><i class="fa fa-key">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Quản Lý Truy Cập</span></a>
             </li>
+            @endif
             <li<?php if ($match == '/employee') {
                        ?> class="active" <?php
                     } ?>><a href="employee"><i class="fa fa-group">
@@ -97,12 +101,15 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Hồ Sơ</span></a>
             </li>
+            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin') || Auth::User()->hasRole('nhansu'))
              <li<?php if ($match == '/contract') {
                        ?> class="active" <?php
                     } ?>><a href="contract"><i class="fa fa-file-text">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Danh Sách Hợp Đồng</span></a>
             </li>
+            @endif
+            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin'))
             <li<?php if ($match == '/position') {
                        ?> class="active" <?php
                     } ?>><a href="position"><i class="fa fa-laptop fa-fw">
@@ -115,6 +122,7 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Chuyên Môn</span></a>
             </li>
+            @endif
             <li<?php if ($match == '/department') {
                        ?> class="active" <?php
                     } ?>><a href="department"><i class="fa fa-building">
@@ -149,6 +157,7 @@
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Công Tác</span></a>
             </li>
+            @if(Auth::User()->hasRole('supper_admin') || Auth::User()->hasRole('admin') || Auth::User()->hasRole('ketoan'))
             <li <?php if ($match == '/roles' || $match == '/permission') {
                        ?> class="active" <?php
                     } ?> ><a href="#"><i class="fa fa-money">
@@ -180,23 +189,24 @@
                             class="submenu-title">Phụ cấp</span></a></li>
                     <li <?php
 
-                        if ($match == '/timekeeping') {
+                        if ($match == 'timekeeping') {
                             
                         ?>
                         class="active"
                         <?php
                     }
-                    ?> ><a href="/timekeeping"><i class="fa fa-rocket"></i><span
+                    ?> ><a href="timekeeping"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Chấm Công</span></a>
                     </li>  
                 </ul>
             </li>      
+            @endif
             <li><a href="#"><i class="fa fa-question">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">Trợ Gúp</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="help"><i class="fa fa-rocket"></i><span
-                            class="submenu-title">Giới Thiệu</span></a></li>
+                     <li><a href="help"><i class="fa fa-rocket"></i><span
+                            class="submenu-title">Hướng Dẫn</span></a></li>
                      <li><a href="help/feedback"><i class="fa fa-rocket"></i><span
                             class="submenu-title">Phản Hồi</span></a></li>
                 </ul>

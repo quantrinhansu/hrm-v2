@@ -143,7 +143,9 @@
 								                <th>Phòng Ban</th>
 								                <th>Chức Vụ</th>
 								                <th>Chuyên Môn</th>
+								                @if(Auth::User()->hasRole('supper_admin'))
 								                <th>Hợp Đồng</th>
+								                @endif
 								                <th>Hồ Sơ</th>
 								                <th>Sửa</th>
 								                <th>Xóa</th>
@@ -166,6 +168,7 @@
 								                <td>{{$us->UserDepartment['user_id'] == null ? '' : $us->UserDepartment->Department['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Position['name']}}</td>
 								                <td>{{$us->UserPositionJobtype['user_id'] == null ? '' : $us->UserPositionJobtype->Jobtype['name']}}</td>
+								                 @if(Auth::User()->hasRole('supper_admin'))
 								                <td>
 								                	@if($us->Contract['employee'])
 								                	 <a href="contract/edit/{{$us->Contract['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
@@ -173,6 +176,7 @@
 								                	<a href="contract/add/{{$us['id']}}" class="btn btn-info btn-xs" ><span class="fa fa-plus"></span>&nbsp;Tạo</span></a>
 								                	 @endif
 								                </td>
+								                @endif
 								                <td><a href="profile/{{$us['id']}}" class="btn btn-success btn-xs" ><span class="glyphicon glyphicon-hand-up"></span>&nbsp;Xem</span></a>
 													
 								                </td>

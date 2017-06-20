@@ -11,7 +11,7 @@ class HelpController extends Controller
     public function getIntroduce()
     {   
         $home = Home::find(1);
-        return view('help.intro', ['home' => $home]);
+        return view('help.introduce', ['home' => $home]);
     }
 
     public function getEdit()

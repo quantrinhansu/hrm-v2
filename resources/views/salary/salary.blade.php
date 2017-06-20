@@ -24,22 +24,29 @@ $year = mb_substr($my, 2);
 	td {
 	border-right: 1px solid rgba(0, 0, 0, 0.08);
 	}
+	th {
+		width: auto;
+	}
 </style>
 @stop
 @section('content')
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">Tính Lương</div>
+    </div>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><i class="fa fa-home"></i>&nbsp;Trang Chủ&nbsp;&nbsp;<i
+                class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+        <li>Tính Lương</a>
+    </ol>
+</div>
 <div class="page-content">
 	<div class="row">
-	    <div class="col-lg-12">
-	        <div class="note note-success">
-	        	<h4 class="box-heading">Quản lý người dùng</h4>
-	            <p>Quản lí người dùng đối với các nhóm người dùng.</p>
-	        </div>
-	    </div>
 	    <div class="col-lg-12">
 	    	<div class="panel panel-blue">
 				<div class="panel-heading">
 				<form action="salary" method="GET">
-					<div class="caption">Bảng các quyền truy cập <button class="btn btn-info pull-right btn-sm" type="submit">Truy cập</button>					
+					<div class="caption">Bảng Tính Lương <button class="btn btn-info pull-right btn-sm" type="submit">Truy cập</button>					
 					<select style="width: 14%; height: 29px; padding-top: 0px; margin-right: 5px;" name="monthSelect" id="inputMonth" class="pull-right form-control inline" required="required">
 						@for ($i = 1; $i <= 12; $i++)
 							@if ($i < 10)
@@ -82,7 +89,6 @@ $year = mb_substr($my, 2);
 										<th></th>
 										<th></th>
 										<th></th>
-										<th></th>
 									</tr>
 	                                <tr>
 	                                    <th>STT #</th>
@@ -111,8 +117,7 @@ $year = mb_substr($my, 2);
 	                                    <th class="Giamtru">Bản thân</th>        
 	                                    <th class="Giamtru" style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Người Phụ thuộc</th>
 	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thu nhập tính thuế TNCN</th>       
-	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thuế TNCN phải nộp</th>                     
-	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Tạm ứng</th>                                    
+	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thuế TNCN phải nộp</th>                                                         
 	                                    <th style="border-right: 1px solid rgba(0, 0, 0, 0.08);">Thực lĩnh</th>                                    
 	                                </tr>
 	                                <tbody>
@@ -132,7 +137,9 @@ $year = mb_substr($my, 2);
 										{{-- End Phụ cấp --}}
 	                                		<td >{{ number_format(SalaryController::getTotalSalary($value['id'])) }}</td>
 	                                		<td>{{TimekeepingController::getDW($value['id'], $my)}}</td>
-	                                		<td>{{ number_format(SalaryController::getRealSalary($value['id'])) }}</td>
+	                                		<td> <?php $real_salary = SalaryController::getRealSalary($value['id'], $my);
+	                                				echo number_format($real_salary);
+	                                		?></td>
 	                                		<td>{{ number_format(SalaryController::getPersonalIncomeWithInsurrance($value['id'])) }}</td>
 	                                		<td>{{ number_format(SalaryController::getSalaryForInsurrance($value['id'])) }}</td>
 	                                		<td>{{ number_format(0.18*SalaryController::getSalaryForInsurrance($value['id'])) }}</td>
@@ -144,12 +151,15 @@ $year = mb_substr($my, 2);
 	                                		<td>{{ number_format(0.015*SalaryController::getSalaryForInsurrance($value['id'])) }} </td>
 	                                		<td>{{ number_format(0.01*SalaryController::getSalaryForInsurrance($value['id'])) }} </td>
 	                                		<td>{{ number_format(0.105*SalaryController::getSalaryForInsurrance($value['id'])) }} </td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
-	                                		<td>{{ $value['name'] }}</td>
+	                                		<td>{{number_format(9000000)}}</td>
+	                                		<td>{{ SalaryController::getEmployeeRelative($value['id']) * 3600000 }} </td>
+	                                		<td><?php  $tntt = (SalaryController::getPersonalIncomeWithInsurrance($value['id']) - 0.105*SalaryController::getSalaryForInsurrance($value['id']) - 9000000 - SalaryController::getEmployeeRelative($value['id']) * 3600000) < 0 ? 0 :  SalaryController::getPersonalIncomeWithInsurrance($value['id']) - 0.105*SalaryController::getSalaryForInsurrance($value['id']) - 9000000 - SalaryController::getEmployeeRelative($value['id']) * 3600000; 
+	                                				echo number_format($tntt);
+	                                		?>
+	                                		</td>
+	                                		<td>{{ number_format($tntt * 0.05)  }}</td>
+	                 
+	                                		<td>{{number_format($real_salary - 0.105*SalaryController::getSalaryForInsurrance($value['id']) - $tntt * 0.05 ) }}</td>
 		                                </tr>                                	     
 	                                <?php } ?>                           
 	                                </tbody>

@@ -44,8 +44,10 @@
 							                <th>Ngày Bắt Đầu</th>
 							                <th>Ngày Kết Thúc</th>
 							                <th>Xuất</th>
+							                @if(Auth::User()->hasRole('supper_admin'))
 							                <th>Sửa</th>
 							                <th>Xóa</th>
+							                @endif
                                         </tr>
                                         <tbody>
                                        <?php $i = 1; ?>
@@ -66,6 +68,7 @@
 								              	<td>
 													<a href="contract/export/{{$co['id']}}"> <img src="images/pdf.png" width="24px" class="mrx"/></a>
 								              	</td>
+								              	@if(Auth::User()->hasRole('supper_admin'))
 								                <td>
 								               
 								                	 <a href="contract/edit/{{$co['id']}}" class="btn btn-primary btn-xs" ><span class="fa fa-edit"></span>&nbsp;Sửa</span></a>
@@ -75,6 +78,7 @@
 			                                         <button type="button" data-target="#modal-default" data-id="{{$co['id']}}" data-toggle="modal" class="btn btn-primary btn-xs btn_delete"><i
 			                                            class="fa fa-trash-o"></i>&nbsp;Xóa</button>
 			                                    </td>
+			                                    @endif
 				                            </tr>
 				                        @endforeach
                                         </tbody>

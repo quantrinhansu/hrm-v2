@@ -27,8 +27,12 @@ class PermissionController extends Controller
         }*/
         // $user = User::find(Auth::user()->id);
         // return view('auth.permission', compact('user'));
-        $per = Permission::all();
-        return view('auth.permission', compact('per'));
+        if (Auth::user()->can('ACL')){
+            $per = Permission::all();
+            return view('auth.permission', compact('per'));
+        }else{
+            return redirect('home');
+        }
     }
 
     /**
